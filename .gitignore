@@ -1,0 +1,27 @@
+# 数据集与压缩包
+/dataset/
+/data/
+*.zip
+*.rar
+*.7z
+
+# 训练产物
+/outputs/
+/checkpoints/
+/runs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Python 环境与缓存
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 本地凭据
+.env
+.env.*
+!.env.example
