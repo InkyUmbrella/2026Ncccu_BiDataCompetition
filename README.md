@@ -107,3 +107,5 @@ CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
 2026-10-16 已在 itgpu 的 glaucoma 环境通过 9 项 CPU 合成测试，以及 B0/B1 的 V100 FP16 测试。
 384×384、batch=16 时，两个变体的峰值已分配张量显存约 3,029 MiB（不含 CUDA 驱动及缓存保留开销）。
 这些检查验证工程流程，不代表正式数据上的模型效果或 T4 推理延迟；正式比赛数据训练尚未启动。
+
+Training I/O speedup: see [docs/TRAINING_SPEED.md](docs/TRAINING_SPEED.md).

@@ -6,14 +6,14 @@ import hashlib
 from .dataset import load_rgb
 
 
-def audit_samples(splits, hashes=False):
+def audit_samples(splits, hashes=False, image_loader=load_rgb):
     report = {"splits": {}, "errors": [], "duplicate_groups": [], "hashes_checked": hashes}
     digest_groups = {}
     for split, samples in splits.items():
         sizes, labels = Counter(), Counter()
         for index, sample in enumerate(samples, 1):
             try:
-                image = load_rgb(sample.path)
+                image = image_loader(sample.path)
                 sizes[f"{image.width}x{image.height}"] += 1
                 image.close()
                 if hashes:

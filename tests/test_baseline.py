@@ -17,6 +17,7 @@ from glaucoma.cli import main
 from glaucoma.config import Config, ModelConfig, TrainConfig
 from glaucoma.data.age import AgeStats
 from glaucoma.data.audit import audit_samples
+from glaucoma.data.cache import ImageCache, prepare_cache
 from glaucoma.data.dataset import FundusDataset, read_samples
 from glaucoma.data.transforms import build_transform
 from glaucoma.engine.checkpoint import load_model, read_checkpoint
@@ -55,6 +56,25 @@ def fixture(root):
 
 
 class DataTests(unittest.TestCase):
+    def test_lossless_cache_preserves_augmentation_and_rejects_stale_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture(root / "data")
+            prepare_cache(root / "data", root / "cache", 32, 1)
+            rows = read_samples(root / "data", "train")
+            cache = ImageCache(root / "cache", rows, 32)
+            for training in (False, True):
+                original = FundusDataset(rows, AgeStats(50, 50, 10), build_transform(32, training))
+                cached = FundusDataset(rows, AgeStats(50, 50, 10), build_transform(32, training), cache)
+                for index in range(len(rows)):
+                    torch.manual_seed(index)
+                    expected = original[index]["image"]
+                    torch.manual_seed(index)
+                    torch.testing.assert_close(cached[index]["image"], expected, rtol=0, atol=0)
+            rows[0].path.write_bytes(b"changed")
+            with self.assertRaisesRegex(ValueError, "source changed"):
+                ImageCache(root / "cache", rows, 32)
+
     def test_age_statistics_and_flags(self):
         stats = AgeStats.fit([20, 40, 60, 0, 137, float("nan")])
         self.assertEqual(stats.median, 40)
@@ -189,7 +209,8 @@ class WorkflowTests(unittest.TestCase):
                           "accumulation_steps": 2, "learning_rate": 0.01, "amp": False}})
             full = train(config)
             partial = train(config, stop_after_epochs=1)
-            resumed = train(config, resume=partial / "last.pt")
+            prepare_cache(root / "data", root / "cache", 32, 1)
+            resumed = train(config, resume=partial / "last.pt", image_cache=root / "cache")
             a = read_checkpoint(full / "last.pt", "training")
             b = read_checkpoint(resumed / "last.pt", "training")
             self.assertEqual(a["global_step"], 9)

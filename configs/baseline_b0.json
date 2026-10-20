@@ -3,9 +3,9 @@
   "seed": 42,
   "device": "cuda",
   "output_root": "outputs/baseline",
-  "data": {"root": "dataset/glaucoma_first", "image_size": 384, "num_workers": 4, "verify_images": true},
+  "data": {"root": "/home/lichunyu/competition/dataset/glaucoma_first", "image_size": 384, "num_workers": 8, "verify_images": true},
   "model": {"name": "convnext_tiny", "params": {"use_age": false, "hidden_dim": 128, "dropout": 0.2}},
-  "train": {"epochs": 60, "batch_size": 16, "accumulation_steps": 4, "learning_rate": 0.0003,
+  "train": {"epochs": 60, "batch_size": 64, "accumulation_steps": 2, "learning_rate": 0.0003,
     "min_learning_rate": 0.000001, "warmup_epochs": 5, "weight_decay": 0.05,
     "pos_weight": 5.0, "grad_clip": 1.0, "amp": true}
 }

@@ -36,7 +36,7 @@ def _resume_compatible(config, saved):
         raise ValueError("Resume config differs from checkpoint (only data.root/output_root may change)")
 
 
-def train(config, resume=None, stop_after_epochs=None):
+def train(config, resume=None, stop_after_epochs=None, image_cache=None):
     config.validate()
     if stop_after_epochs is not None and stop_after_epochs < 1:
         raise ValueError("stop_after_epochs must be positive")
@@ -63,14 +63,22 @@ def train(config, resume=None, stop_after_epochs=None):
     save_json(run_dir / "age_stats.json", age_stats.to_dict())
     metadata = environment_metadata()
     metadata.update(csv_hashes=csv_hashes, resumed_from=str(Path(resume).resolve()) if resume else None,
+                    image_cache=str(Path(image_cache).resolve()) if image_cache else None,
                     device=str(device), gpu=torch.cuda.get_device_name(device) if device.type == "cuda" else None)
     save_json(run_dir / "metadata.json", metadata)
+    caches = {}
+    if image_cache:
+        from ..data.cache import ImageCache
+        caches = {split: ImageCache(image_cache, rows, config.data.image_size) for split, rows in samples.items()}
     if config.data.verify_images:
-        report = audit_samples(samples)
+        report = (audit_samples(samples, image_loader=lambda path: caches[path.parent.name].load(path))
+                  if caches else audit_samples(samples))
+        report["image_source"] = "lossless_cache" if caches else "original"
         save_json(run_dir / "data_audit.json", report)
         if report["errors"]:
             raise ValueError(f"Image decoding failed; see {run_dir / 'data_audit.json'}")
-    datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train"))
+    datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train"),
+                                   image_cache=caches.get(split))
                 for split, rows in samples.items()}
     valid_loader = make_loader(datasets["valid"], config.train.batch_size, config.data.num_workers,
                                config.seed, pin_memory=device.type == "cuda")
