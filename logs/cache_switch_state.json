@@ -1,0 +1,60 @@
+[
+  {
+    "old_pid": 1473206,
+    "old_started": "85849869",
+    "config": "configs/baseline_b0.json",
+    "log": "logs/b0_train.log",
+    "checkpoint": "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/outputs/baseline/b0_image/seed42_20261017T073748Z_34d8f5be/last.pt",
+    "phase": "verified",
+    "gpu": 2,
+    "baseline": [
+      1792234375204318878,
+      446984446
+    ],
+    "paused": {
+      "1473206": "85849869",
+      "1502876": "87139972",
+      "1502877": "87139976",
+      "1502878": "87139980",
+      "1502879": "87139984",
+      "1502880": "87139989",
+      "1502881": "87139993",
+      "1502882": "87139997",
+      "1502883": "87140001"
+    },
+    "resume_epoch": 6,
+    "new_pid": 1502895,
+    "new_started": "87140220",
+    "fast_log": "logs/b0_train.cached.log",
+    "launched": 1792235557.5204656
+  },
+  {
+    "old_pid": 1473404,
+    "old_started": "85854940",
+    "config": "configs/baseline_b1.json",
+    "log": "logs/b1_train.log",
+    "checkpoint": "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/outputs/baseline/b1_image_age/seed42_20261017T073831Z_3eb5e914/last.pt",
+    "phase": "verified",
+    "gpu": 3,
+    "baseline": [
+      1792234223062813135,
+      447009558
+    ],
+    "paused": {
+      "1473404": "85854940",
+      "1503068": "87141353",
+      "1503069": "87141356",
+      "1503070": "87141360",
+      "1503071": "87141363",
+      "1503072": "87141366",
+      "1503073": "87141370",
+      "1503074": "87141373",
+      "1503075": "87141376"
+    },
+    "resume_epoch": 6,
+    "new_pid": 1503090,
+    "new_started": "87141640",
+    "fast_log": "logs/b1_train.cached.log",
+    "launched": 1792235571.70829
+  }
+]

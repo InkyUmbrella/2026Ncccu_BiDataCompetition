@@ -63,10 +63,11 @@ def load_rgb(path):
 
 
 class FundusDataset(Dataset):
-    def __init__(self, samples, age_stats, transform):
+    def __init__(self, samples, age_stats, transform, image_cache=None):
         self.samples = samples
         self.age_stats = age_stats
         self.transform = transform
+        self.image_cache = image_cache
 
     def __len__(self):
         return len(self.samples)
@@ -74,7 +75,7 @@ class FundusDataset(Dataset):
     def __getitem__(self, index):
         sample = self.samples[index]
         try:
-            image = self.transform(load_rgb(sample.path))
+            image = self.transform(self.image_cache.load(sample.path) if self.image_cache else load_rgb(sample.path))
         except Exception as exc:
             raise RuntimeError(f"Cannot decode/transform {sample.path}: {exc}") from exc
         result = {"image": image,

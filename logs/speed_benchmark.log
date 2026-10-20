@@ -1,0 +1,26 @@
+[benchmark] 32 real-image augmented tensors match exactly
+[benchmark] original: 40.723s, 25.15 images/s
+[benchmark] cached: 12.634s, 81.05 images/s
+{
+  "original": {
+    "samples": 1024,
+    "seconds": 40.72289092990104,
+    "images_per_second": 25.145562523119434,
+    "metrics": {
+      "loss": 0.5202864487655461,
+      "lr": 0.0002996661483541614,
+      "skipped_optimizer_steps": 0
+    }
+  },
+  "cached": {
+    "samples": 1024,
+    "seconds": 12.633776906994171,
+    "images_per_second": 81.05256310431638,
+    "metrics": {
+      "loss": 0.5202864487655461,
+      "lr": 0.0002996661483541614,
+      "skipped_optimizer_steps": 0
+    }
+  },
+  "speedup": 3.2233346551621063
+}

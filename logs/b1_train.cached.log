@@ -1,0 +1,544 @@
+[run] /home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/outputs/baseline/b1_image_age/seed42_20261017T111343Z_828bbaf6
+[audit] train: 1000/51396
+[audit] train: 2000/51396
+[audit] train: 3000/51396
+[audit] train: 4000/51396
+[audit] train: 5000/51396
+[audit] train: 6000/51396
+[audit] train: 7000/51396
+[audit] train: 8000/51396
+[audit] train: 9000/51396
+[audit] train: 10000/51396
+[audit] train: 11000/51396
+[audit] train: 12000/51396
+[audit] train: 13000/51396
+[audit] train: 14000/51396
+[audit] train: 15000/51396
+[audit] train: 16000/51396
+[audit] train: 17000/51396
+[audit] train: 18000/51396
+[audit] train: 19000/51396
+[audit] train: 20000/51396
+[audit] train: 21000/51396
+[audit] train: 22000/51396
+[audit] train: 23000/51396
+[audit] train: 24000/51396
+[audit] train: 25000/51396
+[audit] train: 26000/51396
+[audit] train: 27000/51396
+[audit] train: 28000/51396
+[audit] train: 29000/51396
+[audit] train: 30000/51396
+[audit] train: 31000/51396
+[audit] train: 32000/51396
+[audit] train: 33000/51396
+[audit] train: 34000/51396
+[audit] train: 35000/51396
+[audit] train: 36000/51396
+[audit] train: 37000/51396
+[audit] train: 38000/51396
+[audit] train: 39000/51396
+[audit] train: 40000/51396
+[audit] train: 41000/51396
+[audit] train: 42000/51396
+[audit] train: 43000/51396
+[audit] train: 44000/51396
+[audit] train: 45000/51396
+[audit] train: 46000/51396
+[audit] train: 47000/51396
+[audit] train: 48000/51396
+[audit] train: 49000/51396
+[audit] train: 50000/51396
+[audit] train: 51000/51396
+[audit] valid: 1000/5849
+[audit] valid: 2000/5849
+[audit] valid: 3000/5849
+[audit] valid: 4000/5849
+[audit] valid: 5000/5849
+[train] batch=100/804 loss=0.421285
+[train] batch=200/804 loss=0.440013
+[train] batch=300/804 loss=0.434627
+[train] batch=400/804 loss=0.436110
+[train] batch=500/804 loss=0.436522
+[train] batch=600/804 loss=0.439303
+[train] batch=700/804 loss=0.437401
+[train] batch=800/804 loss=0.437431
+[epoch 7/60] train_loss=0.438193 valid_auc=0.697918 valid_ap=0.070794
+[train] batch=100/804 loss=0.464912
+[train] batch=200/804 loss=0.444337
+[train] batch=300/804 loss=0.438001
+[train] batch=400/804 loss=0.434836
+[train] batch=500/804 loss=0.435071
+[train] batch=600/804 loss=0.435372
+[train] batch=700/804 loss=0.435664
+[train] batch=800/804 loss=0.436838
+[epoch 8/60] train_loss=0.437090 valid_auc=0.703124 valid_ap=0.073384
+[train] batch=100/804 loss=0.414095
+[train] batch=200/804 loss=0.423454
+[train] batch=300/804 loss=0.432454
+[train] batch=400/804 loss=0.438279
+[train] batch=500/804 loss=0.446527
+[train] batch=600/804 loss=0.441150
+[train] batch=700/804 loss=0.437650
+[train] batch=800/804 loss=0.436764
+[epoch 9/60] train_loss=0.436285 valid_auc=0.702230 valid_ap=0.072235
+[train] batch=100/804 loss=0.444601
+[train] batch=200/804 loss=0.429214
+[train] batch=300/804 loss=0.430961
+[train] batch=400/804 loss=0.436382
+[train] batch=500/804 loss=0.439164
+[train] batch=600/804 loss=0.439293
+[train] batch=700/804 loss=0.439817
+[train] batch=800/804 loss=0.434940
+[epoch 10/60] train_loss=0.435668 valid_auc=0.704162 valid_ap=0.073374
+[train] batch=100/804 loss=0.448089
+[train] batch=200/804 loss=0.430555
+[train] batch=300/804 loss=0.437693
+[train] batch=400/804 loss=0.426738
+[train] batch=500/804 loss=0.431724
+[train] batch=600/804 loss=0.431672
+[train] batch=700/804 loss=0.435991
+[train] batch=800/804 loss=0.435494
+[epoch 11/60] train_loss=0.435818 valid_auc=0.702666 valid_ap=0.072659
+[train] batch=100/804 loss=0.426824
+[train] batch=200/804 loss=0.437028
+[train] batch=300/804 loss=0.442007
+[train] batch=400/804 loss=0.439082
+[train] batch=500/804 loss=0.440332
+[train] batch=600/804 loss=0.439344
+[train] batch=700/804 loss=0.436946
+[train] batch=800/804 loss=0.434584
+[epoch 12/60] train_loss=0.434726 valid_auc=0.702832 valid_ap=0.071992
+[train] batch=100/804 loss=0.447900
+[train] batch=200/804 loss=0.441232
+[train] batch=300/804 loss=0.440859
+[train] batch=400/804 loss=0.437078
+[train] batch=500/804 loss=0.433597
+[train] batch=600/804 loss=0.427896
+[train] batch=700/804 loss=0.430491
+[train] batch=800/804 loss=0.434483
+[epoch 13/60] train_loss=0.434348 valid_auc=0.709270 valid_ap=0.075127
+[train] batch=100/804 loss=0.461242
+[train] batch=200/804 loss=0.443253
+[train] batch=300/804 loss=0.438575
+[train] batch=400/804 loss=0.439332
+[train] batch=500/804 loss=0.432755
+[train] batch=600/804 loss=0.434433
+[train] batch=700/804 loss=0.433105
+[train] batch=800/804 loss=0.432248
+[epoch 14/60] train_loss=0.433004 valid_auc=0.714975 valid_ap=0.076196
+[train] batch=100/804 loss=0.413029
+[train] batch=200/804 loss=0.428882
+[train] batch=300/804 loss=0.434397
+[train] batch=400/804 loss=0.440444
+[train] batch=500/804 loss=0.440326
+[train] batch=600/804 loss=0.436720
+[train] batch=700/804 loss=0.436386
+[train] batch=800/804 loss=0.433256
+[epoch 15/60] train_loss=0.433345 valid_auc=0.718223 valid_ap=0.080431
+[train] batch=100/804 loss=0.440236
+[train] batch=200/804 loss=0.422344
+[train] batch=300/804 loss=0.428069
+[train] batch=400/804 loss=0.436212
+[train] batch=500/804 loss=0.437445
+[train] batch=600/804 loss=0.431330
+[train] batch=700/804 loss=0.431982
+[train] batch=800/804 loss=0.432912
+[epoch 16/60] train_loss=0.432432 valid_auc=0.721690 valid_ap=0.079020
+[train] batch=100/804 loss=0.448116
+[train] batch=200/804 loss=0.439616
+[train] batch=300/804 loss=0.447144
+[train] batch=400/804 loss=0.441172
+[train] batch=500/804 loss=0.438361
+[train] batch=600/804 loss=0.435978
+[train] batch=700/804 loss=0.433489
+[train] batch=800/804 loss=0.431870
+[epoch 17/60] train_loss=0.431922 valid_auc=0.734632 valid_ap=0.082639
+[train] batch=100/804 loss=0.447035
+[train] batch=200/804 loss=0.441414
+[train] batch=300/804 loss=0.431599
+[train] batch=400/804 loss=0.437074
+[train] batch=500/804 loss=0.429838
+[train] batch=600/804 loss=0.427075
+[train] batch=700/804 loss=0.427992
+[train] batch=800/804 loss=0.427595
+[epoch 18/60] train_loss=0.428378 valid_auc=0.742854 valid_ap=0.091093
+[train] batch=100/804 loss=0.422741
+[train] batch=200/804 loss=0.454615
+[train] batch=300/804 loss=0.439938
+[train] batch=400/804 loss=0.434873
+[train] batch=500/804 loss=0.431613
+[train] batch=600/804 loss=0.429653
+[train] batch=700/804 loss=0.427933
+[train] batch=800/804 loss=0.427903
+[epoch 19/60] train_loss=0.428030 valid_auc=0.733340 valid_ap=0.081778
+[train] batch=100/804 loss=0.414188
+[train] batch=200/804 loss=0.410500
+[train] batch=300/804 loss=0.412917
+[train] batch=400/804 loss=0.420130
+[train] batch=500/804 loss=0.416221
+[train] batch=600/804 loss=0.423287
+[train] batch=700/804 loss=0.423904
+[train] batch=800/804 loss=0.428342
+[epoch 20/60] train_loss=0.428797 valid_auc=0.747054 valid_ap=0.091822
+[train] batch=100/804 loss=0.435026
+[train] batch=200/804 loss=0.423308
+[train] batch=300/804 loss=0.423031
+[train] batch=400/804 loss=0.427536
+[train] batch=500/804 loss=0.431413
+[train] batch=600/804 loss=0.431490
+[train] batch=700/804 loss=0.432182
+[train] batch=800/804 loss=0.425542
+[epoch 21/60] train_loss=0.426013 valid_auc=0.753769 valid_ap=0.089678
+[train] batch=100/804 loss=0.418900
+[train] batch=200/804 loss=0.424844
+[train] batch=300/804 loss=0.424266
+[train] batch=400/804 loss=0.424782
+[train] batch=500/804 loss=0.424702
+[train] batch=600/804 loss=0.428141
+[train] batch=700/804 loss=0.424433
+[train] batch=800/804 loss=0.423774
+[epoch 22/60] train_loss=0.423117 valid_auc=0.755572 valid_ap=0.095664
+[train] batch=100/804 loss=0.408850
+[train] batch=200/804 loss=0.423000
+[train] batch=300/804 loss=0.433780
+[train] batch=400/804 loss=0.431268
+[train] batch=500/804 loss=0.421146
+[train] batch=600/804 loss=0.427585
+[train] batch=700/804 loss=0.429786
+[train] batch=800/804 loss=0.424432
+[epoch 23/60] train_loss=0.423931 valid_auc=0.756448 valid_ap=0.096362
+[train] batch=100/804 loss=0.398905
+[train] batch=200/804 loss=0.414504
+[train] batch=300/804 loss=0.420047
+[train] batch=400/804 loss=0.424471
+[train] batch=500/804 loss=0.422691
+[train] batch=600/804 loss=0.418138
+[train] batch=700/804 loss=0.418838
+[train] batch=800/804 loss=0.420226
+[epoch 24/60] train_loss=0.419461 valid_auc=0.754288 valid_ap=0.089635
+[train] batch=100/804 loss=0.385714
+[train] batch=200/804 loss=0.415726
+[train] batch=300/804 loss=0.409252
+[train] batch=400/804 loss=0.409260
+[train] batch=500/804 loss=0.412469
+[train] batch=600/804 loss=0.417052
+[train] batch=700/804 loss=0.417128
+[train] batch=800/804 loss=0.417872
+[epoch 25/60] train_loss=0.417761 valid_auc=0.775946 valid_ap=0.104999
+[train] batch=100/804 loss=0.415911
+[train] batch=200/804 loss=0.417122
+[train] batch=300/804 loss=0.409074
+[train] batch=400/804 loss=0.412029
+[train] batch=500/804 loss=0.409454
+[train] batch=600/804 loss=0.409329
+[train] batch=700/804 loss=0.409785
+[train] batch=800/804 loss=0.414105
+[epoch 26/60] train_loss=0.414304 valid_auc=0.784559 valid_ap=0.113431
+[train] batch=100/804 loss=0.390925
+[train] batch=200/804 loss=0.410378
+[train] batch=300/804 loss=0.406902
+[train] batch=400/804 loss=0.414807
+[train] batch=500/804 loss=0.411203
+[train] batch=600/804 loss=0.417273
+[train] batch=700/804 loss=0.416271
+[train] batch=800/804 loss=0.411803
+[epoch 27/60] train_loss=0.411591 valid_auc=0.785302 valid_ap=0.114931
+[train] batch=100/804 loss=0.419954
+[train] batch=200/804 loss=0.412165
+[train] batch=300/804 loss=0.414281
+[train] batch=400/804 loss=0.408948
+[train] batch=500/804 loss=0.406607
+[train] batch=600/804 loss=0.410344
+[train] batch=700/804 loss=0.408380
+[train] batch=800/804 loss=0.407480
+[epoch 28/60] train_loss=0.407576 valid_auc=0.786350 valid_ap=0.117387
+[train] batch=100/804 loss=0.413878
+[train] batch=200/804 loss=0.413380
+[train] batch=300/804 loss=0.417222
+[train] batch=400/804 loss=0.413662
+[train] batch=500/804 loss=0.407398
+[train] batch=600/804 loss=0.411239
+[train] batch=700/804 loss=0.407409
+[train] batch=800/804 loss=0.405330
+[epoch 29/60] train_loss=0.406094 valid_auc=0.785550 valid_ap=0.123046
+[train] batch=100/804 loss=0.445986
+[train] batch=200/804 loss=0.420502
+[train] batch=300/804 loss=0.417005
+[train] batch=400/804 loss=0.408852
+[train] batch=500/804 loss=0.409998
+[train] batch=600/804 loss=0.409930
+[train] batch=700/804 loss=0.407985
+[train] batch=800/804 loss=0.404464
+[epoch 30/60] train_loss=0.403605 valid_auc=0.800218 valid_ap=0.130485
+[train] batch=100/804 loss=0.408552
+[train] batch=200/804 loss=0.420748
+[train] batch=300/804 loss=0.410544
+[train] batch=400/804 loss=0.414262
+[train] batch=500/804 loss=0.410020
+[train] batch=600/804 loss=0.403502
+[train] batch=700/804 loss=0.401043
+[train] batch=800/804 loss=0.403814
+[epoch 31/60] train_loss=0.403244 valid_auc=0.786715 valid_ap=0.108861
+[train] batch=100/804 loss=0.363911
+[train] batch=200/804 loss=0.385073
+[train] batch=300/804 loss=0.392598
+[train] batch=400/804 loss=0.394990
+[train] batch=500/804 loss=0.401443
+[train] batch=600/804 loss=0.400624
+[train] batch=700/804 loss=0.401882
+[train] batch=800/804 loss=0.398874
+[epoch 32/60] train_loss=0.398835 valid_auc=0.799952 valid_ap=0.137156
+[train] batch=100/804 loss=0.357015
+[train] batch=200/804 loss=0.382428
+[train] batch=300/804 loss=0.398836
+[train] batch=400/804 loss=0.398559
+[train] batch=500/804 loss=0.401775
+[train] batch=600/804 loss=0.398217
+[train] batch=700/804 loss=0.395659
+[train] batch=800/804 loss=0.393747
+[epoch 33/60] train_loss=0.393752 valid_auc=0.801927 valid_ap=0.157969
+[train] batch=100/804 loss=0.397737
+[train] batch=200/804 loss=0.395643
+[train] batch=300/804 loss=0.385236
+[train] batch=400/804 loss=0.383724
+[train] batch=500/804 loss=0.379447
+[train] batch=600/804 loss=0.384508
+[train] batch=700/804 loss=0.390605
+[train] batch=800/804 loss=0.390868
+[epoch 34/60] train_loss=0.390875 valid_auc=0.804168 valid_ap=0.175775
+[train] batch=100/804 loss=0.399327
+[train] batch=200/804 loss=0.389514
+[train] batch=300/804 loss=0.396323
+[train] batch=400/804 loss=0.392933
+[train] batch=500/804 loss=0.391367
+[train] batch=600/804 loss=0.388600
+[train] batch=700/804 loss=0.386149
+[train] batch=800/804 loss=0.381248
+[epoch 35/60] train_loss=0.381045 valid_auc=0.813339 valid_ap=0.172515
+[train] batch=100/804 loss=0.377987
+[train] batch=200/804 loss=0.384585
+[train] batch=300/804 loss=0.378161
+[train] batch=400/804 loss=0.368854
+[train] batch=500/804 loss=0.370935
+[train] batch=600/804 loss=0.371627
+[train] batch=700/804 loss=0.372804
+[train] batch=800/804 loss=0.376069
+[epoch 36/60] train_loss=0.376451 valid_auc=0.823638 valid_ap=0.190064
+[train] batch=100/804 loss=0.383740
+[train] batch=200/804 loss=0.363582
+[train] batch=300/804 loss=0.363499
+[train] batch=400/804 loss=0.366736
+[train] batch=500/804 loss=0.366669
+[train] batch=600/804 loss=0.365706
+[train] batch=700/804 loss=0.368458
+[train] batch=800/804 loss=0.367636
+[epoch 37/60] train_loss=0.368290 valid_auc=0.841537 valid_ap=0.225647
+[train] batch=100/804 loss=0.368383
+[train] batch=200/804 loss=0.373319
+[train] batch=300/804 loss=0.366441
+[train] batch=400/804 loss=0.361138
+[train] batch=500/804 loss=0.362452
+[train] batch=600/804 loss=0.360392
+[train] batch=700/804 loss=0.362703
+[train] batch=800/804 loss=0.360198
+[epoch 38/60] train_loss=0.360757 valid_auc=0.840651 valid_ap=0.216676
+[train] batch=100/804 loss=0.377001
+[train] batch=200/804 loss=0.359718
+[train] batch=300/804 loss=0.351212
+[train] batch=400/804 loss=0.349061
+[train] batch=500/804 loss=0.349470
+[train] batch=600/804 loss=0.346904
+[train] batch=700/804 loss=0.349957
+[train] batch=800/804 loss=0.352593
+[epoch 39/60] train_loss=0.353235 valid_auc=0.838649 valid_ap=0.250556
+[train] batch=100/804 loss=0.325033
+[train] batch=200/804 loss=0.345910
+[train] batch=300/804 loss=0.351995
+[train] batch=400/804 loss=0.350467
+[train] batch=500/804 loss=0.346497
+[train] batch=600/804 loss=0.347019
+[train] batch=700/804 loss=0.348663
+[train] batch=800/804 loss=0.349804
+[epoch 40/60] train_loss=0.349921 valid_auc=0.847376 valid_ap=0.244712
+[train] batch=100/804 loss=0.345566
+[train] batch=200/804 loss=0.338450
+[train] batch=300/804 loss=0.346629
+[train] batch=400/804 loss=0.350575
+[train] batch=500/804 loss=0.347287
+[train] batch=600/804 loss=0.347107
+[train] batch=700/804 loss=0.348444
+[train] batch=800/804 loss=0.344438
+[epoch 41/60] train_loss=0.344059 valid_auc=0.851127 valid_ap=0.256555
+[train] batch=100/804 loss=0.334178
+[train] batch=200/804 loss=0.335720
+[train] batch=300/804 loss=0.328511
+[train] batch=400/804 loss=0.335388
+[train] batch=500/804 loss=0.341138
+[train] batch=600/804 loss=0.343848
+[train] batch=700/804 loss=0.341376
+[train] batch=800/804 loss=0.341509
+[epoch 42/60] train_loss=0.341579 valid_auc=0.851531 valid_ap=0.253217
+[train] batch=100/804 loss=0.317110
+[train] batch=200/804 loss=0.313479
+[train] batch=300/804 loss=0.319069
+[train] batch=400/804 loss=0.332569
+[train] batch=500/804 loss=0.333895
+[train] batch=600/804 loss=0.334451
+[train] batch=700/804 loss=0.338154
+[train] batch=800/804 loss=0.336240
+[epoch 43/60] train_loss=0.336341 valid_auc=0.856318 valid_ap=0.267484
+[train] batch=100/804 loss=0.343519
+[train] batch=200/804 loss=0.343459
+[train] batch=300/804 loss=0.345974
+[train] batch=400/804 loss=0.335145
+[train] batch=500/804 loss=0.335187
+[train] batch=600/804 loss=0.329450
+[train] batch=700/804 loss=0.331594
+[train] batch=800/804 loss=0.331569
+[epoch 44/60] train_loss=0.331694 valid_auc=0.862759 valid_ap=0.281299
+[train] batch=100/804 loss=0.278755
+[train] batch=200/804 loss=0.289027
+[train] batch=300/804 loss=0.307680
+[train] batch=400/804 loss=0.309280
+[train] batch=500/804 loss=0.318558
+[train] batch=600/804 loss=0.322389
+[train] batch=700/804 loss=0.329008
+[train] batch=800/804 loss=0.328230
+[epoch 45/60] train_loss=0.328398 valid_auc=0.861075 valid_ap=0.283389
+[train] batch=100/804 loss=0.353285
+[train] batch=200/804 loss=0.334063
+[train] batch=300/804 loss=0.327203
+[train] batch=400/804 loss=0.327459
+[train] batch=500/804 loss=0.330892
+[train] batch=600/804 loss=0.328910
+[train] batch=700/804 loss=0.332007
+[train] batch=800/804 loss=0.328640
+[epoch 46/60] train_loss=0.328634 valid_auc=0.854977 valid_ap=0.273226
+[train] batch=100/804 loss=0.300071
+[train] batch=200/804 loss=0.300339
+[train] batch=300/804 loss=0.309748
+[train] batch=400/804 loss=0.314992
+[train] batch=500/804 loss=0.316747
+[train] batch=600/804 loss=0.320133
+[train] batch=700/804 loss=0.319699
+[train] batch=800/804 loss=0.320859
+[epoch 47/60] train_loss=0.321668 valid_auc=0.866929 valid_ap=0.290554
+[train] batch=100/804 loss=0.321253
+[train] batch=200/804 loss=0.321595
+[train] batch=300/804 loss=0.318051
+[train] batch=400/804 loss=0.318512
+[train] batch=500/804 loss=0.321562
+[train] batch=600/804 loss=0.320724
+[train] batch=700/804 loss=0.321577
+[train] batch=800/804 loss=0.322441
+[epoch 48/60] train_loss=0.322406 valid_auc=0.873063 valid_ap=0.286039
+[train] batch=100/804 loss=0.335179
+[train] batch=200/804 loss=0.322565
+[train] batch=300/804 loss=0.324943
+[train] batch=400/804 loss=0.318255
+[train] batch=500/804 loss=0.317248
+[train] batch=600/804 loss=0.316809
+[train] batch=700/804 loss=0.316974
+[train] batch=800/804 loss=0.317958
+[epoch 49/60] train_loss=0.317791 valid_auc=0.867944 valid_ap=0.285795
+[train] batch=100/804 loss=0.324795
+[train] batch=200/804 loss=0.322862
+[train] batch=300/804 loss=0.319082
+[train] batch=400/804 loss=0.322061
+[train] batch=500/804 loss=0.318483
+[train] batch=600/804 loss=0.315751
+[train] batch=700/804 loss=0.317605
+[train] batch=800/804 loss=0.317798
+[epoch 50/60] train_loss=0.318059 valid_auc=0.870571 valid_ap=0.279880
+[train] batch=100/804 loss=0.333352
+[train] batch=200/804 loss=0.325977
+[train] batch=300/804 loss=0.321514
+[train] batch=400/804 loss=0.318164
+[train] batch=500/804 loss=0.310855
+[train] batch=600/804 loss=0.311732
+[train] batch=700/804 loss=0.312917
+[train] batch=800/804 loss=0.314511
+[epoch 51/60] train_loss=0.313913 valid_auc=0.874423 valid_ap=0.297220
+[train] batch=100/804 loss=0.304073
+[train] batch=200/804 loss=0.305622
+[train] batch=300/804 loss=0.308489
+[train] batch=400/804 loss=0.302384
+[train] batch=500/804 loss=0.309508
+[train] batch=600/804 loss=0.310635
+[train] batch=700/804 loss=0.310623
+[train] batch=800/804 loss=0.310827
+[epoch 52/60] train_loss=0.310729 valid_auc=0.872389 valid_ap=0.298555
+[train] batch=100/804 loss=0.323760
+[train] batch=200/804 loss=0.304423
+[train] batch=300/804 loss=0.306463
+[train] batch=400/804 loss=0.314268
+[train] batch=500/804 loss=0.314479
+[train] batch=600/804 loss=0.312181
+[train] batch=700/804 loss=0.314383
+[train] batch=800/804 loss=0.311249
+[epoch 53/60] train_loss=0.311420 valid_auc=0.873416 valid_ap=0.292762
+[train] batch=100/804 loss=0.280102
+[train] batch=200/804 loss=0.286724
+[train] batch=300/804 loss=0.297304
+[train] batch=400/804 loss=0.300918
+[train] batch=500/804 loss=0.300795
+[train] batch=600/804 loss=0.305336
+[train] batch=700/804 loss=0.307857
+[train] batch=800/804 loss=0.309546
+[epoch 54/60] train_loss=0.309651 valid_auc=0.878030 valid_ap=0.300042
+[train] batch=100/804 loss=0.308064
+[train] batch=200/804 loss=0.303031
+[train] batch=300/804 loss=0.303275
+[train] batch=400/804 loss=0.307333
+[train] batch=500/804 loss=0.308239
+[train] batch=600/804 loss=0.309685
+[train] batch=700/804 loss=0.306884
+[train] batch=800/804 loss=0.305979
+[epoch 55/60] train_loss=0.306818 valid_auc=0.876668 valid_ap=0.300268
+[train] batch=100/804 loss=0.317219
+[train] batch=200/804 loss=0.316143
+[train] batch=300/804 loss=0.315287
+[train] batch=400/804 loss=0.307975
+[train] batch=500/804 loss=0.306597
+[train] batch=600/804 loss=0.301117
+[train] batch=700/804 loss=0.303904
+[train] batch=800/804 loss=0.306372
+[epoch 56/60] train_loss=0.306307 valid_auc=0.876972 valid_ap=0.298426
+[train] batch=100/804 loss=0.305537
+[train] batch=200/804 loss=0.308291
+[train] batch=300/804 loss=0.305403
+[train] batch=400/804 loss=0.302427
+[train] batch=500/804 loss=0.300083
+[train] batch=600/804 loss=0.304268
+[train] batch=700/804 loss=0.302594
+[train] batch=800/804 loss=0.308784
+[epoch 57/60] train_loss=0.308385 valid_auc=0.877568 valid_ap=0.303100
+[train] batch=100/804 loss=0.284679
+[train] batch=200/804 loss=0.301098
+[train] batch=300/804 loss=0.302000
+[train] batch=400/804 loss=0.304233
+[train] batch=500/804 loss=0.301083
+[train] batch=600/804 loss=0.302921
+[train] batch=700/804 loss=0.305154
+[train] batch=800/804 loss=0.307853
+[epoch 58/60] train_loss=0.308227 valid_auc=0.877223 valid_ap=0.305820
+[train] batch=100/804 loss=0.297132
+[train] batch=200/804 loss=0.307289
+[train] batch=300/804 loss=0.295725
+[train] batch=400/804 loss=0.294342
+[train] batch=500/804 loss=0.300943
+[train] batch=600/804 loss=0.302004
+[train] batch=700/804 loss=0.303360
+[train] batch=800/804 loss=0.306280
+[epoch 59/60] train_loss=0.306739 valid_auc=0.877050 valid_ap=0.306239
+[train] batch=100/804 loss=0.300037
+[train] batch=200/804 loss=0.297073
+[train] batch=300/804 loss=0.291995
+[train] batch=400/804 loss=0.297331
+[train] batch=500/804 loss=0.297303
+[train] batch=600/804 loss=0.299566
+[train] batch=700/804 loss=0.304317
+[train] batch=800/804 loss=0.303842
+[epoch 60/60] train_loss=0.304036 valid_auc=0.876977 valid_ap=0.303450
+Results: /home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/outputs/baseline/b1_image_age/seed42_20261017T111343Z_828bbaf6

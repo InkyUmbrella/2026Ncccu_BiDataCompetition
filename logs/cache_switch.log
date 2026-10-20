@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/scripts/switch_cached_training.py", line 190, in <module>
+    finally:
+    ^^^^^^
+  File "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/scripts/switch_cached_training.py", line 119, in main
+    from glaucoma.engine.checkpoint import read_checkpoint
+  File "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/src/glaucoma/engine/checkpoint.py", line 4, in <module>
+    import torch
+  File "/home/zhenxiaojun/miniconda3/envs/glaucoma/lib/python3.11/site-packages/torch/__init__.py", line 367, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+  File "/home/zhenxiaojun/projects/2026Ncccu_BiDataCompetition/scripts/switch_cached_training.py", line 75, in cancelled
+    raise KeyboardInterrupt("Migration cancelled; restoring paused originals")
+KeyboardInterrupt: Migration cancelled; restoring paused originals
+[switch] cache ready; waiting for next completed epoch
+[switch] PID 1473206 paused after epoch 6; resumed PID 1502895 on GPU 2
+[switch] PID 1473404 paused after epoch 6; resumed PID 1503090 on GPU 3
+[switch] PID 1502895 verified; old process released
+[switch] PID 1503090 verified; old process released

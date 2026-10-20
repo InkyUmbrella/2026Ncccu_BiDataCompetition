@@ -10,6 +10,11 @@ def build_parser():
     parser = argparse.ArgumentParser(description="Glaucoma baseline training and inference")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("models", help="List registered models")
+    cache = commands.add_parser("cache-images", help="Build lossless train/valid preprocessing cache")
+    cache.add_argument("--data-root", required=True)
+    cache.add_argument("--output", required=True, help="New cache directory, preferably on local disk")
+    cache.add_argument("--image-size", type=int, default=384)
+    cache.add_argument("--workers", type=int, default=4)
     audit = commands.add_parser("check-data", help="Decode images and optionally check exact duplicates")
     audit.add_argument("--data-root", required=True)
     audit.add_argument("--splits", nargs="+", choices=("train", "valid", "test"), default=["train", "valid", "test"])
@@ -21,6 +26,7 @@ def build_parser():
     training.add_argument("--device")
     training.add_argument("--output-root")
     training.add_argument("--resume", help="last.pt; starts a new output directory")
+    training.add_argument("--image-cache", help="Lossless cache built by cache-images; resume compatible")
     training.add_argument("--stop-after-epochs", type=int, help="Bound this invocation without changing the LR schedule")
     for name in ("evaluate", "predict"):
         command = commands.add_parser(name)
@@ -42,6 +48,9 @@ def main(argv=None):
     if args.command == "models":
         from .models import available_models
         print("\n".join(available_models()))
+    elif args.command == "cache-images":
+        from .data.cache import prepare_cache
+        prepare_cache(args.data_root, args.output, args.image_size, args.workers)
     elif args.command == "train":
         from .engine.trainer import train
         config = Config.load(args.config)
@@ -51,7 +60,7 @@ def main(argv=None):
             config.device = args.device
         if args.output_root:
             config.output_root = args.output_root
-        run = train(config, args.resume, args.stop_after_epochs)
+        run = train(config, args.resume, args.stop_after_epochs, image_cache=args.image_cache)
         print(f"Results: {run.resolve()}")
     elif args.command == "check-data":
         from .data.audit import audit_samples
