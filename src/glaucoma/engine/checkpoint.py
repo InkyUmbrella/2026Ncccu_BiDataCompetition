@@ -40,6 +40,22 @@ def load_model(path, device):
     return model, config, AgeStats(**payload["age_stats"])
 
 
+def initialize_model(model, config, payload):
+    """Initialize a new experiment, without restoring optimizer/history/RNG."""
+    source = Config.from_dict(payload["config"])
+    if source.model == config.model:
+        model.load_state_dict(payload["model_state"], strict=True)
+    elif (source.model.name == "convnext_tiny"
+          and not source.model.params.get("use_age", False)
+          and config.model.name == "convnext_tiny_age_residual"):
+        result = model.load_state_dict(payload["model_state"], strict=False)
+        expected = {key for key in model.state_dict() if key.startswith("age_residual.")}
+        if result.unexpected_keys or set(result.missing_keys) != expected:
+            raise ValueError("B0 checkpoint does not match the residual image branch")
+    else:
+        raise ValueError("Initialization requires matching models or a B0 image checkpoint for age residual")
+
+
 def rng_state(device):
     state = np.random.get_state()
     return {"python": random.getstate(), "numpy": [state[0], state[1].tolist(), state[2], state[3], state[4]],

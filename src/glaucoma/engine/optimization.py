@@ -5,12 +5,18 @@ from torch.nn import functional as F
 
 
 def build_optimizer(model, config):
-    decay, no_decay = [], []
+    groups = {}
     for name, parameter in model.named_parameters():
         if parameter.requires_grad:
-            (no_decay if parameter.ndim <= 1 or name.endswith(".bias") else decay).append(parameter)
-    return torch.optim.AdamW([{"params": decay, "weight_decay": config.weight_decay},
-                              {"params": no_decay, "weight_decay": 0.0}], lr=config.learning_rate)
+            no_decay = parameter.ndim <= 1 or name.endswith(".bias")
+            scale = config.image_lr_scale if name.startswith(("encoder.", "head.")) else 1.0
+            groups.setdefault(scale, {False: [], True: []})[no_decay].append(parameter)
+    # Preserve legacy decay/no-decay group order, including weight_decay=0.
+    return torch.optim.AdamW([{"params": params[no_decay],
+                               "weight_decay": 0.0 if no_decay else config.weight_decay, "lr_scale": scale,
+                               "lr": config.learning_rate * scale}
+                              for scale, params in groups.items() for no_decay in (False, True)],
+                             lr=config.learning_rate)
 
 
 def learning_rate(step, total_steps, warmup_steps, config):
@@ -47,7 +53,7 @@ def train_one_epoch(model, loader, optimizer, scaler, device, config, global_ste
         if (index + 1) % config.accumulation_steps == 0 or index + 1 == len(loader):
             rate = learning_rate(global_step, total_steps, warmup_steps, config)
             for group in optimizer.param_groups:
-                group["lr"] = rate
+                group["lr"] = rate * group.get("lr_scale", 1.0)
             scaler.unscale_(optimizer)
             torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_clip)
             previous_scale = scaler.get_scale()

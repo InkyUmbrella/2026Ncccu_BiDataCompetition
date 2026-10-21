@@ -3,7 +3,7 @@ from pathlib import Path
 import time
 
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from ..config import Config
 from ..data.age import AgeStats
@@ -13,14 +13,27 @@ from ..data.transforms import build_transform
 from ..models import build_model
 from ..utils import (environment_metadata, new_run_directory, resolve_device,
                      save_json, seed_everything, seed_worker, sha256_file)
-from .checkpoint import (cpu_state, inference_payload, read_checkpoint, restore_rng,
+from .checkpoint import (cpu_state, inference_payload, initialize_model, read_checkpoint, restore_rng,
                          rng_state, save_checkpoint)
 from .evaluation import collect_predictions, write_predictions
 from .optimization import build_optimizer, train_one_epoch
 
 
-def make_loader(dataset, batch_size, num_workers, seed, training=False, pin_memory=False):
-    return DataLoader(dataset, batch_size=batch_size, shuffle=training, drop_last=False,
+def make_loader(dataset, batch_size, num_workers, seed, training=False, pin_memory=False,
+                positive_fraction=None):
+    sampler = None
+    if positive_fraction is not None:
+        if not training or not math.isfinite(positive_fraction) or not 0 < positive_fraction < 1:
+            raise ValueError("positive_fraction requires training and a value in (0, 1)")
+        labels = [sample.label for sample in dataset.samples]
+        counts = {label: labels.count(label) for label in (0, 1)}
+        if not all(counts.values()) or set(labels) != {0, 1}:
+            raise ValueError("Positive sampling requires both binary classes")
+        weights = [(positive_fraction if label else 1 - positive_fraction) / counts[label] for label in labels]
+        sampler = WeightedRandomSampler(weights, len(dataset), replacement=True,
+                                        generator=torch.Generator().manual_seed(seed))
+    return DataLoader(dataset, batch_size=batch_size, shuffle=training and sampler is None,
+                      sampler=sampler, drop_last=False,
                       num_workers=num_workers, pin_memory=pin_memory,
                       worker_init_fn=seed_worker,
                       generator=torch.Generator().manual_seed(seed), persistent_workers=False)
@@ -36,13 +49,18 @@ def _resume_compatible(config, saved):
         raise ValueError("Resume config differs from checkpoint (only data.root/output_root may change)")
 
 
-def train(config, resume=None, stop_after_epochs=None, image_cache=None):
+def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_from=None):
     config.validate()
+    if resume and init_from:
+        raise ValueError("resume and init_from are mutually exclusive")
+    if config.train.freeze_image_epochs and not (resume or init_from):
+        raise ValueError("Freezing the image branch requires init_from or resume")
     if stop_after_epochs is not None and stop_after_epochs < 1:
         raise ValueError("stop_after_epochs must be positive")
     device = resolve_device(config.device)
     seed_everything(config.seed)
     saved = read_checkpoint(resume, "training") if resume else None
+    initialization = read_checkpoint(init_from, "inference") if init_from else None
     start_epoch = 0
     if saved:
         _resume_compatible(config, saved["config"])
@@ -56,20 +74,25 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None):
     csv_hashes = {split: sha256_file(Path(config.data.root) / f"{split}.csv") for split in samples}
     if saved and saved["csv_hashes"] != csv_hashes:
         raise ValueError("Dataset CSV contents changed since checkpoint")
-    age_stats = AgeStats(**saved["age_stats"]) if saved else AgeStats.fit(row.age for row in samples["train"])
+    source = saved or initialization
+    age_stats = AgeStats(**source["age_stats"]) if source else AgeStats.fit(row.age for row in samples["train"])
     run_dir = new_run_directory(config.output_root, config.experiment, config.seed)
     print(f"[run] {run_dir.resolve()}", flush=True)
     save_json(run_dir / "config.json", config.to_dict())
     save_json(run_dir / "age_stats.json", age_stats.to_dict())
     metadata = environment_metadata()
     metadata.update(csv_hashes=csv_hashes, resumed_from=str(Path(resume).resolve()) if resume else None,
+                    initialized_from=str(Path(init_from).resolve()) if init_from else None,
                     image_cache=str(Path(image_cache).resolve()) if image_cache else None,
                     device=str(device), gpu=torch.cuda.get_device_name(device) if device.type == "cuda" else None)
     save_json(run_dir / "metadata.json", metadata)
     caches = {}
+    preprocessing = {"crop_black_border": config.data.crop_black_border,
+                     "crop_threshold": config.data.crop_threshold, "crop_margin": config.data.crop_margin}
     if image_cache:
         from ..data.cache import ImageCache
-        caches = {split: ImageCache(image_cache, rows, config.data.image_size) for split, rows in samples.items()}
+        caches = {split: ImageCache(image_cache, rows, config.data.image_size, **preprocessing)
+                  for split, rows in samples.items()}
     if config.data.verify_images:
         report = (audit_samples(samples, image_loader=lambda path: caches[path.parent.name].load(path))
                   if caches else audit_samples(samples))
@@ -77,7 +100,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None):
         save_json(run_dir / "data_audit.json", report)
         if report["errors"]:
             raise ValueError(f"Image decoding failed; see {run_dir / 'data_audit.json'}")
-    datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train"),
+    datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train",
+                                   preprocessed=split in caches, **preprocessing),
                                    image_cache=caches.get(split))
                 for split, rows in samples.items()}
     valid_loader = make_loader(datasets["valid"], config.train.batch_size, config.data.num_workers,
@@ -87,6 +111,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None):
     total_steps = updates * config.train.epochs
     warmup_steps = updates * config.train.warmup_epochs
     model = build_model(config.model).to(device)
+    if initialization:
+        initialize_model(model, config, initialization)
     optimizer = build_optimizer(model, config.train)
     scaler = torch.amp.GradScaler("cuda", enabled=config.train.amp and device.type == "cuda")
     history, global_step, best = [], 0, None
@@ -100,12 +126,16 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None):
     end_epoch = config.train.epochs if stop_after_epochs is None else min(config.train.epochs, start_epoch + stop_after_epochs)
     for epoch in range(start_epoch, end_epoch):
         started = time.monotonic()
+        if hasattr(model, "set_image_frozen"):
+            model.set_image_frozen(epoch < config.train.freeze_image_epochs)
         loader = make_loader(datasets["train"], config.train.batch_size, config.data.num_workers,
-                             config.seed + epoch, training=True, pin_memory=device.type == "cuda")
+                             config.seed + epoch, training=True, pin_memory=device.type == "cuda",
+                             positive_fraction=config.train.positive_fraction)
         training, global_step = train_one_epoch(model, loader, optimizer, scaler, device, config.train,
                                                 global_step, total_steps, warmup_steps)
         _, validation = collect_predictions(model, valid_loader, device, config.train.pos_weight, config.train.amp)
         row = {"epoch": epoch, "global_step": global_step, "train": training, "valid": validation,
+               "image_frozen": bool(getattr(model, "image_frozen", False)),
                "seconds": round(time.monotonic() - started, 3)}
         history.append(row)
         score = (validation["auroc"], validation["auprc_trapz"])

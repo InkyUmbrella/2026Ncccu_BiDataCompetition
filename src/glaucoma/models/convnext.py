@@ -25,3 +25,30 @@ class ConvNeXtClassifier(nn.Module):
         if self.use_age:
             features = torch.cat((features, self.age_encoder(age)), dim=1)
         return self.head(features).squeeze(1)
+
+
+@register_model("convnext_tiny_age_residual")
+class ConvNeXtAgeResidual(ConvNeXtClassifier):
+    """A B0 image classifier plus an initially zero age-only logit correction."""
+
+    def __init__(self, hidden_dim=128, dropout=0.2):
+        super().__init__(use_age=False, hidden_dim=hidden_dim, dropout=dropout)
+        self.age_residual = nn.Sequential(nn.Linear(3, 16), nn.GELU(), nn.Linear(16, 1))
+        nn.init.zeros_(self.age_residual[-1].weight)
+        nn.init.zeros_(self.age_residual[-1].bias)
+        self.image_frozen = False
+
+    def set_image_frozen(self, frozen):
+        self.image_frozen = frozen
+        for module in (self.encoder, self.head):
+            module.requires_grad_(not frozen)
+
+    def train(self, mode=True):
+        super().train(mode)
+        if self.image_frozen:
+            self.encoder.eval()
+            self.head.eval()
+        return self
+
+    def forward(self, image, age):
+        return super().forward(image, age) + self.age_residual(age).squeeze(1)

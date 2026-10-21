@@ -1,0 +1,36 @@
+{
+  "experiment": "b0_crop384_age_residual",
+  "seed": 42,
+  "device": "cuda",
+  "output_root": "outputs/improvements",
+  "data": {
+    "root": "dataset/glaucoma_first",
+    "image_size": 384,
+    "num_workers": 8,
+    "verify_images": true,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03
+  },
+  "model": {
+    "name": "convnext_tiny_age_residual",
+    "params": {
+      "hidden_dim": 128,
+      "dropout": 0.2
+    }
+  },
+  "train": {
+    "epochs": 20,
+    "batch_size": 64,
+    "accumulation_steps": 2,
+    "learning_rate": 0.0001,
+    "min_learning_rate": 1e-06,
+    "warmup_epochs": 1,
+    "weight_decay": 0.05,
+    "pos_weight": 5.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "freeze_image_epochs": 3,
+    "image_lr_scale": 0.1
+  }
+}

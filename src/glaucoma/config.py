@@ -11,6 +11,9 @@ class DataConfig:
     image_size: int = 384
     num_workers: int = 4
     verify_images: bool = True
+    crop_black_border: bool = False
+    crop_threshold: int = 10
+    crop_margin: float = 0.03
 
 
 @dataclass
@@ -31,6 +34,9 @@ class TrainConfig:
     pos_weight: float = 5.0
     grad_clip: float = 1.0
     amp: bool = True
+    positive_fraction: float | None = None
+    freeze_image_epochs: int = 0
+    image_lr_scale: float = 1.0
 
 
 @dataclass
@@ -55,6 +61,21 @@ class Config:
                 raise ValueError(f"{name} must be a positive integer")
         if self.data.image_size < 32:
             raise ValueError("image_size must be at least 32")
+        if type(self.data.crop_black_border) is not bool:
+            raise ValueError("crop_black_border must be a boolean")
+        if type(self.data.crop_threshold) is not int or not 0 <= self.data.crop_threshold <= 255:
+            raise ValueError("crop_threshold must be an integer in [0, 255]")
+        if not math.isfinite(self.data.crop_margin) or not 0 <= self.data.crop_margin <= 0.5:
+            raise ValueError("crop_margin must be in [0, 0.5]")
+        fraction = self.train.positive_fraction
+        if fraction is not None and (not math.isfinite(fraction) or not 0 < fraction < 1):
+            raise ValueError("positive_fraction must be in (0, 1)")
+        if type(self.train.freeze_image_epochs) is not int or not 0 <= self.train.freeze_image_epochs < self.train.epochs:
+            raise ValueError("freeze_image_epochs must be in [0, epochs)")
+        if not math.isfinite(self.train.image_lr_scale) or not 0 < self.train.image_lr_scale <= 1:
+            raise ValueError("image_lr_scale must be in (0, 1]")
+        if self.train.freeze_image_epochs and self.model.name != "convnext_tiny_age_residual":
+            raise ValueError("freeze_image_epochs requires convnext_tiny_age_residual")
         if type(self.seed) is not int or not 0 <= self.seed < 2**32:
             raise ValueError("seed must be an integer in [0, 2**32)")
         if type(self.data.num_workers) is not int or self.data.num_workers < 0:

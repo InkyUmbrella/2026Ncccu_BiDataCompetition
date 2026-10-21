@@ -109,3 +109,5 @@ CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
 这些检查验证工程流程，不代表正式数据上的模型效果或 T4 推理延迟；正式比赛数据训练尚未启动。
 
 Training I/O speedup: see [docs/TRAINING_SPEED.md](docs/TRAINING_SPEED.md).
+
+年龄残差方案与微调命令见 [docs/AGE_RESIDUAL.md](docs/AGE_RESIDUAL.md)。

@@ -11,10 +11,14 @@ def build_parser():
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("models", help="List registered models")
     cache = commands.add_parser("cache-images", help="Build lossless train/valid preprocessing cache")
-    cache.add_argument("--data-root", required=True)
+    cache.add_argument("--config", help="Use the experiment's size and preprocessing settings")
+    cache.add_argument("--data-root")
     cache.add_argument("--output", required=True, help="New cache directory, preferably on local disk")
-    cache.add_argument("--image-size", type=int, default=384)
+    cache.add_argument("--image-size", type=int)
     cache.add_argument("--workers", type=int, default=4)
+    cache.add_argument("--crop-black-border", action=argparse.BooleanOptionalAction, default=None)
+    cache.add_argument("--crop-threshold", type=int)
+    cache.add_argument("--crop-margin", type=float)
     audit = commands.add_parser("check-data", help="Decode images and optionally check exact duplicates")
     audit.add_argument("--data-root", required=True)
     audit.add_argument("--splits", nargs="+", choices=("train", "valid", "test"), default=["train", "valid", "test"])
@@ -25,7 +29,10 @@ def build_parser():
     training.add_argument("--data-root")
     training.add_argument("--device")
     training.add_argument("--output-root")
-    training.add_argument("--resume", help="last.pt; starts a new output directory")
+    initialization = training.add_mutually_exclusive_group()
+    initialization.add_argument("--resume", help="last.pt; starts a new output directory")
+    initialization.add_argument("--init-from", help="best.pt; initialize a new experiment without optimizer/history")
+    training.add_argument("--seed", type=int)
     training.add_argument("--image-cache", help="Lossless cache built by cache-images; resume compatible")
     training.add_argument("--stop-after-epochs", type=int, help="Bound this invocation without changing the LR schedule")
     for name in ("evaluate", "predict"):
@@ -50,7 +57,17 @@ def main(argv=None):
         print("\n".join(available_models()))
     elif args.command == "cache-images":
         from .data.cache import prepare_cache
-        prepare_cache(args.data_root, args.output, args.image_size, args.workers)
+        config = Config.load(args.config) if args.config else Config()
+        if not args.config and not args.data_root:
+            raise ValueError("cache-images requires --config or --data-root")
+        for name in ("image_size", "crop_black_border", "crop_threshold", "crop_margin"):
+            value = getattr(args, name)
+            if value is not None:
+                setattr(config.data, name, value)
+        config.validate()
+        prepare_cache(args.data_root or config.data.root, args.output, config.data.image_size, args.workers,
+                      crop_black_border=config.data.crop_black_border,
+                      crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin)
     elif args.command == "train":
         from .engine.trainer import train
         config = Config.load(args.config)
@@ -60,7 +77,10 @@ def main(argv=None):
             config.device = args.device
         if args.output_root:
             config.output_root = args.output_root
-        run = train(config, args.resume, args.stop_after_epochs, image_cache=args.image_cache)
+        if args.seed is not None:
+            config.seed = args.seed
+        run = train(config, args.resume, args.stop_after_epochs, image_cache=args.image_cache,
+                    init_from=args.init_from)
         print(f"Results: {run.resolve()}")
     elif args.command == "check-data":
         from .data.audit import audit_samples
@@ -94,7 +114,9 @@ def _inference(args):
     device = resolve_device(args.device)
     model, config, age_stats = load_model(args.checkpoint, device)
     rows = read_samples(args.data_root, "test" if predicting else args.split, not predicting)
-    dataset = FundusDataset(rows, age_stats, build_transform(config.data.image_size))
+    dataset = FundusDataset(rows, age_stats, build_transform(config.data.image_size,
+                           crop_black_border=config.data.crop_black_border,
+                           crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin))
     loader = make_loader(dataset, args.batch_size, args.num_workers, config.seed, pin_memory=device.type == "cuda")
     predictions, metrics = collect_predictions(model, loader, device, config.train.pos_weight, config.train.amp)
     if predicting:

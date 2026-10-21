@@ -47,8 +47,10 @@ def main():
     indices = np.random.default_rng(42).choice(len(available), args.samples, replace=False)
     rows = [available[index] for index in indices]
     age = AgeStats.fit(row.age for row in all_rows)
-    original = FundusDataset(rows, age, build_transform(config.data.image_size, True))
-    cached = FundusDataset(rows, age, build_transform(config.data.image_size, True), cache)
+    original = FundusDataset(rows, age, build_transform(config.data.image_size, True,
+        crop_black_border=config.data.crop_black_border,
+        crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin))
+    cached = FundusDataset(rows, age, build_transform(config.data.image_size, True, preprocessed=True), cache)
     for index in range(min(32, len(rows))):
         torch.manual_seed(index)
         expected = original[index]["image"]
