@@ -10,7 +10,8 @@
     "verify_images": false,
     "crop_black_border": true,
     "crop_threshold": 10,
-    "crop_margin": 0.03
+    "crop_margin": 0.03,
+    "decode": "draft"
   },
   "model": {
     "name": "convnext_tiny",
