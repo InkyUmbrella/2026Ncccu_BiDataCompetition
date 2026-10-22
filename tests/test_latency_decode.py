@@ -26,6 +26,10 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("benchmark_latency", ROOT / "scripts/benchmark_latency.py")
 benchmark_latency = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(benchmark_latency)
+parity_spec = importlib.util.spec_from_file_location("check_decode_parity",
+                                                    ROOT / "scripts/check_decode_parity.py")
+check_decode_parity = importlib.util.module_from_spec(parity_spec)
+parity_spec.loader.exec_module(check_decode_parity)
 
 
 @register_model("_test_latency_tiny")
@@ -212,6 +216,64 @@ class HarnessTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "fp16"):
             benchmark_latency.main(["--data-root", "/nonexistent", "--cpu-only",
                                     "--precision", "fp16", "--images", "1"])
+
+
+class ParityHarnessTests(unittest.TestCase):
+    def test_bbox_gate_is_reported_and_passes_without_crop(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture(root / "data")
+            output = root / "parity.json"
+            code = check_decode_parity.main([
+                "--data-root", str(root / "data"), "--split", "valid", "--samples", "2",
+                "--image-size", "32", "--no-enforce", "--output", str(output)])
+            self.assertEqual(code, 0)
+            report = json.loads(output.read_text())
+            self.assertEqual(report["config_source"], "defaults")
+            self.assertFalse(report["crop"]["crop_black_border"])
+            self.assertTrue(report["tensor"]["tensor_gate_pass"])
+            self.assertTrue(report["tensor"]["bbox_gate_pass"])
+            self.assertEqual(report["tensor"]["bbox_disagreements"], 0)
+
+    def test_checkpoint_preprocessing_wins_and_conflicts_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture(root / "data")
+            config = Config.from_dict({
+                "data": {"root": str(root / "data"), "image_size": 64,
+                         "crop_black_border": True, "num_workers": 0},
+                "model": {"name": "_test_latency_tiny", "params": {}},
+                "train": {"amp": False}})
+            checkpoint = root / "best.pt"
+            save_checkpoint(checkpoint, inference_payload(
+                build_model(config.model), config, AgeStats(50, 50, 10), 0, {"auroc": 0.5}))
+            conflicting = Config.from_dict({
+                "data": {"root": str(root / "data"), "image_size": 32,
+                         "crop_black_border": False, "num_workers": 0}})
+            conflicting_path = root / "conflicting.json"
+            conflicting_path.write_text(json.dumps(conflicting.to_dict()))
+            with self.assertRaises(SystemExit):
+                check_decode_parity.main([
+                    "--data-root", str(root / "data"), "--split", "valid", "--samples", "2",
+                    "--config", str(conflicting_path), "--checkpoint", str(checkpoint),
+                    "--no-enforce", "--device", "cpu"])
+            with self.assertRaises(SystemExit):
+                check_decode_parity.main([
+                    "--data-root", str(root / "data"), "--split", "valid", "--samples", "2",
+                    "--image-size", "32", "--checkpoint", str(checkpoint),
+                    "--no-enforce", "--device", "cpu"])
+
+            output = root / "parity.json"
+            code = check_decode_parity.main([
+                "--data-root", str(root / "data"), "--split", "valid", "--samples", "2",
+                "--checkpoint", str(checkpoint), "--device", "cpu", "--no-enforce",
+                "--output", str(output)])
+            self.assertEqual(code, 0)
+            report = json.loads(output.read_text())
+            self.assertEqual(report["config_source"], "checkpoint")
+            self.assertEqual(report["image_size"], 64)
+            self.assertTrue(report["crop"]["crop_black_border"])
+            self.assertEqual(report["prediction"]["checkpoint_decode"], "full")
 
 
 if __name__ == "__main__":

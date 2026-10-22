@@ -24,7 +24,7 @@
 |---|---|---|
 | `train.ema_decay` | `null` | `(0,1)` 内的浮点数；`null` 表示关闭。所有浮点参数与 buffer 维护 fp32 影子副本，每次真实优化器 step 后更新。 |
 | `train.ema_warmup_steps` | `0` | `>0` 时衰减系数为 `min(decay, (1+step)/(10+step))`；`0` 表示固定 `ema_decay`。 |
-| `model.params.stochastic_depth_prob` | `0.0` | `[0,1]`，直接传给 `torchvision.models.convnext_tiny` 的随机深度概率。B0/B1 都支持。 |
+| `model.params.stochastic_depth_prob` | `0.1` | `[0,1]`，直接传给 `torchvision.models.convnext_tiny` 的随机深度概率；`0.1` 是 torchvision 的历史默认值，显式写 `0.0` 才关闭。B0/B1 都支持。 |
 | `train.mixup_alpha` | `null` | `>0` 的 Beta 参数；`null` 关闭 Mixup。 |
 | `train.cutmix_alpha` | `null` | `>0` 的 Beta 参数；`null` 关闭 CutMix。两者同时启用时每 batch 以 50/50 概率二选一。 |
 | `train.label_smoothing` | `0.0` | `[0,0.5]`；目标变为 `y*(1-s) + 0.5*s`。 |
@@ -38,7 +38,7 @@
 
 ## 随机深度
 
-`stochastic_depth_prob` 属于 `model.params`，会随 checkpoint 保存，推理时自动构造相同结构。`0.0` 与不写该键完全等价（同样的初始化权重与 state_dict）。训练时逐 block 随机丢弃残差路径，评估时恒等。
+`stochastic_depth_prob` 属于 `model.params`，会随 checkpoint 保存，推理时自动构造相同结构。不写该键时沿用 torchvision 的历史默认 `0.1`，因此旧配置与旧 checkpoint 的训练行为不变；显式写 `0.0` 才关闭随机深度。训练时逐 block 随机丢弃残差路径，评估时恒等。
 
 ## Mixup / CutMix
 
@@ -55,7 +55,7 @@
 
 ## 测试
 
-`tests/test_upgrades.py` 覆盖：EMA 更新与 warmup 公式、AMP 跳过、断点恢复逐位一致；Mixup/CutMix 软标签与确定性、`pos_weight` 软标签语义；标签平滑目标与损失；随机深度接线及 eval 恒等；默认配置下与旧训练循环逐位一致且不多消耗随机数。
+`tests/test_upgrades.py` 覆盖：EMA 更新与 warmup 公式、AMP 跳过、断点恢复逐位一致；Mixup/CutMix 软标签与确定性、`pos_weight` 软标签语义；标签平滑目标与损失；随机深度接线、默认值与 torchvision 一致、无该键的旧 checkpoint 严格加载、eval 恒等；默认配置下与旧训练循环逐位一致且不多消耗随机数。
 
 GPU 冒烟（合成数据、ConvNeXt-Tiny、64px、FP16、EMA + Mixup/CutMix + 标签平滑 + 随机深度，2 个 epoch）：
 

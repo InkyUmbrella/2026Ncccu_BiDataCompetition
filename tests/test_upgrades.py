@@ -13,17 +13,25 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from torch.utils.data import DataLoader, Dataset
+from torchvision.models import convnext_tiny
 
 from test_baseline import fixture
 
 from glaucoma.config import Config, ModelConfig, TrainConfig
-from glaucoma.engine.checkpoint import read_checkpoint
+from glaucoma.data.age import AgeStats
+from glaucoma.engine.checkpoint import (inference_payload, load_model, read_checkpoint,
+                                        save_checkpoint)
 from glaucoma.engine.ema import ModelEMA, apply_ema
 from glaucoma.engine.optimization import mix_batch, smooth_labels, train_one_epoch
 from glaucoma.engine.trainer import train
 from glaucoma.models import build_model
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def stochastic_depths(model):
+    return [module.p for module in model.modules()
+            if type(module).__name__ == "StochasticDepth"]
 
 
 class LinearClassifier(nn.Module):
@@ -231,15 +239,12 @@ class ModelUpgradeTests(unittest.TestCase):
         default = build(use_age=False)
         explicit_zero = build(use_age=False, stochastic_depth_prob=0.0)
         deep = build(use_age=False, stochastic_depth_prob=0.3)
-        for model in (default, explicit_zero):
-            self.assertFalse(any(type(module).__name__ == "StochasticDepth" and module.p > 0
-                                 for module in model.modules()))
-        self.assertGreater(sum(type(module).__name__ == "StochasticDepth"
-                               for module in default.modules()), 0)
-        self.assertGreater(sum(type(module).__name__ == "StochasticDepth"
-                               for module in deep.modules()), 0)
-        self.assertTrue(any(type(module).__name__ == "StochasticDepth" and module.p > 0
-                            for module in deep.modules()))
+        reference = convnext_tiny(weights=None)
+        # No key = torchvision's historical default (0.1), not "disabled".
+        self.assertEqual(stochastic_depths(default), stochastic_depths(reference))
+        self.assertTrue(any(p > 0 for p in stochastic_depths(default)))
+        self.assertTrue(all(p == 0 for p in stochastic_depths(explicit_zero)))
+        self.assertTrue(any(p > 0 for p in stochastic_depths(deep)))
         default_state = default.state_dict()
         for model in (explicit_zero, deep):
             state = model.state_dict()
@@ -252,6 +257,21 @@ class ModelUpgradeTests(unittest.TestCase):
         deep.eval()
         with torch.no_grad():
             torch.testing.assert_close(default(images, ages), deep(images, ages), rtol=0, atol=0)
+
+    def test_old_config_without_stochastic_depth_key_loads_strict(self):
+        """A pre-upgrade checkpoint has no SD key and must still load strict=True."""
+        old_params = {"use_age": False, "hidden_dim": 128, "dropout": 0.2}
+        config = Config(model=ModelConfig(params=dict(old_params)))
+        reference = build_model(config.model)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "best.pt"
+            payload = inference_payload(reference, config, AgeStats(50, 50, 10), 0,
+                                        {"auroc": 0.5})
+            save_checkpoint(path, payload)
+            loaded, loaded_config, _ = load_model(path, torch.device("cpu"))
+        self.assertEqual(loaded_config.model.params, old_params)
+        self.assertEqual(stochastic_depths(loaded), stochastic_depths(reference))
+        self.assertTrue(any(p > 0 for p in stochastic_depths(loaded)))
 
     def test_config_defaults_and_legacy_config_compatibility(self):
         train = TrainConfig()

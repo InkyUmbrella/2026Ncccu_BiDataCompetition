@@ -117,6 +117,12 @@ PYTHONPATH=src python scripts/check_decode_parity.py \
   --decode-compare draft --device cuda --output /tmp/parity.json
 ```
 
+给出 `--checkpoint` 时，`image_size` / crop / decode 一律以 checkpoint 内的配置为准；
+若同时给了不一致的 `--config` 或 `--image-size`，脚本直接报错而不是测错预处理。
+最终 `PASS` 需要同时满足 tensor p95、bbox（最大归一化偏移 ≤ 1% 且
+None/crop 分歧数为 0）以及 AUROC 三个门槛。不带 checkpoint 时仅做 config/default
+层面的 tensor + bbox 对比。
+
 ## 5. 训练/推理一致性
 
 - `decode` 是 `DataConfig` 字段，写入 `config.json`、`metadata.json`、缓存 manifest 和
