@@ -55,19 +55,43 @@ def read_samples(root, split, require_labels=True):
     return samples
 
 
-def load_rgb(path):
+DECODE_POLICIES = ("full", "draft")
+
+
+def load_rgb(path, decode="full", image_size=384):
+    """Decode an image to RGB, optionally JPEG-drafting to the model input size.
+
+    ``draft`` must be requested before ``exif_transpose``: loading or transposing
+    first makes Pillow's draft call a silent no-op. The decoded short side stays
+    >= ``image_size``, so the letterbox never has to upscale, and non-JPEG
+    formats are decoded exactly as before.
+    """
+    if decode not in DECODE_POLICIES:
+        raise ValueError(f"Unknown decode policy: {decode}")
+    if image_size < 1:
+        raise ValueError("image_size must be positive")
     with Image.open(path) as image:
+        if decode != "full" and image.format == "JPEG":
+            try:
+                image.draft("RGB", (image_size, image_size))
+            except (ValueError, OSError, AttributeError):
+                pass  # Unusual JPEG modes fall back to the full decode path.
         image = ImageOps.exif_transpose(image).convert("RGB")
         image.load()
+        if decode != "full" and max(image.size) > 4 * image_size:
+            # Non-JPEG inputs ignore draft; bound memory for pixel-bomb files.
+            image.thumbnail((4 * image_size, 4 * image_size), Image.Resampling.BILINEAR)
         return image
 
 
 class FundusDataset(Dataset):
-    def __init__(self, samples, age_stats, transform, image_cache=None):
+    def __init__(self, samples, age_stats, transform, image_cache=None, decode="full", image_size=384):
         self.samples = samples
         self.age_stats = age_stats
         self.transform = transform
         self.image_cache = image_cache
+        self.decode = decode
+        self.image_size = image_size
 
     def __len__(self):
         return len(self.samples)
@@ -75,7 +99,9 @@ class FundusDataset(Dataset):
     def __getitem__(self, index):
         sample = self.samples[index]
         try:
-            image = self.transform(self.image_cache.load(sample.path) if self.image_cache else load_rgb(sample.path))
+            image = self.transform(
+                self.image_cache.load(sample.path) if self.image_cache
+                else load_rgb(sample.path, self.decode, self.image_size))
         except Exception as exc:
             raise RuntimeError(f"Cannot decode/transform {sample.path}: {exc}") from exc
         result = {"image": image,

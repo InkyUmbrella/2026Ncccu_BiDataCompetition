@@ -65,6 +65,19 @@ def save_json(path, value):
     atomic_write(path, lambda handle: handle.write(payload))
 
 
+def percentile(values, q):
+    """Linear-interpolation percentile (numpy's default method); q in [0, 100]."""
+    if not 0 <= q <= 100:
+        raise ValueError("percentile q must be in [0, 100]")
+    data = np.sort(np.asarray(values, dtype=np.float64))
+    if not data.size:
+        return float("nan")
+    position = (data.size - 1) * q / 100
+    lower = int(np.floor(position))
+    upper = min(lower + 1, data.size - 1)
+    return float(data[lower] + (data[upper] - data[lower]) * (position - lower))
+
+
 def sha256_file(path):
     digest = hashlib.sha256()
     with Path(path).open("rb") as handle:

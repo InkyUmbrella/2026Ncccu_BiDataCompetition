@@ -85,11 +85,13 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     metadata.update(csv_hashes=csv_hashes, resumed_from=str(Path(resume).resolve()) if resume else None,
                     initialized_from=str(Path(init_from).resolve()) if init_from else None,
                     image_cache=str(Path(image_cache).resolve()) if image_cache else None,
+                    decode=config.data.decode,
                     device=str(device), gpu=torch.cuda.get_device_name(device) if device.type == "cuda" else None)
     save_json(run_dir / "metadata.json", metadata)
     caches = {}
-    preprocessing = {"crop_black_border": config.data.crop_black_border,
-                     "crop_threshold": config.data.crop_threshold, "crop_margin": config.data.crop_margin}
+    transform_args = {"crop_black_border": config.data.crop_black_border,
+                      "crop_threshold": config.data.crop_threshold, "crop_margin": config.data.crop_margin}
+    preprocessing = dict(transform_args, decode=config.data.decode)
     if image_cache:
         from ..data.cache import ImageCache
         caches = {split: ImageCache(image_cache, rows, config.data.image_size, **preprocessing)
@@ -102,8 +104,9 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         if report["errors"]:
             raise ValueError(f"Image decoding failed; see {run_dir / 'data_audit.json'}")
     datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train",
-                                   preprocessed=split in caches, **preprocessing),
-                                   image_cache=caches.get(split))
+                                   preprocessed=split in caches, **transform_args),
+                                   image_cache=caches.get(split), decode=config.data.decode,
+                                   image_size=config.data.image_size)
                 for split, rows in samples.items()}
     valid_loader = make_loader(datasets["valid"], config.train.batch_size, config.data.num_workers,
                                config.seed, pin_memory=device.type == "cuda")

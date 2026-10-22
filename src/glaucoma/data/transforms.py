@@ -24,28 +24,38 @@ class CropBlackBorder:
     def __init__(self, threshold=10, margin=0.03):
         self.threshold, self.margin = threshold, margin
 
-    def __call__(self, image):
+    def bbox(self, image):
+        """Return the kept ``(left, top, right, bottom)`` or ``None`` for no crop."""
         pixels = np.asarray(image)
         foreground = pixels.max(axis=2) > self.threshold
         rows = np.flatnonzero(foreground.any(axis=1))
         columns = np.flatnonzero(foreground.any(axis=0))
         if not len(rows) or not len(columns):
-            return image
+            return None
         left, right = int(columns[0]), int(columns[-1]) + 1
         top, bottom = int(rows[0]), int(rows[-1]) + 1
         # A tiny bright artifact on a nearly black image is not a reliable field.
         if (right - left) * (bottom - top) < image.width * image.height * 0.1:
-            return image
+            return None
         margin = round(max(right - left, bottom - top) * self.margin)
-        return image.crop((max(0, left - margin), max(0, top - margin),
-                           min(image.width, right + margin), min(image.height, bottom + margin)))
+        return (max(0, left - margin), max(0, top - margin),
+                min(image.width, right + margin), min(image.height, bottom + margin))
+
+    def __call__(self, image):
+        box = self.bbox(image)
+        return image if box is None else image.crop(box)
 
 
-def preprocessing_spec(crop_black_border=False, crop_threshold=10, crop_margin=0.03):
+def preprocessing_spec(crop_black_border=False, crop_threshold=10, crop_margin=0.03, decode="full"):
     """Versioned cache identity; unused crop settings do not affect old caches."""
+    if decode not in ("full", "draft"):
+        raise ValueError(f"Unknown decode policy: {decode}")
     if crop_black_border:
-        return {"name": "crop_black_border_v1", "threshold": crop_threshold, "margin": crop_margin}
-    return {"name": "letterbox_v1"}
+        spec = {"name": "crop_black_border_v1", "threshold": crop_threshold, "margin": crop_margin}
+    else:
+        spec = {"name": "letterbox_v1"}
+    spec["decode"] = decode
+    return spec
 
 
 def build_preprocess(size, crop_black_border=False, crop_threshold=10, crop_margin=0.03):

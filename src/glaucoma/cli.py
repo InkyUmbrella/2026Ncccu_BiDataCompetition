@@ -19,6 +19,7 @@ def build_parser():
     cache.add_argument("--crop-black-border", action=argparse.BooleanOptionalAction, default=None)
     cache.add_argument("--crop-threshold", type=int)
     cache.add_argument("--crop-margin", type=float)
+    cache.add_argument("--decode", choices=("full", "draft"), help="JPEG decode policy; cache is rebuilt from sources")
     audit = commands.add_parser("check-data", help="Decode images and optionally check exact duplicates")
     audit.add_argument("--data-root", required=True)
     audit.add_argument("--splits", nargs="+", choices=("train", "valid", "test"), default=["train", "valid", "test"])
@@ -60,14 +61,15 @@ def main(argv=None):
         config = Config.load(args.config) if args.config else Config()
         if not args.config and not args.data_root:
             raise ValueError("cache-images requires --config or --data-root")
-        for name in ("image_size", "crop_black_border", "crop_threshold", "crop_margin"):
+        for name in ("image_size", "crop_black_border", "crop_threshold", "crop_margin", "decode"):
             value = getattr(args, name)
             if value is not None:
                 setattr(config.data, name, value)
         config.validate()
         prepare_cache(args.data_root or config.data.root, args.output, config.data.image_size, args.workers,
                       crop_black_border=config.data.crop_black_border,
-                      crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin)
+                      crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin,
+                      decode=config.data.decode)
     elif args.command == "train":
         from .engine.trainer import train
         config = Config.load(args.config)
@@ -116,7 +118,8 @@ def _inference(args):
     rows = read_samples(args.data_root, "test" if predicting else args.split, not predicting)
     dataset = FundusDataset(rows, age_stats, build_transform(config.data.image_size,
                            crop_black_border=config.data.crop_black_border,
-                           crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin))
+                           crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin),
+                           decode=config.data.decode, image_size=config.data.image_size)
     loader = make_loader(dataset, args.batch_size, args.num_workers, config.seed, pin_memory=device.type == "cuda")
     predictions, metrics = collect_predictions(model, loader, device, config.train.pos_weight, config.train.amp)
     if predicting:

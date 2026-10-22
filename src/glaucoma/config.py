@@ -14,6 +14,10 @@ class DataConfig:
     crop_black_border: bool = False
     crop_threshold: int = 10
     crop_margin: float = 0.03
+    # "full" is the historical, exact decode path. "draft" lets Pillow's JPEG
+    # DCT scaling decode to just above the model input (training/inference parity
+    # is carried by the checkpoint config).
+    decode: str = "full"
 
 
 @dataclass
@@ -73,6 +77,8 @@ class Config:
             raise ValueError("crop_threshold must be an integer in [0, 255]")
         if not math.isfinite(self.data.crop_margin) or not 0 <= self.data.crop_margin <= 0.5:
             raise ValueError("crop_margin must be in [0, 0.5]")
+        if self.data.decode not in ("full", "draft"):
+            raise ValueError('decode must be "full" or "draft"')
         fraction = self.train.positive_fraction
         if fraction is not None and (not math.isfinite(fraction) or not 0 < fraction < 1):
             raise ValueError("positive_fraction must be in (0, 1)")

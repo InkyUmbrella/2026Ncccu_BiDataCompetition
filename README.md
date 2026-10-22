@@ -1,7 +1,8 @@
 # 青光眼眼底图像分类
 
 基线包括 B0（ConvNeXt-Tiny 整图分类）和 B1（相同骨干融合年龄），均为随机初始化。
-实验规格见 [基线设计](docs/BASELINE_DESIGN.md)，通信环境见 [六卡测试报告](docs/SIX_GPU_FEASIBILITY.md)。
+实验规格见 [基线设计](docs/BASELINE_DESIGN.md)，通信环境见 [六卡测试报告](docs/SIX_GPU_FEASIBILITY.md)，
+部署延迟预算与解码策略见 [延迟预算](docs/LATENCY.md)。
 
 ## 目录
 
