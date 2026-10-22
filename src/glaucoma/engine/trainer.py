@@ -13,7 +13,8 @@ from ..data.transforms import build_transform
 from ..models import build_model
 from ..utils import (environment_metadata, new_run_directory, resolve_device,
                      save_json, seed_everything, seed_worker, sha256_file)
-from .checkpoint import (cpu_state, inference_payload, initialize_model, read_checkpoint, restore_rng,
+from .checkpoint import (cpu_state, inference_payload, initialize_from_encoder,
+                         initialize_model, read_checkpoint, read_ssl_encoder, restore_rng,
                          rng_state, save_checkpoint)
 from .ema import ModelEMA, apply_ema
 from .evaluation import collect_predictions, write_predictions
@@ -50,18 +51,22 @@ def _resume_compatible(config, saved):
         raise ValueError("Resume config differs from checkpoint (only data.root/output_root may change)")
 
 
-def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_from=None):
+def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_from=None,
+          init_encoder=None):
     config.validate()
-    if resume and init_from:
-        raise ValueError("resume and init_from are mutually exclusive")
-    if config.train.freeze_image_epochs and not (resume or init_from):
-        raise ValueError("Freezing the image branch requires init_from or resume")
+    if sum(value is not None for value in (resume, init_from, init_encoder)) > 1:
+        raise ValueError("resume, init_from and init_encoder are mutually exclusive")
+    if init_encoder and resume:
+        raise ValueError("resume and init_encoder are mutually exclusive")
+    if config.train.freeze_image_epochs and not (resume or init_from or init_encoder):
+        raise ValueError("Freezing the image branch requires init_from, init_encoder or resume")
     if stop_after_epochs is not None and stop_after_epochs < 1:
         raise ValueError("stop_after_epochs must be positive")
     device = resolve_device(config.device)
     seed_everything(config.seed)
     saved = read_checkpoint(resume, "training") if resume else None
     initialization = read_checkpoint(init_from, "inference") if init_from else None
+    ssl_initialization = read_ssl_encoder(init_encoder) if init_encoder else None
     start_epoch = 0
     if saved:
         _resume_compatible(config, saved["config"])
@@ -84,6 +89,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     metadata = environment_metadata()
     metadata.update(csv_hashes=csv_hashes, resumed_from=str(Path(resume).resolve()) if resume else None,
                     initialized_from=str(Path(init_from).resolve()) if init_from else None,
+                    initialized_from_encoder=str(Path(init_encoder).resolve()) if init_encoder else None,
+                    initialized_from_encoder_sha256=sha256_file(init_encoder) if init_encoder else None,
                     image_cache=str(Path(image_cache).resolve()) if image_cache else None,
                     decode=config.data.decode,
                     device=str(device), gpu=torch.cuda.get_device_name(device) if device.type == "cuda" else None)
@@ -117,6 +124,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     model = build_model(config.model).to(device)
     if initialization:
         initialize_model(model, config, initialization)
+    if ssl_initialization:
+        initialize_from_encoder(model, ssl_initialization)
     optimizer = build_optimizer(model, config.train)
     scaler = torch.amp.GradScaler("cuda", enabled=config.train.amp and device.type == "cuda")
     ema = (ModelEMA(model, config.train.ema_decay, config.train.ema_warmup_steps)

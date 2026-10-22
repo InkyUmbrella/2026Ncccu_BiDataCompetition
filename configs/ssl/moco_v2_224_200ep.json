@@ -1,0 +1,37 @@
+{
+  "experiment": "ssl_moco_v2_224_200ep",
+  "seed": 42,
+  "device": "cuda",
+  "output_root": "outputs/ssl",
+  "data": {
+    "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+    "cache": "/var/tmp/ncccu-heyuhang/cache384",
+    "image_size": 384,
+    "ssl_size": 224,
+    "num_workers": 8,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03,
+    "decode": "full",
+    "min_crop_scale": 0.2
+  },
+  "train": {
+    "epochs": 200,
+    "batch_size": 256,
+    "learning_rate": 0.03,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 10,
+    "temperature": 0.2,
+    "queue_size": 65536,
+    "moco_momentum": 0.999,
+    "hidden_dim": 2048,
+    "projection_dim": 128,
+    "amp": true,
+    "save_every": 10,
+    "probe_every": 50,
+    "grad_clip": 0.0,
+    "probe_fit_size": 8000,
+    "probe_eval_size": 4000
+  }
+}

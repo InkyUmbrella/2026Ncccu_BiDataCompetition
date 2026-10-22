@@ -40,6 +40,29 @@ def load_model(path, device):
     return model, config, AgeStats(**payload["age_stats"])
 
 
+def read_ssl_encoder(path):
+    """Read a self-describing MoCo-v2 encoder artifact (kind='ssl_encoder')."""
+    payload = torch.load(path, map_location="cpu", weights_only=True)
+    if payload.get("format_version") != 1 or payload.get("kind") != "ssl_encoder":
+        raise ValueError(f"Expected version 1 ssl_encoder checkpoint: {path}")
+    if "encoder_state" not in payload or "model" not in payload:
+        raise ValueError(f"Malformed ssl_encoder checkpoint: {path}")
+    return payload
+
+
+def initialize_from_encoder(model, payload):
+    """Load only the image encoder; the classifier/age modules stay fresh."""
+    name = payload.get("model", {}).get("name")
+    if name != "convnext_tiny":
+        raise ValueError("Only convnext_tiny SSL encoders are supported")
+    if not hasattr(model, "encoder"):
+        raise ValueError("Target model has no image encoder")
+    try:
+        model.encoder.load_state_dict(payload["encoder_state"], strict=True)
+    except RuntimeError as exc:
+        raise ValueError(f"SSL encoder does not match the target encoder: {exc}") from exc
+
+
 def initialize_model(model, config, payload):
     """Initialize a new experiment, without restoring optimizer/history/RNG."""
     source = Config.from_dict(payload["config"])

@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from .config import Config
+from .ssl.config import SSLConfig
 
 
 def build_parser():
@@ -33,9 +34,21 @@ def build_parser():
     initialization = training.add_mutually_exclusive_group()
     initialization.add_argument("--resume", help="last.pt; starts a new output directory")
     initialization.add_argument("--init-from", help="best.pt; initialize a new experiment without optimizer/history")
+    initialization.add_argument("--init-encoder",
+                                help="ssl_encoder .pt; initialize the image encoder only (strict)")
     training.add_argument("--seed", type=int)
     training.add_argument("--image-cache", help="Lossless cache built by cache-images; resume compatible")
     training.add_argument("--stop-after-epochs", type=int, help="Bound this invocation without changing the LR schedule")
+    ssl = commands.add_parser("ssl", aliases=["pretrain"],
+                              help="Self-supervised MoCo-v2 pretraining on the train split")
+    ssl.add_argument("--config", required=True)
+    ssl.add_argument("--data-root")
+    ssl.add_argument("--device")
+    ssl.add_argument("--output-root")
+    ssl.add_argument("--resume", help="last.pt; continue a pretraining run")
+    ssl.add_argument("--image-cache", help="Lossless cache built by cache-images")
+    ssl.add_argument("--stop-after-epochs", type=int,
+                     help="Bound this invocation without changing the LR schedule")
     for name in ("evaluate", "predict"):
         command = commands.add_parser(name)
         command.add_argument("--checkpoint", required=True, help="best.pt inference checkpoint")
@@ -82,8 +95,22 @@ def main(argv=None):
         if args.seed is not None:
             config.seed = args.seed
         run = train(config, args.resume, args.stop_after_epochs, image_cache=args.image_cache,
-                    init_from=args.init_from)
+                    init_from=args.init_from, init_encoder=args.init_encoder)
         print(f"Results: {run.resolve()}")
+    elif args.command in ("ssl", "pretrain"):
+        from .ssl.trainer import pretrain
+        config = SSLConfig.load(args.config)
+        if args.data_root:
+            config.data.root = args.data_root
+        if args.device:
+            config.device = args.device
+        if args.output_root:
+            config.output_root = args.output_root
+        if args.image_cache:
+            config.data.cache = args.image_cache
+        run = pretrain(config, args.resume, args.stop_after_epochs,
+                       image_cache=args.image_cache)
+        print(f"SSL results: {run.resolve()}")
     elif args.command == "check-data":
         from .data.audit import audit_samples
         from .data.dataset import read_samples
