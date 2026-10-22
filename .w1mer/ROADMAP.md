@@ -50,7 +50,7 @@
 | # | Task | Doc | Status | Defer | Effect |
 |---|------|-----|--------|-------|--------|
 <!-- w1mer:task:feature -->
-| 02 | Trainer upgrades: EMA, stochastic depth, mixup/cutmix, label smoothing (default-off) | .w1mer/detail/trainer_upgrades.md | todo | 0 | |
+| 02 | Trainer upgrades: EMA, stochastic depth, mixup/cutmix, label smoothing (default-off) | .w1mer/detail/trainer_upgrades.md | done | 0 | 2026-10-22 2ac17b0: EMA/stochastic depth/mixup/label smoothing added default-off; 30 CPU tests pass, GPU smoke EMA verified |
 
 ## 四、Infrastructure
 
