@@ -46,7 +46,7 @@
 <!-- w1mer:task:bug -->
 | 02.1 | Fix stochastic-depth default parity (torchvision 0.1 -> 0.0) and document/resume impact | docs/TRAINER_UPGRADES.md | todo | 0 | |
 | 02.2 | Harden upgrade tests: ConvNeXt default-path parity, best.pt EMA on disk, CutMix lambda/area | tests/test_upgrades.py | todo | 0 | |
-| 02.3 | Fix R_02 F1 (SD default) + R_03 F1/F3 (parity config, bbox gate) | .w1mer/review/R_02.md | todo | 0 | |
+| 02.3 | Fix R_02 F1 (SD default) + R_03 F1/F3 (parity config, bbox gate) | .w1mer/review/R_02.md | done | 0 | SD default 0.1 restored; parity preprocessing checkpoint-owned; bbox drift gate |
 
 
 
