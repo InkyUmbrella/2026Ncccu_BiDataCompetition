@@ -14,12 +14,14 @@ class DataConfig:
     crop_black_border: bool = False
     crop_threshold: int = 10
     crop_margin: float = 0.03
+    normalization: str = "symmetric"
 
 
 @dataclass
 class ModelConfig:
     name: str = "convnext_tiny"
     params: dict = field(default_factory=lambda: {"use_age": False, "hidden_dim": 128, "dropout": 0.2})
+    weights: str | None = None
 
 
 @dataclass
@@ -61,6 +63,14 @@ class Config:
                 raise ValueError(f"{name} must be a positive integer")
         if self.data.image_size < 32:
             raise ValueError("image_size must be at least 32")
+        if self.data.normalization not in ("symmetric", "imagenet"):
+            raise ValueError("normalization must be symmetric or imagenet")
+        if self.model.weights is not None:
+            if (self.model.weights != "IMAGENET1K_V1"
+                    or self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual")):
+                raise ValueError("weights must be IMAGENET1K_V1 for a supported ConvNeXt model")
+            if self.data.normalization != "imagenet":
+                raise ValueError("ImageNet weights require imagenet normalization")
         if type(self.data.crop_black_border) is not bool:
             raise ValueError("crop_black_border must be a boolean")
         if type(self.data.crop_threshold) is not int or not 0 <= self.data.crop_threshold <= 255:
@@ -92,6 +102,8 @@ class Config:
             raise ValueError("min_learning_rate exceeds learning_rate")
         if not isinstance(self.model.params, dict):
             raise ValueError("model.params must be an object")
+        if "weights" in self.model.params:
+            raise ValueError("Set model.weights instead of model.params.weights")
         for value in (self.train.amp, self.data.verify_images):
             if type(value) is not bool:
                 raise ValueError("amp and verify_images must be booleans")

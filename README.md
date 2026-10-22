@@ -111,3 +111,7 @@ CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
 Training I/O speedup: see [docs/TRAINING_SPEED.md](docs/TRAINING_SPEED.md).
 
 年龄残差方案与微调命令见 [docs/AGE_RESIDUAL.md](docs/AGE_RESIDUAL.md)。
+
+ImageNet-1K 预训练微调、同配方随机初始化对照及服务器运行方法见 [docs/PRETRAINED.md](docs/PRETRAINED.md)。原有基线配置保持随机初始化。
+
+fwq 模型集成、B0 快照验证与并行年龄残差实验见 [docs/FWQ_PRETRAINED_TRANSFER.md](docs/FWQ_PRETRAINED_TRANSFER.md)。

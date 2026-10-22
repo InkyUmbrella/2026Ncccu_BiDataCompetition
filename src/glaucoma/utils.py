@@ -36,6 +36,8 @@ def resolve_device(name):
     if device.type == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA requested but unavailable; use --device cpu for diagnostics")
     if device.type == "cuda":
+        if device.index is None:
+            device = torch.device("cuda", torch.cuda.current_device())
         torch.cuda.set_device(device)
     return device
 

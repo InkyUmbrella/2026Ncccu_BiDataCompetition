@@ -101,7 +101,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         if report["errors"]:
             raise ValueError(f"Image decoding failed; see {run_dir / 'data_audit.json'}")
     datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train",
-                                   preprocessed=split in caches, **preprocessing),
+                                   preprocessed=split in caches, normalization=config.data.normalization,
+                                   **preprocessing),
                                    image_cache=caches.get(split))
                 for split, rows in samples.items()}
     valid_loader = make_loader(datasets["valid"], config.train.batch_size, config.data.num_workers,
@@ -110,7 +111,7 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     updates = math.ceil(batches / config.train.accumulation_steps)
     total_steps = updates * config.train.epochs
     warmup_steps = updates * config.train.warmup_epochs
-    model = build_model(config.model).to(device)
+    model = build_model(config.model, load_pretrained=source is None).to(device)
     if initialization:
         initialize_model(model, config, initialization)
     optimizer = build_optimizer(model, config.train)

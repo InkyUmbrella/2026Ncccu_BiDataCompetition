@@ -115,6 +115,7 @@ def _inference(args):
     model, config, age_stats = load_model(args.checkpoint, device)
     rows = read_samples(args.data_root, "test" if predicting else args.split, not predicting)
     dataset = FundusDataset(rows, age_stats, build_transform(config.data.image_size,
+                           normalization=config.data.normalization,
                            crop_black_border=config.data.crop_black_border,
                            crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin))
     loader = make_loader(dataset, args.batch_size, args.num_workers, config.seed, pin_memory=device.type == "cuda")

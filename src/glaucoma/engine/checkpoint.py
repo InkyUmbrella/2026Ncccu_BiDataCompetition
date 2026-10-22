@@ -1,4 +1,5 @@
 import random
+from dataclasses import replace
 
 import numpy as np
 import torch
@@ -34,7 +35,8 @@ def read_checkpoint(path, kind):
 def load_model(path, device):
     payload = read_checkpoint(path, "inference")
     config = Config.from_dict(payload["config"])
-    model = build_model(config.model)
+    # The checkpoint is self-contained, including for ImageNet-initialized runs.
+    model = build_model(config.model, load_pretrained=False)
     model.load_state_dict(payload["model_state"], strict=True)
     model.to(device).eval()
     return model, config, AgeStats(**payload["age_stats"])
@@ -43,7 +45,9 @@ def load_model(path, device):
 def initialize_model(model, config, payload):
     """Initialize a new experiment, without restoring optimizer/history/RNG."""
     source = Config.from_dict(payload["config"])
-    if source.model == config.model:
+    if source.data.normalization != config.data.normalization:
+        raise ValueError("Initialization requires matching normalization")
+    if replace(source.model, weights=None) == replace(config.model, weights=None):
         model.load_state_dict(payload["model_state"], strict=True)
     elif (source.model.name == "convnext_tiny"
           and not source.model.params.get("use_age", False)
