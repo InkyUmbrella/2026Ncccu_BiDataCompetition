@@ -96,7 +96,7 @@ class TransferTests(unittest.TestCase):
             values["train"].update(updates)
             with self.assertRaises(ValueError):
                 Config.from_dict(values)
-        with self.assertRaisesRegex(ValueError, "requires init_from or resume"):
+        with self.assertRaisesRegex(ValueError, "requires init_from, init_encoder or resume"):
             train(config)
         with self.assertRaisesRegex(ValueError, "Expected version 1 inference"):
             with tempfile.TemporaryDirectory() as directory:
