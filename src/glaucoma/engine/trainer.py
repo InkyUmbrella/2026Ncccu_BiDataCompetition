@@ -15,6 +15,7 @@ from ..utils import (environment_metadata, new_run_directory, resolve_device,
                      save_json, seed_everything, seed_worker, sha256_file)
 from .checkpoint import (cpu_state, inference_payload, initialize_model, read_checkpoint, restore_rng,
                          rng_state, save_checkpoint)
+from .ema import ModelEMA, apply_ema
 from .evaluation import collect_predictions, write_predictions
 from .optimization import build_optimizer, train_one_epoch
 
@@ -115,11 +116,17 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         initialize_model(model, config, initialization)
     optimizer = build_optimizer(model, config.train)
     scaler = torch.amp.GradScaler("cuda", enabled=config.train.amp and device.type == "cuda")
+    ema = (ModelEMA(model, config.train.ema_decay, config.train.ema_warmup_steps)
+           if config.train.ema_decay is not None else None)
     history, global_step, best = [], 0, None
     if saved:
         model.load_state_dict(saved["model_state"], strict=True)
         optimizer.load_state_dict(saved["optimizer"])
         scaler.load_state_dict(saved["scaler"])
+        if ema is not None:
+            if "ema" not in saved:
+                raise ValueError("Checkpoint has no EMA state, cannot resume with ema_decay enabled")
+            ema.load_state_dict(saved["ema"])
         history, global_step, best = saved["history"], saved["global_step"], saved["best"]
         restore_rng(saved["rng"], device)
         save_checkpoint(run_dir / "best.pt", best)
@@ -132,24 +139,29 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
                              config.seed + epoch, training=True, pin_memory=device.type == "cuda",
                              positive_fraction=config.train.positive_fraction)
         training, global_step = train_one_epoch(model, loader, optimizer, scaler, device, config.train,
-                                                global_step, total_steps, warmup_steps)
-        _, validation = collect_predictions(model, valid_loader, device, config.train.pos_weight, config.train.amp)
+                                                global_step, total_steps, warmup_steps, ema=ema)
+        # Validation, best-checkpoint selection and best.pt use EMA weights when enabled.
+        with apply_ema(ema, model):
+            _, validation = collect_predictions(model, valid_loader, device, config.train.pos_weight,
+                                                config.train.amp)
+            score = (validation["auroc"], validation["auprc_trapz"])
+            if best is None or score > (best["metrics"]["auroc"], best["metrics"]["auprc_trapz"]):
+                best = inference_payload(model, config, age_stats, epoch, validation)
+                save_checkpoint(run_dir / "best.pt", best)
         row = {"epoch": epoch, "global_step": global_step, "train": training, "valid": validation,
                "image_frozen": bool(getattr(model, "image_frozen", False)),
                "seconds": round(time.monotonic() - started, 3)}
         history.append(row)
-        score = (validation["auroc"], validation["auprc_trapz"])
-        if best is None or score > (best["metrics"]["auroc"], best["metrics"]["auprc_trapz"]):
-            best = inference_payload(model, config, age_stats, epoch, validation)
-            save_checkpoint(run_dir / "best.pt", best)
         # A self-contained recovery file includes the best weights as well as the
         # current optimizer state; it is not part of the deployment artifact.
-        save_checkpoint(run_dir / "last.pt", {
-            "format_version": 1, "kind": "training", "config": config.to_dict(),
-            "age_stats": age_stats.to_dict(), "csv_hashes": csv_hashes,
-            "epoch": epoch, "global_step": global_step, "model_state": cpu_state(model),
-            "optimizer": optimizer.state_dict(), "scaler": scaler.state_dict(),
-            "rng": rng_state(device), "history": history, "best": best})
+        recovery = {"format_version": 1, "kind": "training", "config": config.to_dict(),
+                    "age_stats": age_stats.to_dict(), "csv_hashes": csv_hashes,
+                    "epoch": epoch, "global_step": global_step, "model_state": cpu_state(model),
+                    "optimizer": optimizer.state_dict(), "scaler": scaler.state_dict(),
+                    "rng": rng_state(device), "history": history, "best": best}
+        if ema is not None:
+            recovery["ema"] = ema.state_dict()
+        save_checkpoint(run_dir / "last.pt", recovery)
         save_json(run_dir / "history.json", history)
         print(f"[epoch {epoch + 1}/{config.train.epochs}] train_loss={training['loss']:.6f} "
               f"valid_auc={validation['auroc']:.6f} valid_ap={validation['ap']:.6f}", flush=True)

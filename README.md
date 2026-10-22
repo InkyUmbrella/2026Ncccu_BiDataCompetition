@@ -111,3 +111,6 @@ CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
 Training I/O speedup: see [docs/TRAINING_SPEED.md](docs/TRAINING_SPEED.md).
 
 年龄残差方案与微调命令见 [docs/AGE_RESIDUAL.md](docs/AGE_RESIDUAL.md)。
+
+默认关闭的训练增强（EMA、随机深度、Mixup/CutMix、标签平滑）见
+[docs/TRAINER_UPGRADES.md](docs/TRAINER_UPGRADES.md)。

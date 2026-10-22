@@ -37,6 +37,12 @@ class TrainConfig:
     positive_fraction: float | None = None
     freeze_image_epochs: int = 0
     image_lr_scale: float = 1.0
+    # Default-off training upgrades; null/0 keeps the original numerics.
+    ema_decay: float | None = None
+    ema_warmup_steps: int = 0
+    mixup_alpha: float | None = None
+    cutmix_alpha: float | None = None
+    label_smoothing: float = 0.0
 
 
 @dataclass
@@ -74,6 +80,17 @@ class Config:
             raise ValueError("freeze_image_epochs must be in [0, epochs)")
         if not math.isfinite(self.train.image_lr_scale) or not 0 < self.train.image_lr_scale <= 1:
             raise ValueError("image_lr_scale must be in (0, 1]")
+        if self.train.ema_decay is not None and (
+                not math.isfinite(self.train.ema_decay) or not 0 < self.train.ema_decay < 1):
+            raise ValueError("ema_decay must be in (0, 1) or null")
+        if type(self.train.ema_warmup_steps) is not int or self.train.ema_warmup_steps < 0:
+            raise ValueError("ema_warmup_steps must be a nonnegative integer")
+        for name in ("mixup_alpha", "cutmix_alpha"):
+            value = getattr(self.train, name)
+            if value is not None and (not math.isfinite(value) or value <= 0):
+                raise ValueError(f"{name} must be finite and positive or null")
+        if not math.isfinite(self.train.label_smoothing) or not 0 <= self.train.label_smoothing <= 0.5:
+            raise ValueError("label_smoothing must be in [0, 0.5]")
         if self.train.freeze_image_epochs and self.model.name != "convnext_tiny_age_residual":
             raise ValueError("freeze_image_epochs requires convnext_tiny_age_residual")
         if type(self.seed) is not int or not 0 <= self.seed < 2**32:
