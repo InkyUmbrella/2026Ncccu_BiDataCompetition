@@ -26,7 +26,7 @@
 |---|------|-----|--------|-------|--------|
 <!-- w1mer:task:perf -->
 | 03 | Latency-safe decode + parity check + T4 latency harness | .w1mer/detail/latency.md | done | 0 | decode policy + parity/latency harness (R_03 follow-ups open) |
-| 04 | Eval tooling: run table, paired bootstrap, rank fusion, age stacking | .w1mer/detail/eval_tools.md | todo | 0 | |
+| 04 | Eval tooling: run table, paired bootstrap, rank fusion, age stacking | .w1mer/detail/eval_tools.md | done | 0 | 2026-10-23 3fe2743: fusion/report/paired-bootstrap/fuse-prediction tooling; 80 CPU tests green (3 pre-existing fixed) |
 | 05 | From-scratch 384: control vs positive sampling (60ep) | .w1mer/detail/scratch384.md | todo | 0 | 4 arms launched 2026-10-22T13:41Z on GPUs 0/1/3/4 (ctrl, ctrl_ema, samp_ema, full); ETA ~10h |
 | 06 | From-scratch 512 sampled + EMA/long-schedule follow-up | .w1mer/detail/crop512.md | todo | 0 | |
 | 07 | Seed ensemble + TTA with rank fusion | .w1mer/detail/ensemble.md | todo | 0 | |
