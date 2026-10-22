@@ -6,7 +6,7 @@
   "data": {
     "root": "/home/lichunyu/competition/dataset/glaucoma_first",
     "image_size": 384,
-    "num_workers": 4,
+    "num_workers": 8,
     "verify_images": false,
     "crop_black_border": true,
     "crop_threshold": 10,
