@@ -26,3 +26,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# w1mer local machine state
+.w1mer/.lock
+.w1mer/STATE.json

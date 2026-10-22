@@ -1,0 +1,32 @@
+{
+  "experiment": "b0_crop384_control_ema",
+  "seed": 42,
+  "device": "cuda",
+  "output_root": "outputs/runs",
+  "data": {
+    "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+    "image_size": 384,
+    "num_workers": 8,
+    "verify_images": false,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03
+  },
+  "model": {
+    "name": "convnext_tiny",
+    "params": {"use_age": false, "hidden_dim": 128, "dropout": 0.2}
+  },
+  "train": {
+    "epochs": 60,
+    "batch_size": 64,
+    "accumulation_steps": 2,
+    "learning_rate": 0.0003,
+    "min_learning_rate": 0.000001,
+    "warmup_epochs": 5,
+    "weight_decay": 0.05,
+    "pos_weight": 5.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "ema_decay": 0.999
+  }
+}

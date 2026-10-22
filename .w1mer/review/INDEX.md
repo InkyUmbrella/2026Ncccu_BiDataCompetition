@@ -13,7 +13,7 @@
 | # | Task | State | Doc |
 |---|------|-------|-----|
 <!-- w1mer:rows -->
-
+| R_01 | "01" | issues | [R_01.md](R_01.md) |
 <!-- /w1mer:rows -->
 
 ## Reviewer checklist
