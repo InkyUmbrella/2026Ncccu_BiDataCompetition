@@ -29,6 +29,18 @@ state: active
   and adds no state keys. **Behavioural delta:** the old call used torchvision's
   SD default 0.1, the new default is 0.0, so old configs/resumes lose SD unless set
   explicitly (review F1, follow-up 02.1).
+- [data][trainer][config] R_03 decode policy (2ad6e77): `data.decode` (`full|draft`)
+  joins config/checkpoint/cache identity — `best.pt` now carries it and
+  `predict`/`evaluate` own the policy (no CLI default or override); `load_rgb`
+  gains `(decode, image_size)` and drafts JPEG before EXIF rotation, non-JPEG is
+  unchanged (draft-mode 4S thumbnail, not a memory bound); `FundusDataset` gains
+  `decode/image_size`; `preprocessing_spec` gains `decode`; cache manifest is v3
+  (v1/v2 = full, draft/full mutually rejected, manifest written last/atomically);
+  `CropBlackBorder.bbox` extracted with identical numerics; `utils.percentile`
+  added. Default `full` is bit-identical, so the four arms are unaffected. Open
+  risk: draft scale is chosen pre-crop, so draft+crop can under-resolve/upscale
+  (measured tensor p95 0.0109 marginal FAIL); parity tooling can measure the wrong
+  crop config when `--checkpoint` is used without `--config`.
 - [trainer][data][config] R_01 audit (a8ab0ff): confirmed the contracts —
   `train()` resume = config equality (data.root/output_root excepted) + CSV sha256
   + optimizer/scaler/RNG/history/best; `best.pt` inference-only
