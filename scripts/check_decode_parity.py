@@ -64,7 +64,7 @@ def bbox_fraction(image, crop):
 
 def timing(values):
     return {"count": len(values), "p50": percentile(values, 50), "p95": percentile(values, 95),
-            "p99": percentile(values, 99), "max": float(max(values)) if values else None}
+            "p99": percentile(values, 99), "max": float(np.max(values)) if len(values) else None}
 
 
 def decode_timing(paths, size, crop_args, repeats):
