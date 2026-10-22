@@ -14,6 +14,7 @@
 |---|------|-------|-----|
 <!-- w1mer:rows -->
 | R_01 | "01" | issues | [R_01.md](R_01.md) |
+| R_02 | "02" | issues | [R_02.md](R_02.md) |
 <!-- /w1mer:rows -->
 
 ## Reviewer checklist

@@ -11,6 +11,7 @@
 <!-- w1mer:rows -->
 | 01 | "Superseded — see 03_latency_plan.md" | archived | [01_latency_plan.md](01_latency_plan.md) |
 | 03 | "Task 03 plan — latency-safe decoding, decode parity, T4 latency harness" | active | [03_latency_plan.md](03_latency_plan.md) |
+| 08 | "MOVED — see 08_ssl_plan.md" | active | [{seq:02}_08_ssl_plan.md]({seq:02}_08_ssl_plan.md) |
 <!-- /w1mer:rows -->
 
 ## Lifecycle

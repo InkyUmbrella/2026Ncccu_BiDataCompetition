@@ -44,6 +44,9 @@
 | # | Task | Doc | Status | Defer | Effect |
 |---|------|-----|--------|-------|--------|
 <!-- w1mer:task:bug -->
+| 02.1 | Fix stochastic-depth default parity (torchvision 0.1 -> 0.0) and document/resume impact | docs/TRAINER_UPGRADES.md | todo | 0 | |
+| 02.2 | Harden upgrade tests: ConvNeXt default-path parity, best.pt EMA on disk, CutMix lambda/area | tests/test_upgrades.py | todo | 0 | |
+
 
 ## 三、Features
 

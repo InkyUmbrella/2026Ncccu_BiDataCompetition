@@ -14,14 +14,19 @@
   },
   "model": {
     "name": "convnext_tiny",
-    "params": {"use_age": false, "hidden_dim": 128, "dropout": 0.2}
+    "params": {
+      "use_age": false,
+      "hidden_dim": 128,
+      "dropout": 0.2,
+      "stochastic_depth_prob": 0.1
+    }
   },
   "train": {
     "epochs": 60,
     "batch_size": 64,
     "accumulation_steps": 2,
     "learning_rate": 0.0003,
-    "min_learning_rate": 0.000001,
+    "min_learning_rate": 1e-06,
     "warmup_epochs": 5,
     "weight_decay": 0.05,
     "pos_weight": 1.0,
