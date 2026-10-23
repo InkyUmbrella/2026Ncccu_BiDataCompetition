@@ -8,7 +8,7 @@
     "cache": "/var/tmp/ncccu-heyuhang/cache384",
     "image_size": 384,
     "ssl_size": 224,
-    "num_workers": 4,
+    "num_workers": 6,
     "crop_black_border": true,
     "crop_threshold": 10,
     "crop_margin": 0.03,
