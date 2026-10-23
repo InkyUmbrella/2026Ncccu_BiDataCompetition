@@ -52,3 +52,8 @@ PYTHONPATH=src python scripts/fuse_predictions.py --test \
   measured 2-seed ensemble remains the candidate.
 - Final packaging must include the two fp16 checkpoints + the fusion script and stay under
   500 MB and 100 ms; re-measure on a T4 before the national round.
+
+## Backup (2026-10-24)
+`/home/heyuhang/ncccu-final/` holds `models/seed42_384.pt`, `models/seed43_384.pt`,
+`submission.csv` and `SHA256SUMS` (214 MB total). This is the frozen fallback while
+further experiments run.
