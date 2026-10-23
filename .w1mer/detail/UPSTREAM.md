@@ -26,3 +26,11 @@ from this account (no credentials), so the bare repo + bundles are the sharing c
 - Baseline reference: crop384 from-scratch ConvNeXt-T (SD 0.1 default), 60 ep, pos_weight 5,
   valid AUROC 0.9233 (teammate, artifact not readable by us). Positive sampling 1/7 + 20 ep
   fine-tune reached 0.9296. Our four arms reproduce this under committed artifacts.
+
+## 2026-10-23 results snapshot
+- full_recipe (ConvNeXt-T 384, from scratch, sampling 1/7, EMA, mixup, LS, SD 0.1):
+  seed42 0.96456 (ep34), seed43 0.96634 (ep32), seed44 0.96194 (ep32).
+- 2-seed probability ensemble (42+43): **valid AUROC 0.97243**; 3-seed 0.97078 (seed44 hurts).
+- Draft decoding parity on the full valid split: 0.964108 vs 0.964565 (|Δ| 0.000457), gates pass.
+- Age score fusion: +0.001 at best alpha tuned on valid -> rejected as noise.
+- Submission frozen: outputs/submissions/submission_2seed_prob.csv (5,855 rows).

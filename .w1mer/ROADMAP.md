@@ -28,7 +28,7 @@
 | 03 | Latency-safe decode + parity check + T4 latency harness | .w1mer/detail/latency.md | done | 0 | decode policy + parity/latency harness (R_03 follow-ups open) |
 | 04 | Eval tooling: run table, paired bootstrap, rank fusion, age stacking | .w1mer/detail/eval_tools.md | done | 0 | fusion/report/bootstrap tooling, 80 tests green |
 | 05 | From-scratch 384: control vs positive sampling (60ep) | .w1mer/detail/scratch384.md | done | 0 | full_recipe seed42: AUROC 0.9646 / AP 0.639 (ep34); draft parity PASS (Δ0.000457); submission generated |
-| 06 | From-scratch 512 sampled + EMA/long-schedule follow-up | .w1mer/detail/crop512.md | todo | 0 | |
+| 06 | From-scratch 512 sampled + EMA/long-schedule follow-up | .w1mer/detail/crop512.md | todo | 0 | 512 from-scratch (GPU3, ETA 03:00) + 384->512 10ep fine-tune (GPU2, ETA 18:50) |
 | 07 | Seed ensemble + TTA with rank fusion | .w1mer/detail/ensemble.md | done | 0 | 2-seed prob ensemble 0.97243 (valid), submission generated; 512 pending |
 | 08 | Self-supervised pretraining on provided train images | .w1mer/detail/ssl.md | done | 0 | MoCo-v2 implemented + tests green; smoke pending |
 | 09 | Full-data retrain + submission + model-size/latency audit | .w1mer/detail/submission.md | todo | 0 | |
