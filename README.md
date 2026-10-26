@@ -7,7 +7,7 @@
 
 已完成的B0、年龄残差、refine和restart结果及历史材料，见 [训练结果汇总](docs/TRAINING_RESULTS.md) 和 [归档材料目录](training_records/20261022-23/README.md)。当前最高完整valid AUROC为refine的0.987328325；历史逐轮checkpoint缺口在报告中明确列出。
 
-后续开发以 [参赛规则合规核查](docs/COMPLIANCE_REVIEW.md) 为边界，按 [T4交付与AUROC开发计划](docs/DEVELOPMENT_PLAN.md) 推进。最终评测为单张T4 16GB，代码在服务器跑通、正式训练交队友4090执行；计划中的新配方尚未实现或训练。
+后续开发以 [参赛规则合规核查](docs/COMPLIANCE_REVIEW.md) 为边界，按 [T4交付与AUROC开发计划](docs/DEVELOPMENT_PLAN.md) 推进。[官网](https://www.ncccu.org.cn/index/Paper/case2.html?way=1)确认区域赛/省赛截止2026-11-06 23:59（北京时间），最终评测为单张T4 16GB、Python 3.12/PyTorch 2.10.0/CUDA 12.8。代码在服务器跑通、正式训练交队友4090执行；计划中的新配方尚未实现或训练。公开仓库所含官方验证逐样本记录的访问范围待处理，详见合规核查。
 
 ## 目录
 
@@ -52,14 +52,14 @@ python -m glaucoma check-data --data-root dataset/glaucoma_first \
 
 ## 训练
 
-确认目标 GPU 空闲后，可分别运行：
+下面是队友自有4090机器的历史基线入口示例，按实际设备编号替换；不代表需要重新训练旧任务。当前共享服务器只做工程验证，仅允许检查空闲后的物理GPU4/5，GPU0–3、6/7不可使用。后续正式训练优先使用上方交接文档中的审计启动器。
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python -m glaucoma train --config configs/baseline_b0.json
-CUDA_VISIBLE_DEVICES=1 python -m glaucoma train --config configs/baseline_b1.json
+CUDA_VISIBLE_DEVICES=0 python -m glaucoma train --config configs/baseline_b1.json
 ```
 
-这是单卡入口；两条命令可在不同终端运行，不要用 torchrun 启动它。路径默认相对当前工作目录，支持 `--data-root`、`--output-root` 和 `--device` 覆盖。
+这是单卡入口；自有单卡机器上两条命令顺序运行，不要用 torchrun 启动它。路径默认相对当前工作目录，支持 `--data-root`、`--output-root` 和 `--device` 覆盖。
 
 首次可使用 `--stop-after-epochs 1` 检查一轮流程，它保留原定 60 轮学习率计划。新一次正式训练应重新初始化；需要继续该实验时使用断点恢复：
 
@@ -103,10 +103,10 @@ CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 PYTHONPATH=src python -m unittest discov
 
 测试只使用临时合成图片，覆盖大小写匹配、年龄处理、损坏文件、真实 ConvNeXt 两个变体、梯度累积、断点恢复及评估/提交流程。测试中的小模型仅在测试进程注册，不属于正式模型列表。
 
-默认跳过 GPU 测试。确认 GPU 0 可用后，可验证两个模型在 384 分辨率、batch=16 下的 FP16 更新：
+默认跳过 GPU 测试。当前共享服务器确认物理GPU4的计算进程及显存均空闲后，可验证两个模型在384分辨率、batch=16下的FP16更新（也可选择确认空闲的物理GPU5）：
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
+CUDA_VISIBLE_DEVICES=4 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
   python -m unittest discover -s tests -p test_cuda_smoke.py -v
 ```
 

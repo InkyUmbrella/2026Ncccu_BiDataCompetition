@@ -1,0 +1,121 @@
+{
+  "review_date_beijing": "2026-10-27",
+  "scope": "Public official 2026 competition page and attachments; no authenticated platform inspection, training, image inference or submission",
+  "entry": {
+    "requested_url": "https://www.ncccu.org.cn/index/Preliminary/bigData.html",
+    "resolved_url": "https://www.ncccu.org.cn/index/Login/login",
+    "status": 200,
+    "bytes": 16176,
+    "sha256": "9ba9638339cf1464c59bda1f7bf643249e53723b6b9d12e78c4fa0d1ba978c83",
+    "retrieved_at_utc": "2026-10-26T16:36:47.721053+00:00",
+    "content_type": "text/html; charset=utf-8"
+  },
+  "sources": [
+    {
+      "file": "case2.html",
+      "requested_url": "https://www.ncccu.org.cn/index/Paper/case2.html?way=1",
+      "resolved_url": "https://www.ncccu.org.cn/index/Paper/case2.html?way=1",
+      "status": 200,
+      "bytes": 48667,
+      "sha256": "7102404f7d2d0db0edea01b55ce9b9072d916fbe8679a1601c7e2d3cfebce383",
+      "retrieved_at_utc": "2026-10-26T16:37:31.183708+00:00"
+    },
+    {
+      "file": "rules.pdf",
+      "requested_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20261023/aa80bececc2ee40e69cde5f8f2a0eaec.pdf",
+      "resolved_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20261023/aa80bececc2ee40e69cde5f8f2a0eaec.pdf",
+      "status": 200,
+      "bytes": 544529,
+      "sha256": "ff6aa3adbfd3d000194253055a93dbce8a140031c8432f892046a49de8136fb6",
+      "retrieved_at_utc": "2026-10-26T16:37:31.220620+00:00"
+    },
+    {
+      "file": "metrics.png",
+      "requested_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/24feeea349bf4936a96608095fccbb16.png",
+      "resolved_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/24feeea349bf4936a96608095fccbb16.png",
+      "status": 200,
+      "bytes": 10240,
+      "sha256": "a479625bf6b11954606ecee1926664b02a2c8a5cde42ad3577ee805583da8398",
+      "retrieved_at_utc": "2026-10-26T16:37:31.124799+00:00"
+    },
+    {
+      "file": "docker.png",
+      "requested_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/493903580d267020bcaf9c5126fedc0e.png",
+      "resolved_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/493903580d267020bcaf9c5126fedc0e.png",
+      "status": 200,
+      "bytes": 5104,
+      "sha256": "16f1efa22364ff51567af378cf09edaca8bd9171b81ced4ee7f9c70b225085b4",
+      "retrieved_at_utc": "2026-10-26T16:37:31.129643+00:00"
+    },
+    {
+      "file": "csv.png",
+      "requested_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/b84d004e974933c866fe92e6764a9b90.png",
+      "resolved_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/b84d004e974933c866fe92e6764a9b90.png",
+      "status": 200,
+      "bytes": 4996,
+      "sha256": "baf71a2d05dfaca6e31d3c73c51ebe1f0fc98eb2ab9123531b0361b6d9c2abcf",
+      "retrieved_at_utc": "2026-10-26T16:37:31.124693+00:00"
+    }
+  ],
+  "official_pdf_matches_user_pdf": true,
+  "competition": {
+    "year": 2026,
+    "edition": 8,
+    "track": "big_data_glaucoma",
+    "regional_deadline_beijing": "2026-11-06T23:59:00+08:00",
+    "promotion_announcement_date": "2026-11-12",
+    "national_start_beijing": "2026-11-13T17:00:00+08:00",
+    "national_end_date": "2026-11-18",
+    "national_end_time": null
+  },
+  "evaluation_environment": {
+    "gpu": "NVIDIA T4",
+    "gpu_count": 1,
+    "vram_gb": 16,
+    "cpu_cores": 8,
+    "ram_gb": 32,
+    "ssd_gb_min": 100,
+    "nvidia_driver_min": "570.117",
+    "cuda": "12.8",
+    "cudnn_major": 9,
+    "python": "3.12",
+    "pytorch": "2.10.0",
+    "torchvision": "0.25.0",
+    "recommended_image_screenshot_url": "https://ncccu2026.oss-cn-zhangjiakou.aliyuncs.com/ueditor/20260908/493903580d267020bcaf9c5126fedc0e.png",
+    "image_pulled_or_verified": false,
+    "image_digest": null,
+    "compatibility_or_latency_verified": false
+  },
+  "submission": {
+    "daily_regular_limit": 2,
+    "ranking_primary": "AUROC",
+    "ranking_tiebreak": "AUPRC",
+    "auprc_algorithm_specified": false,
+    "csv_columns": [
+      "Image_name",
+      "Probability",
+      "Pred_Label"
+    ],
+    "encoding": "UTF-8",
+    "default_threshold": 0.5,
+    "platform_submission_performed": false
+  },
+  "unresolved": [
+    "Webpage initial-round CSV-only statement vs linked PDF appendix deadline for full materials",
+    "PDF unrestricted resubmissions after one withdrawal vs webpage daily limit",
+    "Exact AUPRC integration implementation",
+    "Permission and access scope for official per-sample records already in public Git history",
+    "Team name and actual platform record/entry"
+  ],
+  "repository_data_access_review": {
+    "repository": "InkyUmbrella/2026Ncccu_BiDataCompetition",
+    "anonymous_api_visibility": "public",
+    "labelled_prediction_csv_files": 5,
+    "rows_per_csv": 5849,
+    "cache_manifest_entries": 57245,
+    "organizer_public_redistribution_permission_verified": false,
+    "visibility_changed": false,
+    "history_rewritten": false,
+    "decision": "Asked user whether to make repository private; pending answer. No new per-sample data published by this review."
+  }
+}
