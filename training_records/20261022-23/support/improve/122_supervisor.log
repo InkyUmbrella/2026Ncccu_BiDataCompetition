@@ -1,0 +1,4 @@
+Started refine on physical GPU4: 2919022
+Started restart on physical GPU5: 2919027
+Verified refine: AUROC=0.987328325
+Verified restart: AUROC=0.983192496

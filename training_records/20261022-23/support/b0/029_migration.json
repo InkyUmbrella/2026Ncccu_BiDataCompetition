@@ -1,0 +1,463 @@
+{
+  "requested_utc": "2026-10-22T14:24:50.724921+00:00",
+  "state": "verified_training_on_gpu4",
+  "previous_launcher": {
+    "uid": 4800009,
+    "cwd": "/home/lichunyu/competition-pretrained",
+    "cmdline": "bash /home/lichunyu/competition-pretrained/outputs/pretrained-validation/continue_imagenet.sh ",
+    "start_ticks": 130130715,
+    "pgid": 2223490
+  },
+  "previous_training": {
+    "uid": 4800009,
+    "cwd": "/home/lichunyu/competition-pretrained",
+    "cmdline": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u -m glaucoma train --config configs/experiments/b0_crop384_imagenet.json --data-root /home/lichunyu/competition/dataset/glaucoma_first --image-cache /var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022 ",
+    "start_ticks": 130130717,
+    "pgid": 2223490
+  },
+  "age_before": {
+    "uid": 4800009,
+    "cwd": "/home/lichunyu/competition-fwq-pretrained",
+    "cmdline": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u -m glaucoma train --config configs/experiments/b0_crop384_age_residual_imagenet.json --data-root /home/lichunyu/competition/dataset/glaucoma_first --device cuda:0 --image-cache /var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022 --init-from /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt --output-root /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training ",
+    "start_ticks": 131333259,
+    "pgid": 2259118
+  },
+  "completed_epochs": 14,
+  "global_step": 5622,
+  "checkpoint": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_last.pt",
+  "checkpoint_sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+  "in_progress_log_tail": [
+    "[train] batch=900/1607 loss=0.032276",
+    "[train] batch=1000/1607 loss=0.031739",
+    "[train] batch=1100/1607 loss=0.032187",
+    "[train] batch=1200/1607 loss=0.032881",
+    "[train] batch=1300/1607 loss=0.032493",
+    "[train] batch=1400/1607 loss=0.031454"
+  ],
+  "audit_reused": true,
+  "context_check": "{\"context_verified\": true, \"completed_epochs\": 14, \"reused_audit\": \"/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/data_audit.json\"}",
+  "archive": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z",
+  "new_launcher_pid": 2268393,
+  "new_log": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.log",
+  "new_exit_file": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.exit",
+  "launched_utc": "2026-10-22T14:25:58.133848+00:00",
+  "old_gpu2_process_group_exited": true,
+  "age_after": {
+    "pid": 2264815,
+    "state": "D",
+    "pgid": 2259118,
+    "start_ticks": 131333259,
+    "uid": 4800009,
+    "cwd": "/home/lichunyu/competition-fwq-pretrained",
+    "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u -m glaucoma train --config configs/experiments/b0_crop384_age_residual_imagenet.json --data-root /home/lichunyu/competition/dataset/glaucoma_first --device cuda:0 --image-cache /var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022 --init-from /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt --output-root /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training "
+  },
+  "gpus_before_launch": {
+    "2": {
+      "apps": "",
+      "gpu": "2, 0, 0"
+    },
+    "4": {
+      "apps": "",
+      "gpu": "4, 0, 0"
+    },
+    "5": {
+      "apps": "",
+      "gpu": "5, 3, 0"
+    }
+  },
+  "latest_verification": {
+    "checked_at_utc": "2026-10-22T14:28:22.253235+00:00",
+    "launch": {
+      "pid": 2268393,
+      "started_utc": "2026-10-22T14:25:58.133848+00:00",
+      "cwd": "/home/lichunyu/competition-pretrained",
+      "log": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.log",
+      "exit_file": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.exit",
+      "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+      "config": "configs/experiments/b0_crop384_imagenet.json",
+      "gpu": 4,
+      "epochs": 30,
+      "stage": "training_on_gpu4",
+      "previous_failure_archive": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/failure_before_device_fix_20261022T103742Z",
+      "reason": "User requested B0 relocation GPU 2 to GPU 4; GPUs 0-3 reserved for teammates; GPU 5 age process unchanged.",
+      "resumed_from": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_last.pt",
+      "resume_completed_epochs": 14,
+      "resume_global_step": 5622,
+      "previous_run": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d",
+      "previous_launcher_pid": 2223490,
+      "migration_record": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/migration.json",
+      "resume_context": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_context.json",
+      "run_directory": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159",
+      "reserved_gpus": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "log_tail": [
+      "[run] /home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159",
+      "[audit] Reusing the existing successful full cache audit; CSV and manifest hashes match",
+      "[train] batch=100/1607 loss=0.031164",
+      "[train] batch=200/1607 loss=0.031096",
+      "[train] batch=300/1607 loss=0.030075"
+    ],
+    "exit": null,
+    "processes": [
+      {
+        "pid": 2264815,
+        "state": "D",
+        "pgid": 2259118,
+        "start_ticks": 131333259,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u -m glaucoma train --config configs/experiments/b0_crop384_age_residual_imagenet.json --data-root /home/lichunyu/competition/dataset/glaucoma_first --device cuda:0 --image-cache /var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022 --init-from /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt --output-root /home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training ",
+        "cwd": "/home/lichunyu/competition-fwq-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=5"
+        ]
+      },
+      {
+        "pid": 2268393,
+        "state": "S",
+        "pgid": 2268393,
+        "start_ticks": 131500283,
+        "uid": 4800009,
+        "command": "bash /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/launch_pretrained_gpu4.sh ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": []
+      },
+      {
+        "pid": 2268394,
+        "state": "S",
+        "pgid": 2268393,
+        "start_ticks": 131500283,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268444,
+        "state": "R",
+        "pgid": 2268393,
+        "start_ticks": 131502508,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268500,
+        "state": "D",
+        "pgid": 2268393,
+        "start_ticks": 131502510,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268556,
+        "state": "R",
+        "pgid": 2268393,
+        "start_ticks": 131502512,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268612,
+        "state": "D",
+        "pgid": 2268393,
+        "start_ticks": 131502514,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268668,
+        "state": "D",
+        "pgid": 2268393,
+        "start_ticks": 131502516,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268724,
+        "state": "D",
+        "pgid": 2268393,
+        "start_ticks": 131502519,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268780,
+        "state": "R",
+        "pgid": 2268393,
+        "start_ticks": 131502521,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      },
+      {
+        "pid": 2268836,
+        "state": "D",
+        "pgid": 2268393,
+        "start_ticks": 131502523,
+        "uid": 4800009,
+        "command": "/home/lichunyu/miniconda3/envs/glaucoma/bin/python -u /home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py ",
+        "cwd": "/home/lichunyu/competition-pretrained",
+        "cuda": [
+          "CUDA_VISIBLE_DEVICES=4"
+        ]
+      }
+    ],
+    "run": {
+      "path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159",
+      "config.json": {
+        "experiment": "b0_crop384_imagenet",
+        "seed": 42,
+        "device": "cuda",
+        "output_root": "outputs/pretrained",
+        "data": {
+          "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+          "image_size": 384,
+          "num_workers": 8,
+          "verify_images": true,
+          "crop_black_border": true,
+          "crop_threshold": 10,
+          "crop_margin": 0.03,
+          "normalization": "imagenet"
+        },
+        "model": {
+          "name": "convnext_tiny",
+          "params": {
+            "use_age": false,
+            "hidden_dim": 128,
+            "dropout": 0.2
+          },
+          "weights": "IMAGENET1K_V1"
+        },
+        "train": {
+          "epochs": 30,
+          "batch_size": 32,
+          "accumulation_steps": 4,
+          "learning_rate": 0.0001,
+          "min_learning_rate": 1e-06,
+          "warmup_epochs": 1,
+          "weight_decay": 0.05,
+          "pos_weight": 5.0,
+          "grad_clip": 1.0,
+          "amp": true,
+          "positive_fraction": null,
+          "freeze_image_epochs": 0,
+          "image_lr_scale": 1.0
+        }
+      },
+      "metadata.json": {
+        "torch": "2.5.1+cu121",
+        "cuda_runtime": "12.1",
+        "packages": {
+          "torchvision": "0.20.1+cu121",
+          "numpy": "2.4.6",
+          "scikit-learn": "1.9.1",
+          "Pillow": "12.3.0"
+        },
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "git_revision": "9141f72f0e8d8382e87c1d9d813bdfdfd9dabe26",
+        "git_status": "M README.md\n M src/glaucoma/cli.py\n M src/glaucoma/config.py\n M src/glaucoma/data/transforms.py\n M src/glaucoma/engine/checkpoint.py\n M src/glaucoma/engine/trainer.py\n M src/glaucoma/models/convnext.py\n M src/glaucoma/models/registry.py\n M src/glaucoma/utils.py\n M tests/test_age_residual.py\n?? configs/experiments/b0_crop384_imagenet.json\n?? configs/experiments/b0_crop384_random_control.json\n?? docs/PRETRAINED.md\n?? tests/test_device.py\n?? tests/test_pretrained.py",
+        "source_sha256": "dae50afdb9a333e81146836be45461b4299036ecb173b787741e82af351375e2",
+        "csv_hashes": {
+          "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+          "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+        },
+        "resumed_from": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_last.pt",
+        "initialized_from": null,
+        "image_cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+        "device": "cuda:0",
+        "gpu": "Tesla V100-SXM2-16GB"
+      },
+      "data_audit.json": {
+        "splits": {
+          "train": {
+            "count": 51396,
+            "labels": {
+              "0": 49739,
+              "1": 1657
+            },
+            "sizes": {
+              "384x384": 51396
+            }
+          },
+          "valid": {
+            "count": 5849,
+            "labels": {
+              "0": 5658,
+              "1": 191
+            },
+            "sizes": {
+              "384x384": 5849
+            }
+          }
+        },
+        "errors": [],
+        "duplicate_groups": [],
+        "hashes_checked": false,
+        "image_source": "lossless_cache",
+        "audit_reuse": {
+          "source_report": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/data_audit.json",
+          "source_report_sha256": "2a1a3e3af1f8579aca2d236da5c4ed2a1670b05d53c432ec6aec8ac94e74496f",
+          "cache_manifest_sha256": "956f14d2fa23d9255fcd471e818da11972fdb1e02dd3cc5cd4329928a24285ea",
+          "verified_at_utc": "2026-10-22T14:26:19.267569+00:00",
+          "reason": "Same-data checkpoint migration from physical GPU 2 to GPU 4"
+        }
+      },
+      "files": [
+        {
+          "name": "best.pt",
+          "bytes": 111732290,
+          "mtime": 1792679180.3116992
+        }
+      ]
+    },
+    "age": {
+      "launch": {
+        "pid": 2259118,
+        "started_utc": "2026-10-22T13:46:54.181642+00:00",
+        "cwd": "/home/lichunyu/competition-fwq-pretrained",
+        "branch": "codex/fwq-pretrained-integration",
+        "revision": "041315c7a12449e29152be798823eb95df1efde1",
+        "gpu": 5,
+        "run_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z",
+        "stage_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/stage",
+        "exit_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/transfer.exit",
+        "source_snapshot": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+        "source_sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+        "source_best_epoch": 5,
+        "source_metrics": {
+          "count": 5849,
+          "positives": 191,
+          "auroc": 0.9865052309753692,
+          "ap": 0.8182377455893903,
+          "auprc_trapz": 0.8179048695223837
+        },
+        "b0_evaluation": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation",
+        "b0_log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation.log",
+        "age_log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training.log",
+        "age_output_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training",
+        "age_config": "configs/experiments/b0_crop384_age_residual_imagenet.json",
+        "age_epochs": 20,
+        "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+        "commands": [
+          {
+            "phase": "b0_evaluation",
+            "argv": [
+              "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+              "-u",
+              "-m",
+              "glaucoma",
+              "evaluate",
+              "--checkpoint",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+              "--data-root",
+              "/home/lichunyu/competition/dataset/glaucoma_first",
+              "--device",
+              "cuda:0",
+              "--batch-size",
+              "32",
+              "--num-workers",
+              "4",
+              "--split",
+              "valid",
+              "--output-dir",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation"
+            ]
+          },
+          {
+            "phase": "b0_verification",
+            "argv": [
+              "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/verify_transfer.py",
+              "b0"
+            ]
+          },
+          {
+            "phase": "gpu_check_before_age",
+            "argv": [
+              "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/guard_gpu.py",
+              "5"
+            ]
+          },
+          {
+            "phase": "age_training",
+            "argv": [
+              "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+              "-u",
+              "-m",
+              "glaucoma",
+              "train",
+              "--config",
+              "configs/experiments/b0_crop384_age_residual_imagenet.json",
+              "--data-root",
+              "/home/lichunyu/competition/dataset/glaucoma_first",
+              "--device",
+              "cuda:0",
+              "--image-cache",
+              "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+              "--init-from",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+              "--output-root",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training"
+            ]
+          },
+          {
+            "phase": "age_verification",
+            "argv": [
+              "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+              "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/verify_transfer.py",
+              "age"
+            ]
+          }
+        ],
+        "final_b0_evaluation_required": true,
+        "original_pretraining_target_epochs": 30
+      },
+      "log_tail": [
+        "[audit] train: 21000/51396",
+        "[audit] train: 22000/51396",
+        "[audit] train: 23000/51396",
+        "[audit] train: 24000/51396",
+        "[audit] train: 25000/51396"
+      ]
+    },
+    "gpu": "0, 0, 0\n1, 0, 0\n2, 0, 0\n3, 0, 0\n4, 6923, 0\n5, 3, 0\n6, 6477, 0\n7, 10399, 0\n",
+    "compute_apps": "2268394, GPU-432328c8-e266-197e-762d-b9015974092a, 6918\n213010, GPU-65a98c3f-8f6b-7d88-300f-8922a5cdacca, 6474\n215187, GPU-32d3ea23-f078-6cd3-d6e0-05659dcbd449, 2524\n270483, GPU-32d3ea23-f078-6cd3-d6e0-05659dcbd449, 5338\n1645039, GPU-32d3ea23-f078-6cd3-d6e0-05659dcbd449, 2534\n"
+  },
+  "verified_at_utc": "2026-10-22T14:28:22.253235+00:00",
+  "new_run_directory": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159"
+}

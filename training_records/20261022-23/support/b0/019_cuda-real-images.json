@@ -1,0 +1,27 @@
+{
+  "gpu": "Tesla V100-SXM2-16GB",
+  "physical_gpu": 2,
+  "torch": "2.5.1+cu121",
+  "weights": "IMAGENET1K_V1",
+  "matched_encoder_tensors": 180,
+  "image_size": 384,
+  "normalization": "imagenet",
+  "batch_size": 32,
+  "accumulation_steps": 4,
+  "training_images": 128,
+  "training_positives": 4,
+  "optimizer_steps": 1,
+  "attempts": [
+    {
+      "loss": 0.7474901676177979,
+      "lr": 2.4875621890547267e-07,
+      "skipped_optimizer_steps": 0
+    }
+  ],
+  "stem_changed": true,
+  "all_parameters_finite": true,
+  "validation_images": 32,
+  "peak_allocated_mib": 5885.1,
+  "seconds": 92.22,
+  "note": "Bounded engineering smoke test only; not a full validation AUROC/AP result."
+}

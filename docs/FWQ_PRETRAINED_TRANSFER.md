@@ -1,5 +1,7 @@
 # fwq 模型与预训练权重的集成验证
 
+本页记录的B0 30轮和年龄残差20轮均已完成。年龄残差最佳第1轮AUROC为0.9865015296，没有超过B0的0.9865052310；完整结果与材料见 [训练结果汇总](TRAINING_RESULTS.md)。下文保留当时实验安排与原始命令，用于溯源。
+
 集成分支为 `codex/fwq-pretrained-integration`，基于 GitHub `fwq` 的 `9141f72f0e8d8382e87c1d9d813bdfdfd9dabe26`。
 保留 fwq 的 B0、年龄拼接和年龄残差模型，合入 ImageNet 初始化、归一化、checkpoint 加载及默认 CUDA 设备解析支持。
 原有配置继续使用原来的随机初始化与对称归一化。预训练实现与工程验证见 [PRETRAINED.md](PRETRAINED.md)。

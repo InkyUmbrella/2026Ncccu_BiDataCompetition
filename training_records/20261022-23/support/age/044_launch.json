@@ -1,0 +1,16 @@
+{
+  "ready": true,
+  "pid": 2900770,
+  "pid_start_ticks": 134754277,
+  "uid": 4800009,
+  "started_utc": "2026-10-22T23:28:18.077639+00:00",
+  "cwd": "/home/lichunyu/competition-fwq-pretrained",
+  "run_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37",
+  "script": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verify_all_completion.py",
+  "script_sha256": "c914e48ef0428374e314d27a429c2d7d27d19d210408fb7d29bfbe0d9ed2a6c4",
+  "stage_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/stage",
+  "exit_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verification.exit",
+  "log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verification.log",
+  "report": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/final_completion_verification.json",
+  "gpu_allocation": null
+}

@@ -1,0 +1,87 @@
+test_crop_preserves_field_margin_and_handles_dark_images (test_age_residual.PreprocessingTests.test_crop_preserves_field_margin_and_handles_dark_images) ... ok
+test_cropped_cache_matches_original_once_and_rejects_wrong_recipe (test_age_residual.PreprocessingTests.test_cropped_cache_matches_original_once_and_rejects_wrong_recipe) ... [cache] 13/13
+[cache] complete: /tmp/tmp2g4z6w07/cache
+ok
+test_legacy_cache_only_supports_original_preprocessing (test_age_residual.PreprocessingTests.test_legacy_cache_only_supports_original_preprocessing) ... [cache] 13/13
+[cache] complete: /tmp/tmpc_yp38cb/cache
+ok
+test_b0_transfer_zero_correction_freeze_and_unfreeze (test_age_residual.TransferTests.test_b0_transfer_zero_correction_freeze_and_unfreeze) ... Wrote 4 predictions to /tmp/tmpmgo7k82x/evaluation
+Wrote 3 predictions to /tmp/tmpmgo7k82x/submission.csv
+ok
+test_config_and_initialization_guards (test_age_residual.TransferTests.test_config_and_initialization_guards) ... ok
+test_legacy_optimizer_groups_load_with_zero_weight_decay (test_age_residual.TransferTests.test_legacy_optimizer_groups_load_with_zero_weight_decay) ... ok
+test_new_experiment_resets_state_and_sampling_resume_is_exact (test_age_residual.TransferTests.test_new_experiment_resets_state_and_sampling_resume_is_exact) ... [run] /tmp/tmps_syn070/out/b0_image/seed42_20261022T134240Z_0a27d211
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmps_syn070/out/b0_image/seed42_20261022T134240Z_7e8087c3
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmps_syn070/out/b0_image/seed42_20261022T134241Z_545da70b
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmps_syn070/out/b0_image/seed42_20261022T134241Z_1c3f20d2
+[epoch 1/4] train_loss=0.901637 valid_auc=0.000000 valid_ap=0.416667
+ok
+test_residual_resume_crosses_frozen_boundary_without_changing_weights (test_age_residual.TransferTests.test_residual_resume_crosses_frozen_boundary_without_changing_weights) ... [run] /tmp/tmpi_jd0ttu/out/b0_image/seed42_20261022T134241Z_21097b71
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpi_jd0ttu/out/b0_image/seed42_20261022T134241Z_3e305a9d
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpi_jd0ttu/out/b0_image/seed42_20261022T134241Z_c3891cc4
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+ok
+test_age_statistics_and_flags (test_baseline.DataTests.test_age_statistics_and_flags) ... ok
+test_audit_reports_bad_images_and_duplicates (test_baseline.DataTests.test_audit_reports_bad_images_and_duplicates) ... ok
+test_case_collision (test_baseline.DataTests.test_case_collision) ... ok
+test_case_mapping_csv_order_and_submission_transforms (test_baseline.DataTests.test_case_mapping_csv_order_and_submission_transforms) ... ok
+test_lossless_cache_preserves_augmentation_and_rejects_stale_sources (test_baseline.DataTests.test_lossless_cache_preserves_augmentation_and_rejects_stale_sources) ... [cache] 13/13
+[cache] complete: /tmp/tmp8_bd4a5r/cache
+ok
+test_real_convnext_both_variants_and_backward (test_baseline.ModelTests.test_real_convnext_both_variants_and_backward) ... ok
+test_accumulation_matches_full_batch_including_short_windows (test_baseline.NumericTests.test_accumulation_matches_full_batch_including_short_windows) ... ok
+test_config_and_metrics (test_baseline.NumericTests.test_config_and_metrics) ... ok
+test_schedule_endpoints (test_baseline.NumericTests.test_schedule_endpoints) ... ok
+test_train_resume_evaluate_predict_round_trip (test_baseline.WorkflowTests.test_train_resume_evaluate_predict_round_trip) ... [run] /tmp/tmpdde98s7k/outputs/b0_image/seed42_20261022T134243Z_cddf1bb2
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpdde98s7k/outputs/b0_image/seed42_20261022T134243Z_2ca6cfc6
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[cache] 13/13
+[cache] complete: /tmp/tmpdde98s7k/cache
+[run] /tmp/tmpdde98s7k/outputs/b0_image/seed42_20261022T134243Z_c602f90e
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+Wrote 4 predictions to /tmp/tmpdde98s7k/eval
+Wrote 3 predictions to /tmp/tmpdde98s7k/submission.csv
+ok
+test_descendants_does_not_include_unrelated_process (test_cache_switch.SwitchGuardTests.test_descendants_does_not_include_unrelated_process) ... ok
+test_identity_guard_and_pause_resume (test_cache_switch.SwitchGuardTests.test_identity_guard_and_pause_resume) ... ok
+test_both_variants_fp16_at_default_resolution_and_batch (test_cuda_smoke.CudaSmokeTests.test_both_variants_fp16_at_default_resolution_and_batch) ... skipped 'Opt-in CUDA test; requires GLAUCOMA_CUDA_SMOKE=1'
+test_cpu_does_not_touch_cuda (test_device.DeviceTests.test_cpu_does_not_touch_cuda) ... ok
+test_default_cuda_resolves_to_current_logical_index (test_device.DeviceTests.test_default_cuda_resolves_to_current_logical_index) ... ok
+test_explicit_cuda_index_is_preserved (test_device.DeviceTests.test_explicit_cuda_index_is_preserved) ... ok
+test_unavailable_cuda_has_a_clear_error (test_device.DeviceTests.test_unavailable_cuda_has_a_clear_error) ... ok
+test_configs_preserve_old_defaults_and_isolate_initialization (test_pretrained.PretrainedTests.test_configs_preserve_old_defaults_and_isolate_initialization) ... ok
+test_imagenet_b0_transfers_to_fwq_residual_without_downloading_weights (test_pretrained.PretrainedTests.test_imagenet_b0_transfers_to_fwq_residual_without_downloading_weights) ... ok
+test_imagenet_normalization_matches_official_values_and_lossless_cache (test_pretrained.PretrainedTests.test_imagenet_normalization_matches_official_values_and_lossless_cache) ... [cache] 13/13
+[cache] complete: /tmp/tmpj54jekh1/cache
+ok
+test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions (test_pretrained.PretrainedTests.test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions) ... [run] /tmp/tmp_b98m2le/outputs/b0_crop384_imagenet/seed42_20261022T134248Z_116f671a
+[epoch 1/2] train_loss=1.341137 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp_b98m2le/outputs/b0_crop384_imagenet/seed42_20261022T134251Z_29e3a454
+[epoch 2/2] train_loss=0.598317 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp_b98m2le/outputs/b0_crop384_imagenet/seed42_20261022T134253Z_ce45c394
+[epoch 1/2] train_loss=0.475636 valid_auc=1.000000 valid_ap=1.000000
+Wrote 4 predictions to /tmp/tmp_b98m2le/eval
+Wrote 3 predictions to /tmp/tmp_b98m2le/predictions.csv
+ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 27.385s
+
+OK (skipped=1)

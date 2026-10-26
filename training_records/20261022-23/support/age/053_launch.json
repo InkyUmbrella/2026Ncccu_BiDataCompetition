@@ -1,0 +1,24 @@
+{
+  "pid": 2897476,
+  "pid_start_ticks": 134585743,
+  "uid": 4800009,
+  "started_utc": "2026-10-22T23:00:12.847390+00:00",
+  "cwd": "/home/lichunyu/competition-fwq-pretrained",
+  "run_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4",
+  "script": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalize_b0.py",
+  "script_sha256": "cc4324db2dde8ba61a3e8b88198d0c07e23c52e82c1027b0e55a268f6bc0522c",
+  "stage_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/stage",
+  "exit_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalization.exit",
+  "log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalization.log",
+  "evaluation_log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/evaluation.log",
+  "evaluation_exit": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/evaluation.exit",
+  "physical_gpu": 4,
+  "reserved_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "original_b0_run": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159",
+  "original_exit_file": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.exit"
+}

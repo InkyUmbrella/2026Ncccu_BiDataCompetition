@@ -1,0 +1,2 @@
+# Preserve the exact bytes of historical audit evidence and its SHA256 ledger.
+training_records/** -text -whitespace

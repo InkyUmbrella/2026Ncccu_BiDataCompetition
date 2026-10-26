@@ -1,0 +1,35 @@
+{
+  "splits": {
+    "train": {
+      "count": 51396,
+      "labels": {
+        "0": 49739,
+        "1": 1657
+      },
+      "sizes": {
+        "384x384": 51396
+      }
+    },
+    "valid": {
+      "count": 5849,
+      "labels": {
+        "0": 5658,
+        "1": 191
+      },
+      "sizes": {
+        "384x384": 5849
+      }
+    }
+  },
+  "errors": [],
+  "duplicate_groups": [],
+  "hashes_checked": false,
+  "image_source": "lossless_cache",
+  "audit_reuse": {
+    "source_report": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/data_audit.json",
+    "source_report_sha256": "2a1a3e3af1f8579aca2d236da5c4ed2a1670b05d53c432ec6aec8ac94e74496f",
+    "cache_manifest_sha256": "956f14d2fa23d9255fcd471e818da11972fdb1e02dd3cc5cd4329928a24285ea",
+    "verified_at_utc": "2026-10-23T02:02:59.565235+00:00",
+    "reason": "Same audited dataset/cache and unchanged preprocessing; normal cache loads still validate entries"
+  }
+}

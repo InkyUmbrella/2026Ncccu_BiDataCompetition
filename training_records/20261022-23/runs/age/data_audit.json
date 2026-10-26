@@ -1,0 +1,28 @@
+{
+  "splits": {
+    "train": {
+      "count": 51396,
+      "labels": {
+        "0": 49739,
+        "1": 1657
+      },
+      "sizes": {
+        "384x384": 51396
+      }
+    },
+    "valid": {
+      "count": 5849,
+      "labels": {
+        "0": 5658,
+        "1": 191
+      },
+      "sizes": {
+        "384x384": 5849
+      }
+    }
+  },
+  "errors": [],
+  "duplicate_groups": [],
+  "hashes_checked": false,
+  "image_source": "lossless_cache"
+}

@@ -1,0 +1,29 @@
+test_crop_preserves_field_margin_and_handles_dark_images (test_age_residual.PreprocessingTests.test_crop_preserves_field_margin_and_handles_dark_images) ... ok
+test_cropped_cache_matches_original_once_and_rejects_wrong_recipe (test_age_residual.PreprocessingTests.test_cropped_cache_matches_original_once_and_rejects_wrong_recipe) ... ok
+test_legacy_cache_only_supports_original_preprocessing (test_age_residual.PreprocessingTests.test_legacy_cache_only_supports_original_preprocessing) ... ok
+test_b0_transfer_zero_correction_freeze_and_unfreeze (test_age_residual.TransferTests.test_b0_transfer_zero_correction_freeze_and_unfreeze) ... ok
+test_config_and_initialization_guards (test_age_residual.TransferTests.test_config_and_initialization_guards) ... ok
+test_legacy_optimizer_groups_load_with_zero_weight_decay (test_age_residual.TransferTests.test_legacy_optimizer_groups_load_with_zero_weight_decay) ... ok
+test_new_experiment_resets_state_and_sampling_resume_is_exact (test_age_residual.TransferTests.test_new_experiment_resets_state_and_sampling_resume_is_exact) ... ok
+test_residual_resume_crosses_frozen_boundary_without_changing_weights (test_age_residual.TransferTests.test_residual_resume_crosses_frozen_boundary_without_changing_weights) ... ok
+test_age_statistics_and_flags (test_baseline.DataTests.test_age_statistics_and_flags) ... ok
+test_audit_reports_bad_images_and_duplicates (test_baseline.DataTests.test_audit_reports_bad_images_and_duplicates) ... ok
+test_case_collision (test_baseline.DataTests.test_case_collision) ... ok
+test_case_mapping_csv_order_and_submission_transforms (test_baseline.DataTests.test_case_mapping_csv_order_and_submission_transforms) ... ok
+test_lossless_cache_preserves_augmentation_and_rejects_stale_sources (test_baseline.DataTests.test_lossless_cache_preserves_augmentation_and_rejects_stale_sources) ... ok
+test_real_convnext_both_variants_and_backward (test_baseline.ModelTests.test_real_convnext_both_variants_and_backward) ... ok
+test_accumulation_matches_full_batch_including_short_windows (test_baseline.NumericTests.test_accumulation_matches_full_batch_including_short_windows) ... ok
+test_config_and_metrics (test_baseline.NumericTests.test_config_and_metrics) ... ok
+test_schedule_endpoints (test_baseline.NumericTests.test_schedule_endpoints) ... ok
+test_train_resume_evaluate_predict_round_trip (test_baseline.WorkflowTests.test_train_resume_evaluate_predict_round_trip) ... ok
+test_descendants_does_not_include_unrelated_process (test_cache_switch.SwitchGuardTests.test_descendants_does_not_include_unrelated_process) ... ok
+test_identity_guard_and_pause_resume (test_cache_switch.SwitchGuardTests.test_identity_guard_and_pause_resume) ... ok
+test_both_variants_fp16_at_default_resolution_and_batch (test_cuda_smoke.CudaSmokeTests.test_both_variants_fp16_at_default_resolution_and_batch) ... skipped 'Opt-in CUDA test; requires GLAUCOMA_CUDA_SMOKE=1'
+test_configs_preserve_old_defaults_and_isolate_initialization (test_pretrained.PretrainedTests.test_configs_preserve_old_defaults_and_isolate_initialization) ... ok
+test_imagenet_normalization_matches_official_values_and_lossless_cache (test_pretrained.PretrainedTests.test_imagenet_normalization_matches_official_values_and_lossless_cache) ... ok
+test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions (test_pretrained.PretrainedTests.test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 20.791s
+
+OK (skipped=1)

@@ -1,0 +1,11 @@
+{
+  "pid": 2212590,
+  "started_utc": "2026-10-22T09:07:20.428494+00:00",
+  "cwd": "/home/lichunyu/competition-pretrained",
+  "log": "/home/lichunyu/competition-pretrained/outputs/pretrained/train_imagenet.log",
+  "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+  "config": "configs/experiments/b0_crop384_imagenet.json",
+  "gpu": 2,
+  "epochs": 30,
+  "stage": "cache_then_train"
+}

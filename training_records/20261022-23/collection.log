@@ -1,0 +1,8 @@
+Collecting original records and retained checkpoint files
+Verifying b0
+Verifying age
+Verifying refine
+Verifying restart
+Recomputing paired stratified bootstrap intervals
+Creating binary archive
+{"output": "/home/lichunyu/competition-training-handoff/history_20261026T145022Z", "records": 128, "unique_weight_files": 10, "results": {"b0": {"auroc": 0.9865052309753692, "ap": 0.8182377455893903, "auprc_trapz": 0.8179048695223837}, "age": {"auroc": 0.9865015295953097, "ap": 0.8182287807372361, "auprc_trapz": 0.8179232702782347}, "refine": {"auroc": 0.9873283253661128, "ap": 0.8322199714767966, "auprc_trapz": 0.8319153177288366}, "restart": {"auroc": 0.9831924958220672, "ap": 0.802890428897128, "auprc_trapz": 0.8024768468859881}}}

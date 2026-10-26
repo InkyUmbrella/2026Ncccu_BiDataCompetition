@@ -1,0 +1,1154 @@
+[
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/age_stats.json",
+    "archive_file": "records/runs/b0_before_migration/age_stats.json",
+    "sha256": "02c8ea2642d5cf1953a0d1b36365bdda0d7eb40a3648de2e86e27d5a4a440005",
+    "bytes": 78,
+    "observed_mtime_ns": 1792665469291875178,
+    "observed_mtime_utc": "2026-10-22T10:37:49.291875+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/best.pt",
+    "archive_file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+    "bytes": 111732290,
+    "observed_mtime_ns": 1792669023015743382,
+    "observed_mtime_utc": "2026-10-22T11:37:03.015743+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/config.json",
+    "archive_file": "records/runs/b0_before_migration/config.json",
+    "sha256": "77611dcb533f4ee6e000495eccef2e7e92c4ac725dec3f4f969b2447159e758b",
+    "bytes": 900,
+    "observed_mtime_ns": 1792665469291875178,
+    "observed_mtime_utc": "2026-10-22T10:37:49.291875+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/data_audit.json",
+    "archive_file": "records/runs/b0_before_migration/data_audit.json",
+    "sha256": "2a1a3e3af1f8579aca2d236da5c4ed2a1670b05d53c432ec6aec8ac94e74496f",
+    "bytes": 439,
+    "observed_mtime_ns": 1792666083901387203,
+    "observed_mtime_utc": "2026-10-22T10:48:03.901387+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/history.json",
+    "archive_file": "records/runs/b0_before_migration/history.json",
+    "sha256": "de94bbac6ce63a4be6aebfb50f4741706bbfc2914e0fcf7143dffcd596906b22",
+    "bytes": 40966,
+    "observed_mtime_ns": 1792678351764370669,
+    "observed_mtime_utc": "2026-10-22T14:12:31.764371+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/last.pt",
+    "archive_file": "weights/873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba.pt",
+    "sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+    "bytes": 446992894,
+    "observed_mtime_ns": 1792678351732370386,
+    "observed_mtime_utc": "2026-10-22T14:12:31.732370+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/metadata.json",
+    "archive_file": "records/runs/b0_before_migration/metadata.json",
+    "sha256": "a5f384535cc4a34f1e45fc7db23f2a04050b85bf130c394ae12abf664daa537f",
+    "bytes": 1259,
+    "observed_mtime_ns": 1792665469319875429,
+    "observed_mtime_utc": "2026-10-22T10:37:49.319875+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/age_stats.json",
+    "archive_file": "records/runs/b0/age_stats.json",
+    "sha256": "02c8ea2642d5cf1953a0d1b36365bdda0d7eb40a3648de2e86e27d5a4a440005",
+    "bytes": 78,
+    "observed_mtime_ns": 1792679172211627262,
+    "observed_mtime_utc": "2026-10-22T14:26:12.211627+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/best.pt",
+    "archive_file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+    "bytes": 111732290,
+    "observed_mtime_ns": 1792679180311699059,
+    "observed_mtime_utc": "2026-10-22T14:26:20.311699+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/config.json",
+    "archive_file": "records/runs/b0/config.json",
+    "sha256": "77611dcb533f4ee6e000495eccef2e7e92c4ac725dec3f4f969b2447159e758b",
+    "bytes": 900,
+    "observed_mtime_ns": 1792679172207627227,
+    "observed_mtime_utc": "2026-10-22T14:26:12.207627+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/data_audit.json",
+    "archive_file": "records/runs/b0/data_audit.json",
+    "sha256": "f6f7e4e9473bf618a50d80ed065c36d481fc8fb66ad8dd31daa29c6cbbf3bb7f",
+    "bytes": 941,
+    "observed_mtime_ns": 1792679179255689700,
+    "observed_mtime_utc": "2026-10-22T14:26:19.255690+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/history.json",
+    "archive_file": "records/runs/b0/history.json",
+    "sha256": "bd680156fe53520bbcc5acac4522f446e32a9f5e9e8e2e790a0c68f2a93bae69",
+    "bytes": 88031,
+    "observed_mtime_ns": 1792709300880266181,
+    "observed_mtime_utc": "2026-10-22T22:48:20.880266+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/last.pt",
+    "archive_file": "weights/a6c6f3ebe2309008684260521f83f280b10ebd0dd4db58f97f4b5650e1aa88ef.pt",
+    "sha256": "a6c6f3ebe2309008684260521f83f280b10ebd0dd4db58f97f4b5650e1aa88ef",
+    "bytes": 447008766,
+    "observed_mtime_ns": 1792709300832265710,
+    "observed_mtime_utc": "2026-10-22T22:48:20.832266+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/metadata.json",
+    "archive_file": "records/runs/b0/metadata.json",
+    "sha256": "34f7b5c4bf795737ae53e454e5b1959647141e9f4d48e11cfc37777860fd3fee",
+    "bytes": 1380,
+    "observed_mtime_ns": 1792679176727667291,
+    "observed_mtime_utc": "2026-10-22T14:26:16.727667+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/metrics.json",
+    "archive_file": "records/runs/b0/metrics.json",
+    "sha256": "e3d4d9ee6845bf9ec2e949bf36338966d2cc77415a4d991936d37b68aee47a94",
+    "bytes": 2613,
+    "observed_mtime_ns": 1792709312248377710,
+    "observed_mtime_utc": "2026-10-22T22:48:32.248378+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/valid_predictions.csv",
+    "archive_file": "records/runs/b0/valid_predictions.csv",
+    "sha256": "e4badb6f2375a83e5121520bce8f48ceacef63e674ca000afee07574c5b42954",
+    "bytes": 265158,
+    "observed_mtime_ns": 1792709312244377671,
+    "observed_mtime_utc": "2026-10-22T22:48:32.244378+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained/train_imagenet.log",
+    "archive_file": "records/support/b0/016_train_imagenet.log",
+    "sha256": "29b629f679c093b7d8d8e5a00d540bf23c930e2d60b0c0ac5abaa25a290c11a3",
+    "bytes": 11688,
+    "observed_mtime_ns": 1792679093610930566,
+    "observed_mtime_utc": "2026-10-22T14:24:53.610931+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/continue_imagenet.sh",
+    "archive_file": "records/support/b0/017_continue_imagenet.sh",
+    "sha256": "b2adf2771e564250a881f9f5431ec69dcd6764aee8cfc2b91dbb1797595dbe57",
+    "bytes": 1011,
+    "observed_mtime_ns": 1792665447007675717,
+    "observed_mtime_utc": "2026-10-22T10:37:27.007676+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/cpu-tests.log",
+    "archive_file": "records/support/b0/018_cpu-tests.log",
+    "sha256": "2a7bcd9438bfe4097d285f686cefc20678b1702fa9e6c646caee807db233649f",
+    "bytes": 3572,
+    "observed_mtime_ns": 1792659876201907537,
+    "observed_mtime_utc": "2026-10-22T09:04:36.201908+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/cuda-real-images.json",
+    "archive_file": "records/support/b0/019_cuda-real-images.json",
+    "sha256": "ddf2aaa8b5e45b689c68b6a12996c4c18c68271fafd099f41353de4e8273a2b5",
+    "bytes": 685,
+    "observed_mtime_ns": 1792659947950550412,
+    "observed_mtime_utc": "2026-10-22T09:05:47.950550+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/device-fix-tests.log",
+    "archive_file": "records/support/b0/020_device-fix-tests.log",
+    "sha256": "85875ae4e6ade785108ec3e16e6d80d8b2987f83672f963098e2df822b36f83f",
+    "bytes": 4022,
+    "observed_mtime_ns": 1792665434947567836,
+    "observed_mtime_utc": "2026-10-22T10:37:14.947568+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/failure_before_device_fix_20261022T103742Z/launch.json",
+    "archive_file": "records/support/b0/021_launch.json",
+    "sha256": "1693f4553e62a4ef7fbe8d85ad7cddb44930d213420f7e353606164b2ef2299d",
+    "bytes": 399,
+    "observed_mtime_ns": 1792660040431379047,
+    "observed_mtime_utc": "2026-10-22T09:07:20.431379+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/failure_before_device_fix_20261022T103742Z/train.exit",
+    "archive_file": "records/support/b0/022_train.exit",
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "bytes": 2,
+    "observed_mtime_ns": 1792663509094365845,
+    "observed_mtime_utc": "2026-10-22T10:05:09.094366+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/failure_before_device_fix_20261022T103742Z/train_imagenet.log",
+    "archive_file": "records/support/b0/023_train_imagenet.log",
+    "sha256": "941c4ab6ef4211d580693c969390e520dc198693cf05ec81f2be3deade56584c",
+    "bytes": 2911,
+    "observed_mtime_ns": 1792663509094365845,
+    "observed_mtime_utc": "2026-10-22T10:05:09.094366+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/launch.json",
+    "archive_file": "records/support/b0/024_launch.json",
+    "sha256": "67f7e67fa8add3b73636c7ead90f7b6a607a36a71a3c401de22fbaeaeab41711",
+    "bytes": 1717,
+    "observed_mtime_ns": 1792679302424781442,
+    "observed_mtime_utc": "2026-10-22T14:28:22.424782+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T141956Z/resume_last.pt",
+    "archive_file": "weights/873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba.pt",
+    "sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+    "bytes": 446992894,
+    "observed_mtime_ns": 1792678798372316588,
+    "observed_mtime_utc": "2026-10-22T14:19:58.372317+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142348Z/resume_last.pt",
+    "archive_file": "weights/873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba.pt",
+    "sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+    "bytes": 446992894,
+    "observed_mtime_ns": 1792679030090367535,
+    "observed_mtime_utc": "2026-10-22T14:23:50.090368+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/context-check.log",
+    "archive_file": "records/support/b0/027_context-check.log",
+    "sha256": "b3b65f0f976d61683a861ab8c42c318ea62189d457bf0f18ffc582ac2d02fd39",
+    "bytes": 196,
+    "observed_mtime_ns": 1792679090682904611,
+    "observed_mtime_utc": "2026-10-22T14:24:50.682905+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/launch_pretrained_gpu4.sh",
+    "archive_file": "records/support/b0/028_launch_pretrained_gpu4.sh",
+    "sha256": "c416c2e3536aee36e3c8a1df9d0b4eff0f96e47cb4430f2b19a4c7a672429da4",
+    "bytes": 537,
+    "observed_mtime_ns": 1792679158119502352,
+    "observed_mtime_utc": "2026-10-22T14:25:58.119502+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/migration.json",
+    "archive_file": "records/support/b0/029_migration.json",
+    "sha256": "951153195a6b1e722becbda14caa341e3d56276369bf44db6eb75408a610517d",
+    "bytes": 21178,
+    "observed_mtime_ns": 1792679302408781301,
+    "observed_mtime_utc": "2026-10-22T14:28:22.408781+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/previous_launch.json",
+    "archive_file": "records/support/b0/030_previous_launch.json",
+    "sha256": "de78c25494320d95ab406fda37724d60c68b94b3cc38f76a31d6f8f372bd84f1",
+    "bytes": 736,
+    "observed_mtime_ns": 1792679090710904860,
+    "observed_mtime_utc": "2026-10-22T14:24:50.710905+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/previous_train.log",
+    "archive_file": "records/support/b0/031_previous_train.log",
+    "sha256": "2c338b16cdc1bc987e4ffb41d1872b42d82863885e00bfe14700b3fc793076fc",
+    "bytes": 11674,
+    "observed_mtime_ns": 1792679090710904860,
+    "observed_mtime_utc": "2026-10-22T14:24:50.710905+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_context.json",
+    "archive_file": "records/support/b0/032_resume_context.json",
+    "sha256": "58d5393a949693be0c14542ed223824a8f4bcc6fc7fbc94eb89080da2432c937",
+    "bytes": 2381,
+    "observed_mtime_ns": 1792679076262776795,
+    "observed_mtime_utc": "2026-10-22T14:24:36.262777+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_gpu4.py",
+    "archive_file": "records/support/b0/033_resume_gpu4.py",
+    "sha256": "00b1fd7d246a4d34b25d99c567d123b3dcd5b6a3070a450a431f4ad51854490f",
+    "bytes": 2055,
+    "observed_mtime_ns": 1792679076266776831,
+    "observed_mtime_utc": "2026-10-22T14:24:36.266777+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_last.pt",
+    "archive_file": "weights/873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba.pt",
+    "sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+    "bytes": 446992894,
+    "observed_mtime_ns": 1792679072890746906,
+    "observed_mtime_utc": "2026-10-22T14:24:32.890747+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.exit",
+    "archive_file": "records/support/b0/035_train_gpu4.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792709810521266190,
+    "observed_mtime_utc": "2026-10-22T22:56:50.521266+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/train_gpu4.log",
+    "archive_file": "records/support/b0/036_train_gpu4.log",
+    "sha256": "5ef889f2955c7eb642acb14600ee898ba05844bc7ef5192dec506e6f10f160bf",
+    "bytes": 11043,
+    "observed_mtime_ns": 1792709384025081902,
+    "observed_mtime_utc": "2026-10-22T22:49:44.025082+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/official_weights.json",
+    "archive_file": "records/support/b0/037_official_weights.json",
+    "sha256": "d4aa7b70ad6003a36ce438c9a75362092aab84d7bb6a842642af45b02f9eab01",
+    "bytes": 364,
+    "observed_mtime_ns": 1792659810829321794,
+    "observed_mtime_utc": "2026-10-22T09:03:30.829322+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/smoke_pretrained.py",
+    "archive_file": "records/support/b0/038_smoke_pretrained.py",
+    "sha256": "2bf047cca164940c61501939a9cc80a1c68b62f1c08b401b9ee73eeed93b4556",
+    "bytes": 4550,
+    "observed_mtime_ns": 1792659840373586515,
+    "observed_mtime_utc": "2026-10-22T09:04:00.373586+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/source.tar.gz",
+    "archive_file": "records/support/b0/039_source.tar.gz",
+    "sha256": "171529d37715fb8f8b6f5533bacdc1da1bba59528fd8084551e3b3b3a09d5de8",
+    "bytes": 41365,
+    "observed_mtime_ns": 1792659692296259729,
+    "observed_mtime_utc": "2026-10-22T09:01:32.296260+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/start_imagenet.sh",
+    "archive_file": "records/support/b0/040_start_imagenet.sh",
+    "sha256": "41b0374b16f52f7e865f214ed8ca07bf7b42c93bc9caeb54707f932c10a4661d",
+    "bytes": 1100,
+    "observed_mtime_ns": 1792660020947204467,
+    "observed_mtime_utc": "2026-10-22T09:07:00.947204+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/train.exit",
+    "archive_file": "records/support/b0/041_train.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792679093610930566,
+    "observed_mtime_utc": "2026-10-22T14:24:53.610931+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/all_completion_launch.json",
+    "archive_file": "records/support/age/042_all_completion_launch.json",
+    "sha256": "72e6cc643c773538564b595fbc4d5afe7e45f8612939e4f8cb7c90696a3c0d29",
+    "bytes": 1104,
+    "observed_mtime_ns": 1792711698079307494,
+    "observed_mtime_utc": "2026-10-22T23:28:18.079308+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/final_completion_verification.json",
+    "archive_file": "records/support/age/043_final_completion_verification.json",
+    "sha256": "8b94623636b8740939fc405b27ee12a448bc152721f7abcaf9fdbb69637b835e",
+    "bytes": 13505,
+    "observed_mtime_ns": 1792711729995608472,
+    "observed_mtime_utc": "2026-10-22T23:28:49.995609+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/launch.json",
+    "archive_file": "records/support/age/044_launch.json",
+    "sha256": "72e6cc643c773538564b595fbc4d5afe7e45f8612939e4f8cb7c90696a3c0d29",
+    "bytes": 1104,
+    "observed_mtime_ns": 1792711698079307494,
+    "observed_mtime_utc": "2026-10-22T23:28:18.079308+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verification.exit",
+    "archive_file": "records/support/age/045_verification.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792711730215610546,
+    "observed_mtime_utc": "2026-10-22T23:28:50.215611+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verification.log",
+    "archive_file": "records/support/age/046_verification.log",
+    "sha256": "2b39dc310d6439375ae85d3af81d0adc09c0aae4d68752bcebb956abd742e535",
+    "bytes": 76,
+    "observed_mtime_ns": 1792711730951617487,
+    "observed_mtime_utc": "2026-10-22T23:28:50.951617+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/completion_20261022T232817Z_49b71c37/verify_all_completion.py",
+    "archive_file": "records/support/age/047_verify_all_completion.py",
+    "sha256": "c914e48ef0428374e314d27a429c2d7d27d19d210408fb7d29bfbe0d9ed2a6c4",
+    "bytes": 9377,
+    "observed_mtime_ns": 1792711697963306400,
+    "observed_mtime_utc": "2026-10-22T23:28:17.963306+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/final_b0_comparison.json",
+    "archive_file": "records/support/age/048_final_b0_comparison.json",
+    "sha256": "c6d9e4863e6bcf5f0de7caa6688046a09424bb319d966f265e409f83a80d01c1",
+    "bytes": 7109,
+    "observed_mtime_ns": 1792710054859631203,
+    "observed_mtime_utc": "2026-10-22T23:00:54.859631+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/final_b0_snapshot.pt",
+    "archive_file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+    "bytes": 111732290,
+    "observed_mtime_ns": 1792710053199615187,
+    "observed_mtime_utc": "2026-10-22T23:00:53.199615+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalization.exit",
+    "archive_file": "records/support/age/050_finalization.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792710054923631821,
+    "observed_mtime_utc": "2026-10-22T23:00:54.923632+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalization.log",
+    "archive_file": "records/support/age/051_finalization.log",
+    "sha256": "89447cf0952ea467bea6f60ade53bed154f92178a1309c0cf1efcfb64c757abf",
+    "bytes": 56,
+    "observed_mtime_ns": 1792710064983728881,
+    "observed_mtime_utc": "2026-10-22T23:01:04.983729+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/finalize_b0.py",
+    "archive_file": "records/support/age/052_finalize_b0.py",
+    "sha256": "cc4324db2dde8ba61a3e8b88198d0c07e23c52e82c1027b0e55a268f6bc0522c",
+    "bytes": 9520,
+    "observed_mtime_ns": 1792710012731224742,
+    "observed_mtime_utc": "2026-10-22T23:00:12.731225+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/launch.json",
+    "archive_file": "records/support/age/053_launch.json",
+    "sha256": "87c104ceb33b8185da76cc3156a813d2f9d549ae874581a3812d4e3cff7ff52e",
+    "bytes": 1525,
+    "observed_mtime_ns": 1792710012847225861,
+    "observed_mtime_utc": "2026-10-22T23:00:12.847226+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_20261022T230012Z_d5f22da4/original_b0_completion.json",
+    "archive_file": "records/support/age/054_original_b0_completion.json",
+    "sha256": "fe8552b5686081012cb57394573f672e55c18d67583edf857544659189973ef0",
+    "bytes": 4120,
+    "observed_mtime_ns": 1792710053987622789,
+    "observed_mtime_utc": "2026-10-22T23:00:53.987623+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/final_b0_launch.json",
+    "archive_file": "records/support/age/055_final_b0_launch.json",
+    "sha256": "87c104ceb33b8185da76cc3156a813d2f9d549ae874581a3812d4e3cff7ff52e",
+    "bytes": 1525,
+    "observed_mtime_ns": 1792710012851225900,
+    "observed_mtime_utc": "2026-10-22T23:00:12.851226+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/integration-tests-launch.json",
+    "archive_file": "records/support/age/056_integration-tests-launch.json",
+    "sha256": "f20f132966dd6592085049228582885f582aa7116351f3581d8c33aa477fcedd",
+    "bytes": 434,
+    "observed_mtime_ns": 1792676546124406351,
+    "observed_mtime_utc": "2026-10-22T13:42:26.124406+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/integration-tests.exit",
+    "archive_file": "records/support/age/057_integration-tests.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792676588148777223,
+    "observed_mtime_utc": "2026-10-22T13:43:08.148777+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/integration-tests.log",
+    "archive_file": "records/support/age/058_integration-tests.log",
+    "sha256": "fdb91dd32ba1a967f7eb5e31d85c3dc6633c85b61048f3d12411cfd50134fa1d",
+    "bytes": 7397,
+    "observed_mtime_ns": 1792676587340770093,
+    "observed_mtime_utc": "2026-10-22T13:43:07.340770+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/launch.json",
+    "archive_file": "records/support/age/059_launch.json",
+    "sha256": "1c98f209cc01ac77cbf1baf7956f35ef7a652fdd2617f04c595a20c2d8d0d85c",
+    "bytes": 4037,
+    "observed_mtime_ns": 1792676814170771905,
+    "observed_mtime_utc": "2026-10-22T13:46:54.170772+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/run_integration_tests.sh",
+    "archive_file": "records/support/age/060_run_integration_tests.sh",
+    "sha256": "d0a41651c5aa76069c2a0cf3b7d883659bdd7ca8299115ce5869898339c2f228",
+    "bytes": 493,
+    "observed_mtime_ns": 1792676546120406316,
+    "observed_mtime_utc": "2026-10-22T13:42:26.120406+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/age_stats.json",
+    "archive_file": "records/runs/age/age_stats.json",
+    "sha256": "02c8ea2642d5cf1953a0d1b36365bdda0d7eb40a3648de2e86e27d5a4a440005",
+    "bytes": 78,
+    "observed_mtime_ns": 1792677498628828117,
+    "observed_mtime_utc": "2026-10-22T13:58:18.628828+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/best.pt",
+    "archive_file": "weights/5faf9a04edf0c6dbde64d0543dae767db70932627b79f2080e65d476f1422830.pt",
+    "sha256": "5faf9a04edf0c6dbde64d0543dae767db70932627b79f2080e65d476f1422830",
+    "bytes": 111733882,
+    "observed_mtime_ns": 1792685825119516709,
+    "observed_mtime_utc": "2026-10-22T16:17:05.119517+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/config.json",
+    "archive_file": "records/runs/age/config.json",
+    "sha256": "33bfc6118d646f6b913c3f69e4763982cd9eef7823b5cdedfeec8eb704a43352",
+    "bytes": 987,
+    "observed_mtime_ns": 1792677498628828117,
+    "observed_mtime_utc": "2026-10-22T13:58:18.628828+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/data_audit.json",
+    "archive_file": "records/runs/age/data_audit.json",
+    "sha256": "2a1a3e3af1f8579aca2d236da5c4ed2a1670b05d53c432ec6aec8ac94e74496f",
+    "bytes": 439,
+    "observed_mtime_ns": 1792683375145343199,
+    "observed_mtime_utc": "2026-10-22T15:36:15.145343+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/history.json",
+    "archive_file": "records/runs/age/history.json",
+    "sha256": "7ed68c9b55dcbf098ae4f51f0902dbdebc188a94312188cec993fdf1a21ffb8d",
+    "bytes": 58654,
+    "observed_mtime_ns": 1792711381500322083,
+    "observed_mtime_utc": "2026-10-22T23:23:01.500322+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/last.pt",
+    "archive_file": "weights/6f5a49b6f1e774cec18585709694b6ab98b7334548a3849c6aaeace62c2c83ff.pt",
+    "sha256": "6f5a49b6f1e774cec18585709694b6ab98b7334548a3849c6aaeace62c2c83ff",
+    "bytes": 447005654,
+    "observed_mtime_ns": 1792711381448321593,
+    "observed_mtime_utc": "2026-10-22T23:23:01.448322+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/metadata.json",
+    "archive_file": "records/runs/age/metadata.json",
+    "sha256": "cc7c8457dc93942a41cddac0f9006fa1e4119848f8d86752148659f89a402ea3",
+    "bytes": 879,
+    "observed_mtime_ns": 1792677498820829816,
+    "observed_mtime_utc": "2026-10-22T13:58:18.820830+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/metrics.json",
+    "archive_file": "records/runs/age/metrics.json",
+    "sha256": "256c59e49e19092e555633f9807cadd109e75d4f763df4c8f8c101cabd7aafdb",
+    "bytes": 2610,
+    "observed_mtime_ns": 1792711392076421819,
+    "observed_mtime_utc": "2026-10-22T23:23:12.076422+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training/b0_crop384_age_residual_imagenet/seed42_20261022T135818Z_9aec5250/valid_predictions.csv",
+    "archive_file": "records/runs/age/valid_predictions.csv",
+    "sha256": "9ae70dd4c333edb1dfa640a6e311a3d2c37f34c47b6971263214c57d8d847cb3",
+    "bytes": 265245,
+    "observed_mtime_ns": 1792711392072421781,
+    "observed_mtime_utc": "2026-10-22T23:23:12.072422+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training.exit",
+    "archive_file": "records/support/age/070_age_training.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792711653202884300,
+    "observed_mtime_utc": "2026-10-22T23:27:33.202884+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training.log",
+    "archive_file": "records/support/age/071_age_training.log",
+    "sha256": "a8dd676f2f05879d16c7d18c569d0b50563731c0e7ae71c8f8880e032e88e18f",
+    "bytes": 9015,
+    "observed_mtime_ns": 1792711411544605408,
+    "observed_mtime_utc": "2026-10-22T23:23:31.544605+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_validation_summary.json",
+    "archive_file": "records/support/age/072_age_validation_summary.json",
+    "sha256": "f9e3275bdd5e90b0a347467fc6be5a55fbbc1979a7477f34d1049d9d99233597",
+    "bytes": 3463,
+    "observed_mtime_ns": 1792711682347159137,
+    "observed_mtime_utc": "2026-10-22T23:28:02.347159+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_verification.exit",
+    "archive_file": "records/support/age/073_age_verification.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792711682827163663,
+    "observed_mtime_utc": "2026-10-22T23:28:02.827164+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_verification.log",
+    "archive_file": "records/support/age/074_age_verification.log",
+    "sha256": "0778fb42ae02b6a47401a819dd4fe8f798e2793e80e004c87076d81b34d20856",
+    "bytes": 91,
+    "observed_mtime_ns": 1792711682827163663,
+    "observed_mtime_utc": "2026-10-22T23:28:02.827164+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_comparison.json",
+    "archive_file": "records/support/age/075_b0_comparison.json",
+    "sha256": "f9ae2b92c4424625f39bba90b34909477dec72ed7b9a9eb72a56e5b3ba098b15",
+    "bytes": 5296,
+    "observed_mtime_ns": 1792677487444729153,
+    "observed_mtime_utc": "2026-10-22T13:58:07.444729+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation/metrics.json",
+    "archive_file": "records/support/age/076_metrics.json",
+    "sha256": "fe4eaaed7687477dc3abf3621194bd5feb1823cb99aefb3531314b485a49fac2",
+    "bytes": 2350,
+    "observed_mtime_ns": 1792677483964698358,
+    "observed_mtime_utc": "2026-10-22T13:58:03.964698+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation/predictions.csv",
+    "archive_file": "records/support/age/077_predictions.csv",
+    "sha256": "e4badb6f2375a83e5121520bce8f48ceacef63e674ca000afee07574c5b42954",
+    "bytes": 265158,
+    "observed_mtime_ns": 1792677483964698358,
+    "observed_mtime_utc": "2026-10-22T13:58:03.964698+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation.exit",
+    "archive_file": "records/support/age/078_b0_evaluation.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792677485140708763,
+    "observed_mtime_utc": "2026-10-22T13:58:05.140709+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation.log",
+    "archive_file": "records/support/age/079_b0_evaluation.log",
+    "sha256": "2d0c5c80833ddf81b9a390bb2f9d13e14dcdc3efa0039f00b821dcc5047495ef",
+    "bytes": 129,
+    "observed_mtime_ns": 1792677485036707844,
+    "observed_mtime_utc": "2026-10-22T13:58:05.036708+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+    "archive_file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+    "bytes": 111732290,
+    "observed_mtime_ns": 1792676806070700421,
+    "observed_mtime_utc": "2026-10-22T13:46:46.070700+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_verification.exit",
+    "archive_file": "records/support/age/081_b0_verification.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792677487752731877,
+    "observed_mtime_utc": "2026-10-22T13:58:07.752732+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_verification.log",
+    "archive_file": "records/support/age/082_b0_verification.log",
+    "sha256": "a6ec1de6232f07671884161e38053dd923ddfcbc3706617d156be780dc8b9146",
+    "bytes": 91,
+    "observed_mtime_ns": 1792677487752731877,
+    "observed_mtime_utc": "2026-10-22T13:58:07.752732+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/gpu_check_before_age.exit",
+    "archive_file": "records/support/age/083_gpu_check_before_age.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792677487876732976,
+    "observed_mtime_utc": "2026-10-22T13:58:07.876733+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/gpu_check_before_age.log",
+    "archive_file": "records/support/age/084_gpu_check_before_age.log",
+    "sha256": "5c9f142e13e187380aa8d533544ddd09b52fee158171ae77d4a44dd312aaad2b",
+    "bytes": 30,
+    "observed_mtime_ns": 1792677487876732976,
+    "observed_mtime_utc": "2026-10-22T13:58:07.876733+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/guard_gpu.py",
+    "archive_file": "records/support/age/085_guard_gpu.py",
+    "sha256": "f304258b1aa69d721d763e8da05fa927e9c43756e61ab233c4c845569bb99565",
+    "bytes": 648,
+    "observed_mtime_ns": 1792676806602705115,
+    "observed_mtime_utc": "2026-10-22T13:46:46.602705+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/launch.json",
+    "archive_file": "records/support/age/086_launch.json",
+    "sha256": "1c98f209cc01ac77cbf1baf7956f35ef7a652fdd2617f04c595a20c2d8d0d85c",
+    "bytes": 4037,
+    "observed_mtime_ns": 1792676814170771905,
+    "observed_mtime_utc": "2026-10-22T13:46:54.170772+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/launcher.log",
+    "archive_file": "records/support/age/087_launcher.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "observed_mtime_ns": 1792676814166771870,
+    "observed_mtime_utc": "2026-10-22T13:46:54.166772+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/run_transfer.sh",
+    "archive_file": "records/support/age/088_run_transfer.sh",
+    "sha256": "493833931ca525e24ed68492657a6e4f96671eb814de1e704bab2fc438cc0108",
+    "bytes": 2139,
+    "observed_mtime_ns": 1792676813338764566,
+    "observed_mtime_utc": "2026-10-22T13:46:53.338765+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/snapshot.json",
+    "archive_file": "records/support/age/089_snapshot.json",
+    "sha256": "e180dbdd6ef576b95ec4686bf2b4c83665b05d86760949dfaf2b85eae0b99346",
+    "bytes": 4321,
+    "observed_mtime_ns": 1792676806602705115,
+    "observed_mtime_utc": "2026-10-22T13:46:46.602705+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/transfer.exit",
+    "archive_file": "records/support/age/090_transfer.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792711682863164002,
+    "observed_mtime_utc": "2026-10-22T23:28:02.863164+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/verify_transfer.py",
+    "archive_file": "records/support/age/091_verify_transfer.py",
+    "sha256": "96397c3b278d4183eac7bf8927b1110e39185c43f19152805225dcbdc9b11ce2",
+    "bytes": 3351,
+    "observed_mtime_ns": 1792676806602705115,
+    "observed_mtime_utc": "2026-10-22T13:46:46.602705+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/b0_init.pt",
+    "archive_file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+    "bytes": 111732290,
+    "observed_mtime_ns": 1792720874337137744,
+    "observed_mtime_utc": "2026-10-23T02:01:14.337138+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/context.json",
+    "archive_file": "records/support/improve/093_context.json",
+    "sha256": "0d0a3cf765852c736e3320400513ff36d23b52b1dec0aeecefc55c9e3c96dc92",
+    "bytes": 4036,
+    "observed_mtime_ns": 1792720874825142304,
+    "observed_mtime_utc": "2026-10-23T02:01:14.825142+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/launch.json",
+    "archive_file": "records/support/improve/094_launch.json",
+    "sha256": "6b69581a146b3d95bd849730706c478afe9efec47c1ffe4ed184db498dd75ac3",
+    "bytes": 1439,
+    "observed_mtime_ns": 1792720874861142641,
+    "observed_mtime_utc": "2026-10-23T02:01:14.861143+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/refine.exit",
+    "archive_file": "records/support/improve/095_refine.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792731348799910815,
+    "observed_mtime_utc": "2026-10-23T04:55:48.799911+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/refine.log",
+    "archive_file": "records/support/improve/096_refine.log",
+    "sha256": "bd8d987f39bab576e71dbf3c16c240a1ec9d9af59ab507d1ecb5955b14aa810d",
+    "bytes": 7129,
+    "observed_mtime_ns": 1792731238746873738,
+    "observed_mtime_utc": "2026-10-23T04:53:58.746874+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/refine_result.json",
+    "archive_file": "records/support/improve/097_refine_result.json",
+    "sha256": "8c1b2bc8465934427f43f66de970d231ce59a95afc419d63f3f1136600f3bdbf",
+    "bytes": 3925,
+    "observed_mtime_ns": 1792731407332462393,
+    "observed_mtime_utc": "2026-10-23T04:56:47.332462+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/restart.exit",
+    "archive_file": "records/support/improve/098_restart.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792736507752264180,
+    "observed_mtime_utc": "2026-10-23T06:21:47.752264+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/restart.log",
+    "archive_file": "records/support/improve/099_restart.log",
+    "sha256": "acb570118aa86c73cc988fa3cab574ad6e4d972209789adb9fe251dd9f496e06",
+    "bytes": 10503,
+    "observed_mtime_ns": 1792736419163435043,
+    "observed_mtime_utc": "2026-10-23T06:20:19.163435+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/restart_result.json",
+    "archive_file": "records/support/improve/100_restart_result.json",
+    "sha256": "e56f9c71ae74545ba59118fda9a5ec7d35ea42bc4d5f5966a10789f8b915e05e",
+    "bytes": 3937,
+    "observed_mtime_ns": 1792736519748376456,
+    "observed_mtime_utc": "2026-10-23T06:21:59.748376+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/age_stats.json",
+    "archive_file": "records/runs/refine/age_stats.json",
+    "sha256": "02c8ea2642d5cf1953a0d1b36365bdda0d7eb40a3648de2e86e27d5a4a440005",
+    "bytes": 78,
+    "observed_mtime_ns": 1792720976538092801,
+    "observed_mtime_utc": "2026-10-23T02:02:56.538093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/best.pt",
+    "archive_file": "weights/1c8875a26260dd41c527d059d1421d2cefb6e5b619550ac2d0888052803f038a.pt",
+    "sha256": "1c8875a26260dd41c527d059d1421d2cefb6e5b619550ac2d0888052803f038a",
+    "bytes": 111732482,
+    "observed_mtime_ns": 1792721904514811519,
+    "observed_mtime_utc": "2026-10-23T02:18:24.514812+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/config.json",
+    "archive_file": "records/runs/refine/config.json",
+    "sha256": "89ebcfa5f62331e73deef19651a281e845b5e851787780e961138c1cbbb7937b",
+    "bytes": 1057,
+    "observed_mtime_ns": 1792720976534092764,
+    "observed_mtime_utc": "2026-10-23T02:02:56.534093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/data_audit.json",
+    "archive_file": "records/runs/refine/data_audit.json",
+    "sha256": "eb858eeecd93a6ed93ae1ac686d22abad1f0e192fd0e7d39ef2a53a774594773",
+    "bytes": 979,
+    "observed_mtime_ns": 1792720979562121061,
+    "observed_mtime_utc": "2026-10-23T02:02:59.562121+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/history.json",
+    "archive_file": "records/runs/refine/history.json",
+    "sha256": "6167d746080482bf2be13040fd014b919f5cbe6a4daec48f26116fceea36b6b5",
+    "bytes": 83478,
+    "observed_mtime_ns": 1792731204910554884,
+    "observed_mtime_utc": "2026-10-23T04:53:24.910555+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/last.pt",
+    "archive_file": "weights/7dccc3c5b3390b7e4ea721b53052cc29787fbbf108bd3ca0d3512f1d270f3fbd.pt",
+    "sha256": "7dccc3c5b3390b7e4ea721b53052cc29787fbbf108bd3ca0d3512f1d270f3fbd",
+    "bytes": 558730295,
+    "observed_mtime_ns": 1792731204846554280,
+    "observed_mtime_utc": "2026-10-23T04:53:24.846554+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/metadata.json",
+    "archive_file": "records/runs/refine/metadata.json",
+    "sha256": "ec31c7a913a8d9d03d67dd00f0a9cc7a6091b47dc48d50fcf401a8f7538ef8a8",
+    "bytes": 835,
+    "observed_mtime_ns": 1792720976590093288,
+    "observed_mtime_utc": "2026-10-23T02:02:56.590093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/metrics.json",
+    "archive_file": "records/runs/refine/metrics.json",
+    "sha256": "5cc097678485fa9e33d31292ab60ec7220a67ca95907c3b25c1f146b19e40a00",
+    "bytes": 2642,
+    "observed_mtime_ns": 1792731215182651682,
+    "observed_mtime_utc": "2026-10-23T04:53:35.182652+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/valid_predictions.csv",
+    "archive_file": "records/runs/refine/valid_predictions.csv",
+    "sha256": "204571aa41b2f91b554eaed308a28b6fb7d8bec0bde752f91eb8220d557970dd",
+    "bytes": 266338,
+    "observed_mtime_ns": 1792731215182651682,
+    "observed_mtime_utc": "2026-10-23T04:53:35.182652+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/age_stats.json",
+    "archive_file": "records/runs/restart/age_stats.json",
+    "sha256": "02c8ea2642d5cf1953a0d1b36365bdda0d7eb40a3648de2e86e27d5a4a440005",
+    "bytes": 78,
+    "observed_mtime_ns": 1792720976590093288,
+    "observed_mtime_utc": "2026-10-23T02:02:56.590093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/best.pt",
+    "archive_file": "weights/bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a.pt",
+    "sha256": "bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a",
+    "bytes": 111732482,
+    "observed_mtime_ns": 1792727060343481001,
+    "observed_mtime_utc": "2026-10-23T03:44:20.343481+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/config.json",
+    "archive_file": "records/runs/restart/config.json",
+    "sha256": "087b6459acd4d91f803476fc37f27de93657bddf429c2ce14cf0fb04ca80241a",
+    "bytes": 1070,
+    "observed_mtime_ns": 1792720976590093288,
+    "observed_mtime_utc": "2026-10-23T02:02:56.590093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/data_audit.json",
+    "archive_file": "records/runs/restart/data_audit.json",
+    "sha256": "4dd87077a14cc5e9de22442d791afd06d822880ddc90aff1fcc25a56659a5ad9",
+    "bytes": 979,
+    "observed_mtime_ns": 1792720979566121098,
+    "observed_mtime_utc": "2026-10-23T02:02:59.566121+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/history.json",
+    "archive_file": "records/runs/restart/history.json",
+    "sha256": "27319a59d64e01b07a9f08b7fa7f9f04bff0607c454d449cafb0de50f4532465",
+    "bytes": 124923,
+    "observed_mtime_ns": 1792736388519148232,
+    "observed_mtime_utc": "2026-10-23T06:19:48.519148+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/last.pt",
+    "archive_file": "weights/4920f74bb48ff2d06126069f29e58f7141377b753b06cf3b9de527aa5a427d5e.pt",
+    "sha256": "4920f74bb48ff2d06126069f29e58f7141377b753b06cf3b9de527aa5a427d5e",
+    "bytes": 558739255,
+    "observed_mtime_ns": 1792736388475147820,
+    "observed_mtime_utc": "2026-10-23T06:19:48.475148+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/metadata.json",
+    "archive_file": "records/runs/restart/metadata.json",
+    "sha256": "09b8256a5182f542a776028d84a38251e72a1aff06e41aa1f2ce56bec573337b",
+    "bytes": 720,
+    "observed_mtime_ns": 1792720976602093400,
+    "observed_mtime_utc": "2026-10-23T02:02:56.602093+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/metrics.json",
+    "archive_file": "records/runs/restart/metrics.json",
+    "sha256": "9d572211feeea7567b287f8d8d12c147313f11876b72a2bf7c01ebe818ab6bb9",
+    "bytes": 2603,
+    "observed_mtime_ns": 1792736398395240666,
+    "observed_mtime_utc": "2026-10-23T06:19:58.395241+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/valid_predictions.csv",
+    "archive_file": "records/runs/restart/valid_predictions.csv",
+    "sha256": "07e64ce8e8e68fc7b70699491a2c82728528df8ff6913832be2ce813602b2846",
+    "bytes": 263734,
+    "observed_mtime_ns": 1792736398391240629,
+    "observed_mtime_utc": "2026-10-23T06:19:58.391241+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/status.json",
+    "archive_file": "records/support/improve/119_status.json",
+    "sha256": "2871d5489fa28161f7a26f50af84841d9eef7839db8988a9d411d3e5e0c3fa28",
+    "bytes": 11561,
+    "observed_mtime_ns": 1792736519760376568,
+    "observed_mtime_utc": "2026-10-23T06:21:59.760376+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/summary.json",
+    "archive_file": "records/support/improve/120_summary.json",
+    "sha256": "98da470c9cab6bb7d248e75eb60ccf62df1080f667102fc5d3eae6eb90a87391",
+    "bytes": 14201,
+    "observed_mtime_ns": 1792736519760376568,
+    "observed_mtime_utc": "2026-10-23T06:21:59.760376+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/supervisor.exit",
+    "archive_file": "records/support/improve/121_supervisor.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792736519760376568,
+    "observed_mtime_utc": "2026-10-23T06:21:59.760376+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/supervisor.log",
+    "archive_file": "records/support/improve/122_supervisor.log",
+    "sha256": "a271bb2e2bab82bf0c41613f08ff63fe8d186b49c6f1e0813b10a8b817c7b418",
+    "bytes": 154,
+    "observed_mtime_ns": 1792736521624394014,
+    "observed_mtime_utc": "2026-10-23T06:22:01.624394+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/tests.exit",
+    "archive_file": "records/support/improve/123_tests.exit",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "bytes": 2,
+    "observed_mtime_ns": 1792720963797973747,
+    "observed_mtime_utc": "2026-10-23T02:02:43.797974+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/tests.log",
+    "archive_file": "records/support/improve/124_tests.log",
+    "sha256": "3069714df03eb3f5e93d8d412348e3fddbd17df19a91a4229f62bbc9fb76bdb9",
+    "bytes": 8486,
+    "observed_mtime_ns": 1792720963417970196,
+    "observed_mtime_utc": "2026-10-23T02:02:43.417970+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/launch.json",
+    "archive_file": "records/support/improve/125_launch.json",
+    "sha256": "6b69581a146b3d95bd849730706c478afe9efec47c1ffe4ed184db498dd75ac3",
+    "bytes": 1439,
+    "observed_mtime_ns": 1792720874861142641,
+    "observed_mtime_utc": "2026-10-23T02:01:14.861143+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/home/lichunyu/.cache/torch/hub/checkpoints/convnext_tiny-983f1562.pth",
+    "archive_file": "weights/983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d.pth",
+    "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+    "bytes": 114419221,
+    "observed_mtime_ns": 1792659810081315094,
+    "observed_mtime_utc": "2026-10-22T09:03:30.081315+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  },
+  {
+    "original_path": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022/manifest.json",
+    "archive_file": "records/support/data/127_manifest.json",
+    "sha256": "956f14d2fa23d9255fcd471e818da11972fdb1e02dd3cc5cd4329928a24285ea",
+    "bytes": 4473897,
+    "observed_mtime_ns": 1792663470280134234,
+    "observed_mtime_utc": "2026-10-22T10:04:30.280134+00:00",
+    "collected_at_utc": "2026-10-26T14:50:28.514415+00:00"
+  }
+]

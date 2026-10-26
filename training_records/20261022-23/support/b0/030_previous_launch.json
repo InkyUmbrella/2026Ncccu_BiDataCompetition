@@ -1,0 +1,14 @@
+{
+  "pid": 2223490,
+  "started_utc": "2026-10-22T10:37:42.450624+00:00",
+  "cwd": "/home/lichunyu/competition-pretrained",
+  "log": "/home/lichunyu/competition-pretrained/outputs/pretrained/train_imagenet.log",
+  "exit_file": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/train.exit",
+  "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+  "config": "configs/experiments/b0_crop384_imagenet.json",
+  "gpu": 2,
+  "epochs": 30,
+  "stage": "reuse_cache_then_train",
+  "previous_failure_archive": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/failure_before_device_fix_20261022T103742Z",
+  "reason": "Fixed indexless CUDA device handling; previous run had no training epochs."
+}

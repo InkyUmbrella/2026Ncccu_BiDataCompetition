@@ -1,0 +1,14 @@
+{
+  "weights": "IMAGENET1K_V1",
+  "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+  "path": "/home/lichunyu/.cache/torch/hub/checkpoints/convnext_tiny-983f1562.pth",
+  "bytes": 114419221,
+  "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+  "stem_shape": [
+    96,
+    3,
+    4,
+    4
+  ],
+  "seconds": 69.38
+}

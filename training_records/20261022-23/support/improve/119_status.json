@@ -1,0 +1,278 @@
+{
+  "stage": "complete",
+  "jobs": {
+    "refine": {
+      "stage": "complete",
+      "gpu": 4,
+      "config": "configs/experiments/b0_crop384_refine_ema.json",
+      "epochs": 10,
+      "initialization": "b0_best",
+      "pid": 2919022,
+      "pid_start_ticks": 135680927,
+      "uid": 4800009,
+      "cwd": "/home/lichunyu/competition-pretrained-improve",
+      "command": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "-u",
+        "/home/lichunyu/competition-pretrained-improve/scripts/pretrained_improve.py",
+        "worker",
+        "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414",
+        "--job",
+        "refine"
+      ],
+      "log": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/refine.log",
+      "started_utc": "2026-10-23T02:02:44.572825+00:00",
+      "exit_code": 0,
+      "run_directory": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3",
+      "result": {
+        "run_directory": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3",
+        "completed_epochs": 10,
+        "verified": true,
+        "best_epoch": 1,
+        "best_weights_variant": "raw",
+        "valid": {
+          "count": 5849,
+          "positives": 191,
+          "auroc": 0.9873283253661128,
+          "auprc_trapz": 0.8319153177288366,
+          "ap": 0.8322199714767966,
+          "confusion_at_0.5": {
+            "tn": 5589,
+            "fp": 69,
+            "fn": 42,
+            "tp": 149
+          },
+          "sensitivity_at_0.5": 0.7801047120418848,
+          "specificity_at_0.5": 0.9878048780487805,
+          "sensitivity_at_specificity95": 0.9476439790575916,
+          "threshold_at_specificity95": 0.03875619173049927,
+          "loss": 0.1340671661559089,
+          "age_groups": {
+            "under50": {
+              "count": 1486,
+              "positives": 15,
+              "auroc": 0.9948787672784953,
+              "auprc_trapz": 0.8506219352910374,
+              "ap": 0.8536676178587632,
+              "confusion_at_0.5": {
+                "tn": 1469,
+                "fp": 2,
+                "fn": 4,
+                "tp": 11
+              },
+              "sensitivity_at_0.5": 0.7333333333333333,
+              "specificity_at_0.5": 0.9986403806934059,
+              "sensitivity_at_specificity95": 0.9333333333333333,
+              "threshold_at_specificity95": 0.07850097864866257
+            },
+            "50to64": {
+              "count": 3148,
+              "positives": 98,
+              "auroc": 0.985807962529274,
+              "auprc_trapz": 0.839877435421333,
+              "ap": 0.8404467273347832,
+              "confusion_at_0.5": {
+                "tn": 3014,
+                "fp": 36,
+                "fn": 21,
+                "tp": 77
+              },
+              "sensitivity_at_0.5": 0.7857142857142857,
+              "specificity_at_0.5": 0.9881967213114754,
+              "sensitivity_at_specificity95": 0.9489795918367347,
+              "threshold_at_specificity95": 0.05510689690709114
+            },
+            "65plus": {
+              "count": 1213,
+              "positives": 78,
+              "auroc": 0.9812267028126058,
+              "auprc_trapz": 0.8295552708774664,
+              "ap": 0.8303921806837484,
+              "confusion_at_0.5": {
+                "tn": 1104,
+                "fp": 31,
+                "fn": 17,
+                "tp": 61
+              },
+              "sensitivity_at_0.5": 0.782051282051282,
+              "specificity_at_0.5": 0.9726872246696036,
+              "sensitivity_at_specificity95": 0.8846153846153846,
+              "threshold_at_specificity95": 0.1368389129638672
+            },
+            "missing_or_invalid": {
+              "count": 2,
+              "positives": 0,
+              "auroc": null,
+              "auprc_trapz": null,
+              "ap": null,
+              "confusion_at_0.5": {
+                "tn": 2,
+                "fp": 0,
+                "fn": 0,
+                "tp": 0
+              },
+              "sensitivity_at_0.5": null,
+              "specificity_at_0.5": 1.0,
+              "sensitivity_at_specificity95": null,
+              "threshold_at_specificity95": null
+            }
+          }
+        },
+        "delta_from_b0": {
+          "auroc": 0.0008230943907435728,
+          "ap": 0.013982225887406274,
+          "auprc_trapz": 0.014010448206452919
+        },
+        "paired_bootstrap_auroc_delta_95ci": [
+          -0.0008319777028864383,
+          0.0021866134038075993
+        ],
+        "bootstrap_replicates": 1000,
+        "bootstrap_seed": 20261023,
+        "best_raw_auroc": 0.9873283253661128,
+        "best_ema_auroc": 0.9870868103172267,
+        "best_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/best.pt",
+        "last_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/last.pt",
+        "predictions": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/valid_predictions.csv",
+        "checkpoint_sha256": "1c8875a26260dd41c527d059d1421d2cefb6e5b619550ac2d0888052803f038a"
+      }
+    },
+    "restart": {
+      "stage": "complete",
+      "gpu": 5,
+      "config": "configs/experiments/b0_crop384_imagenet_backbone_ema.json",
+      "epochs": 15,
+      "initialization": "IMAGENET1K_V1",
+      "pid": 2919027,
+      "pid_start_ticks": 135680937,
+      "uid": 4800009,
+      "cwd": "/home/lichunyu/competition-pretrained-improve",
+      "command": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "-u",
+        "/home/lichunyu/competition-pretrained-improve/scripts/pretrained_improve.py",
+        "worker",
+        "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414",
+        "--job",
+        "restart"
+      ],
+      "log": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/restart.log",
+      "started_utc": "2026-10-23T02:02:44.670611+00:00",
+      "exit_code": 0,
+      "run_directory": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44",
+      "result": {
+        "run_directory": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44",
+        "completed_epochs": 15,
+        "verified": true,
+        "best_epoch": 6,
+        "best_weights_variant": "raw",
+        "valid": {
+          "count": 5849,
+          "positives": 191,
+          "auroc": 0.9831924958220672,
+          "auprc_trapz": 0.8024768468859881,
+          "ap": 0.802890428897128,
+          "confusion_at_0.5": {
+            "tn": 5631,
+            "fp": 27,
+            "fn": 76,
+            "tp": 115
+          },
+          "sensitivity_at_0.5": 0.6020942408376964,
+          "specificity_at_0.5": 0.9952279957582184,
+          "sensitivity_at_specificity95": 0.9214659685863874,
+          "threshold_at_specificity95": 0.0076066721230745316,
+          "loss": 0.2192489317501915,
+          "age_groups": {
+            "under50": {
+              "count": 1486,
+              "positives": 15,
+              "auroc": 0.9961477452979832,
+              "auprc_trapz": 0.8776410737886058,
+              "ap": 0.8797463768115941,
+              "confusion_at_0.5": {
+                "tn": 1471,
+                "fp": 0,
+                "fn": 9,
+                "tp": 6
+              },
+              "sensitivity_at_0.5": 0.4,
+              "specificity_at_0.5": 1.0,
+              "sensitivity_at_specificity95": 1.0,
+              "threshold_at_specificity95": 0.002278330735862255
+            },
+            "50to64": {
+              "count": 3148,
+              "positives": 98,
+              "auroc": 0.9806691201070592,
+              "auprc_trapz": 0.8058316370352439,
+              "ap": 0.8066940998894458,
+              "confusion_at_0.5": {
+                "tn": 3032,
+                "fp": 18,
+                "fn": 33,
+                "tp": 65
+              },
+              "sensitivity_at_0.5": 0.6632653061224489,
+              "specificity_at_0.5": 0.9940983606557378,
+              "sensitivity_at_specificity95": 0.9285714285714286,
+              "threshold_at_specificity95": 0.010611421428620815
+            },
+            "65plus": {
+              "count": 1213,
+              "positives": 78,
+              "auroc": 0.9754546481418729,
+              "auprc_trapz": 0.8048949424033903,
+              "ap": 0.8058583293852747,
+              "confusion_at_0.5": {
+                "tn": 1126,
+                "fp": 9,
+                "fn": 34,
+                "tp": 44
+              },
+              "sensitivity_at_0.5": 0.5641025641025641,
+              "specificity_at_0.5": 0.9920704845814978,
+              "sensitivity_at_specificity95": 0.8461538461538461,
+              "threshold_at_specificity95": 0.023375315591692924
+            },
+            "missing_or_invalid": {
+              "count": 2,
+              "positives": 0,
+              "auroc": null,
+              "auprc_trapz": null,
+              "ap": null,
+              "confusion_at_0.5": {
+                "tn": 2,
+                "fp": 0,
+                "fn": 0,
+                "tp": 0
+              },
+              "sensitivity_at_0.5": null,
+              "specificity_at_0.5": 1.0,
+              "sensitivity_at_specificity95": null,
+              "threshold_at_specificity95": null
+            }
+          }
+        },
+        "delta_from_b0": {
+          "auroc": -0.0033127351533019933,
+          "ap": -0.015347316692262303,
+          "auprc_trapz": -0.015428022636395644
+        },
+        "paired_bootstrap_auroc_delta_95ci": [
+          -0.007607087865210457,
+          0.00015791012679081383
+        ],
+        "bootstrap_replicates": 1000,
+        "bootstrap_seed": 20261023,
+        "best_raw_auroc": 0.9831924958220672,
+        "best_ema_auroc": 0.9823619986712046,
+        "best_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/best.pt",
+        "last_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/last.pt",
+        "predictions": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/valid_predictions.csv",
+        "checkpoint_sha256": "bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a"
+      }
+    }
+  },
+  "completed_utc": "2026-10-23T06:21:59.755923+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "records.tar.gz": {
+    "sha256": "cade725b4dcc0669116884e8491763d7782ad3ed2c83ba117b79833c169e3cae",
+    "bytes": 1123525
+  },
+  "weights.tar": {
+    "sha256": "8bc7745e1f8bcddaf83ccd476be6951a967a7cb88f63761bf08bd0836b6b6d22",
+    "bytes": 3019847680
+  }
+}

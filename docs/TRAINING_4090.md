@@ -2,6 +2,8 @@
 
 代码分支：`codex/pretrained-auroc-improve`。后续正式训练由队友在 4090 上执行；本次开发在服务器独立目录验证。实际服务器测试范围和日志见 [验证记录](SERVER_HANDOFF_VALIDATION.md)。服务器 GPU 验证使用 V100，4090 尚需队友实测，跨硬件不保证逐位一致。
 
+已训练结果、原始日志与历史权重获取方法见 [正式结果报告](TRAINING_RESULTS.md) 和 [材料目录](../training_records/20261022-23/README.md)。可以下载已有B0固定best作为新refine的`--init-from`起点；已有refine best可供推理验证。旧实验尚存的材料与缺口分别保留，不要求为了材料整理而重训。
+
 ## 取得代码与环境
 
 在队友自己的机器执行，以下命令兼容 Bash/PowerShell（每条为一行）：

@@ -1,0 +1,102 @@
+{
+  "pid": 2259118,
+  "started_utc": "2026-10-22T13:46:54.181642+00:00",
+  "cwd": "/home/lichunyu/competition-fwq-pretrained",
+  "branch": "codex/fwq-pretrained-integration",
+  "revision": "041315c7a12449e29152be798823eb95df1efde1",
+  "gpu": 5,
+  "run_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z",
+  "stage_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/stage",
+  "exit_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/transfer.exit",
+  "source_snapshot": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+  "source_sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+  "source_best_epoch": 5,
+  "source_metrics": {
+    "count": 5849,
+    "positives": 191,
+    "auroc": 0.9865052309753692,
+    "ap": 0.8182377455893903,
+    "auprc_trapz": 0.8179048695223837
+  },
+  "b0_evaluation": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation",
+  "b0_log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation.log",
+  "age_log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training.log",
+  "age_output_root": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training",
+  "age_config": "configs/experiments/b0_crop384_age_residual_imagenet.json",
+  "age_epochs": 20,
+  "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+  "commands": [
+    {
+      "phase": "b0_evaluation",
+      "argv": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "-u",
+        "-m",
+        "glaucoma",
+        "evaluate",
+        "--checkpoint",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+        "--data-root",
+        "/home/lichunyu/competition/dataset/glaucoma_first",
+        "--device",
+        "cuda:0",
+        "--batch-size",
+        "32",
+        "--num-workers",
+        "4",
+        "--split",
+        "valid",
+        "--output-dir",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_evaluation"
+      ]
+    },
+    {
+      "phase": "b0_verification",
+      "argv": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/verify_transfer.py",
+        "b0"
+      ]
+    },
+    {
+      "phase": "gpu_check_before_age",
+      "argv": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/guard_gpu.py",
+        "5"
+      ]
+    },
+    {
+      "phase": "age_training",
+      "argv": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "-u",
+        "-m",
+        "glaucoma",
+        "train",
+        "--config",
+        "configs/experiments/b0_crop384_age_residual_imagenet.json",
+        "--data-root",
+        "/home/lichunyu/competition/dataset/glaucoma_first",
+        "--device",
+        "cuda:0",
+        "--image-cache",
+        "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+        "--init-from",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/b0_snapshot.pt",
+        "--output-root",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/age_training"
+      ]
+    },
+    {
+      "phase": "age_verification",
+      "argv": [
+        "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+        "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/transfer_20261022T134645Z/verify_transfer.py",
+        "age"
+      ]
+    }
+  ],
+  "final_b0_evaluation_required": true,
+  "original_pretraining_target_epochs": 30
+}

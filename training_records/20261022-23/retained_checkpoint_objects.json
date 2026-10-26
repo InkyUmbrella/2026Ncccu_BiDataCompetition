@@ -1,0 +1,62 @@
+{
+  "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18": {
+    "file": "weights/c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18.pt",
+    "bytes": 111732290,
+    "kind": "inference",
+    "epoch": 5
+  },
+  "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba": {
+    "file": "weights/873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba.pt",
+    "bytes": 446992894,
+    "kind": "training",
+    "epoch": 14
+  },
+  "a6c6f3ebe2309008684260521f83f280b10ebd0dd4db58f97f4b5650e1aa88ef": {
+    "file": "weights/a6c6f3ebe2309008684260521f83f280b10ebd0dd4db58f97f4b5650e1aa88ef.pt",
+    "bytes": 447008766,
+    "kind": "training",
+    "epoch": 30
+  },
+  "5faf9a04edf0c6dbde64d0543dae767db70932627b79f2080e65d476f1422830": {
+    "file": "weights/5faf9a04edf0c6dbde64d0543dae767db70932627b79f2080e65d476f1422830.pt",
+    "bytes": 111733882,
+    "kind": "inference",
+    "epoch": 1
+  },
+  "6f5a49b6f1e774cec18585709694b6ab98b7334548a3849c6aaeace62c2c83ff": {
+    "file": "weights/6f5a49b6f1e774cec18585709694b6ab98b7334548a3849c6aaeace62c2c83ff.pt",
+    "bytes": 447005654,
+    "kind": "training",
+    "epoch": 20
+  },
+  "1c8875a26260dd41c527d059d1421d2cefb6e5b619550ac2d0888052803f038a": {
+    "file": "weights/1c8875a26260dd41c527d059d1421d2cefb6e5b619550ac2d0888052803f038a.pt",
+    "bytes": 111732482,
+    "kind": "inference",
+    "epoch": 1
+  },
+  "7dccc3c5b3390b7e4ea721b53052cc29787fbbf108bd3ca0d3512f1d270f3fbd": {
+    "file": "weights/7dccc3c5b3390b7e4ea721b53052cc29787fbbf108bd3ca0d3512f1d270f3fbd.pt",
+    "bytes": 558730295,
+    "kind": "training",
+    "epoch": 10
+  },
+  "bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a": {
+    "file": "weights/bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a.pt",
+    "bytes": 111732482,
+    "kind": "inference",
+    "epoch": 6
+  },
+  "4920f74bb48ff2d06126069f29e58f7141377b753b06cf3b9de527aa5a427d5e": {
+    "file": "weights/4920f74bb48ff2d06126069f29e58f7141377b753b06cf3b9de527aa5a427d5e.pt",
+    "bytes": 558739255,
+    "kind": "training",
+    "epoch": 15
+  },
+  "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d": {
+    "file": "weights/983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d.pth",
+    "bytes": 114419221,
+    "kind": "official_pretrained_state_dict",
+    "epoch": null
+  }
+}

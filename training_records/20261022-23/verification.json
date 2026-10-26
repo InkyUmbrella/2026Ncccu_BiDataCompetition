@@ -1,0 +1,12 @@
+{
+  "verification": {
+    "record_files_verified": 119,
+    "weight_files_verified": 10,
+    "weights_checked": true,
+    "historical_per_epoch_archive_complete": false
+  },
+  "tampered_record_rejected": true,
+  "official_split_audits_checked": 4,
+  "fixed_initialization_hashes_match": true,
+  "execution_environment": "server CPU only; no training or inference"
+}

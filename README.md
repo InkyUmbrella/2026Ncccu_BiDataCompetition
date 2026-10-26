@@ -5,6 +5,8 @@
 
 队友在 RTX 4090 上继续训练，请使用 [4090 训练交接](docs/TRAINING_4090.md)：包含固定依赖、B0→refine 启动、完整断点恢复和赛事核验材料保存方法。
 
+已完成的B0、年龄残差、refine和restart结果及历史材料，见 [训练结果汇总](docs/TRAINING_RESULTS.md) 和 [归档材料目录](training_records/20261022-23/README.md)。当前最高完整valid AUROC为refine的0.987328325；历史逐轮checkpoint缺口在报告中明确列出。
+
 ## 目录
 
 ```text

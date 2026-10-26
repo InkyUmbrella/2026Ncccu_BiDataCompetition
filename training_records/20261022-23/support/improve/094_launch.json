@@ -1,0 +1,31 @@
+{
+  "pid": 2918770,
+  "pid_start_ticks": 135671953,
+  "uid": 4800009,
+  "cwd": "/home/lichunyu/competition-pretrained-improve",
+  "command": [
+    "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+    "-u",
+    "/home/lichunyu/competition-pretrained-improve/scripts/pretrained_improve.py",
+    "supervise",
+    "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414"
+  ],
+  "started_utc": "2026-10-23T02:01:14.863736+00:00",
+  "run_root": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414",
+  "status_file": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/status.json",
+  "exit_file": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/supervisor.exit",
+  "log": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/supervisor.log",
+  "context_file": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/context.json",
+  "source_manifest": "/home/lichunyu/competition-pretrained-improve/source-manifest.json",
+  "physical_gpus": [
+    4,
+    5
+  ],
+  "reserved_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "source_archive_sha256": "138fbd93591ed51c2353a13ea3cb3debd129f7ee21861beeb0c7d8cf8f3efb06"
+}

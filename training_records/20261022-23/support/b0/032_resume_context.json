@@ -1,0 +1,60 @@
+{
+  "checkpoint": "/home/lichunyu/competition-pretrained/outputs/pretrained-validation/migrations/gpu2-to-gpu4_20261022T142431Z/resume_last.pt",
+  "checkpoint_config": {
+    "experiment": "b0_crop384_imagenet",
+    "seed": 42,
+    "device": "cuda",
+    "output_root": "outputs/pretrained",
+    "data": {
+      "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+      "image_size": 384,
+      "num_workers": 8,
+      "verify_images": true,
+      "crop_black_border": true,
+      "crop_threshold": 10,
+      "crop_margin": 0.03,
+      "normalization": "imagenet"
+    },
+    "model": {
+      "name": "convnext_tiny",
+      "params": {
+        "use_age": false,
+        "hidden_dim": 128,
+        "dropout": 0.2
+      },
+      "weights": "IMAGENET1K_V1"
+    },
+    "train": {
+      "epochs": 30,
+      "batch_size": 32,
+      "accumulation_steps": 4,
+      "learning_rate": 0.0001,
+      "min_learning_rate": 1e-06,
+      "warmup_epochs": 1,
+      "weight_decay": 0.05,
+      "pos_weight": 5.0,
+      "grad_clip": 1.0,
+      "amp": true,
+      "positive_fraction": null,
+      "freeze_image_epochs": 0,
+      "image_lr_scale": 1.0
+    }
+  },
+  "completed_epochs": 14,
+  "global_step": 5622,
+  "checkpoint_sha256": "873c6735f27d11a5e2df7e11d89111957c02202d78384a0665f9ef67deb18cba",
+  "cache": "/var/tmp/glaucoma-pretrained-lichunyu-crop384-20261022",
+  "cache_manifest_sha256": "956f14d2fa23d9255fcd471e818da11972fdb1e02dd3cc5cd4329928a24285ea",
+  "csv_hashes": {
+    "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+    "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+  },
+  "source_run": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d",
+  "source_audit": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/data_audit.json",
+  "source_metadata": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T103749Z_393b6b2d/metadata.json",
+  "audit_sha256": "2a1a3e3af1f8579aca2d236da5c4ed2a1670b05d53c432ec6aec8ac94e74496f",
+  "config": "/home/lichunyu/competition-pretrained/configs/experiments/b0_crop384_imagenet.json",
+  "cwd": "/home/lichunyu/competition-pretrained",
+  "target_gpu": 4,
+  "data_root": "/home/lichunyu/competition/dataset/glaucoma_first"
+}

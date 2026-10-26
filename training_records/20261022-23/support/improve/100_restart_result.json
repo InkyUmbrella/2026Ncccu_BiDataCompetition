@@ -1,0 +1,112 @@
+{
+  "run_directory": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44",
+  "completed_epochs": 15,
+  "verified": true,
+  "best_epoch": 6,
+  "best_weights_variant": "raw",
+  "valid": {
+    "count": 5849,
+    "positives": 191,
+    "auroc": 0.9831924958220672,
+    "auprc_trapz": 0.8024768468859881,
+    "ap": 0.802890428897128,
+    "confusion_at_0.5": {
+      "tn": 5631,
+      "fp": 27,
+      "fn": 76,
+      "tp": 115
+    },
+    "sensitivity_at_0.5": 0.6020942408376964,
+    "specificity_at_0.5": 0.9952279957582184,
+    "sensitivity_at_specificity95": 0.9214659685863874,
+    "threshold_at_specificity95": 0.0076066721230745316,
+    "loss": 0.2192489317501915,
+    "age_groups": {
+      "under50": {
+        "count": 1486,
+        "positives": 15,
+        "auroc": 0.9961477452979832,
+        "auprc_trapz": 0.8776410737886058,
+        "ap": 0.8797463768115941,
+        "confusion_at_0.5": {
+          "tn": 1471,
+          "fp": 0,
+          "fn": 9,
+          "tp": 6
+        },
+        "sensitivity_at_0.5": 0.4,
+        "specificity_at_0.5": 1.0,
+        "sensitivity_at_specificity95": 1.0,
+        "threshold_at_specificity95": 0.002278330735862255
+      },
+      "50to64": {
+        "count": 3148,
+        "positives": 98,
+        "auroc": 0.9806691201070592,
+        "auprc_trapz": 0.8058316370352439,
+        "ap": 0.8066940998894458,
+        "confusion_at_0.5": {
+          "tn": 3032,
+          "fp": 18,
+          "fn": 33,
+          "tp": 65
+        },
+        "sensitivity_at_0.5": 0.6632653061224489,
+        "specificity_at_0.5": 0.9940983606557378,
+        "sensitivity_at_specificity95": 0.9285714285714286,
+        "threshold_at_specificity95": 0.010611421428620815
+      },
+      "65plus": {
+        "count": 1213,
+        "positives": 78,
+        "auroc": 0.9754546481418729,
+        "auprc_trapz": 0.8048949424033903,
+        "ap": 0.8058583293852747,
+        "confusion_at_0.5": {
+          "tn": 1126,
+          "fp": 9,
+          "fn": 34,
+          "tp": 44
+        },
+        "sensitivity_at_0.5": 0.5641025641025641,
+        "specificity_at_0.5": 0.9920704845814978,
+        "sensitivity_at_specificity95": 0.8461538461538461,
+        "threshold_at_specificity95": 0.023375315591692924
+      },
+      "missing_or_invalid": {
+        "count": 2,
+        "positives": 0,
+        "auroc": null,
+        "auprc_trapz": null,
+        "ap": null,
+        "confusion_at_0.5": {
+          "tn": 2,
+          "fp": 0,
+          "fn": 0,
+          "tp": 0
+        },
+        "sensitivity_at_0.5": null,
+        "specificity_at_0.5": 1.0,
+        "sensitivity_at_specificity95": null,
+        "threshold_at_specificity95": null
+      }
+    }
+  },
+  "delta_from_b0": {
+    "auroc": -0.0033127351533019933,
+    "ap": -0.015347316692262303,
+    "auprc_trapz": -0.015428022636395644
+  },
+  "paired_bootstrap_auroc_delta_95ci": [
+    -0.007607087865210457,
+    0.00015791012679081383
+  ],
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 20261023,
+  "best_raw_auroc": 0.9831924958220672,
+  "best_ema_auroc": 0.9823619986712046,
+  "best_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/best.pt",
+  "last_checkpoint": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/last.pt",
+  "predictions": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/valid_predictions.csv",
+  "checkpoint_sha256": "bd2575e00c62d52bb043fc658b6755a1631c0013ccc868e2bc7ff0628577995a"
+}

@@ -1,0 +1,42 @@
+{
+  "experiment": "b0_crop384_imagenet_backbone_ema",
+  "seed": 42,
+  "device": "cuda:0",
+  "output_root": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart",
+  "data": {
+    "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+    "image_size": 384,
+    "num_workers": 8,
+    "verify_images": true,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03,
+    "normalization": "imagenet"
+  },
+  "model": {
+    "name": "convnext_tiny",
+    "params": {
+      "use_age": false,
+      "hidden_dim": 128,
+      "dropout": 0.2
+    },
+    "weights": "IMAGENET1K_V1"
+  },
+  "train": {
+    "epochs": 15,
+    "batch_size": 32,
+    "accumulation_steps": 4,
+    "learning_rate": 0.0001,
+    "min_learning_rate": 1e-06,
+    "warmup_epochs": 1,
+    "weight_decay": 0.05,
+    "pos_weight": 5.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "positive_fraction": null,
+    "freeze_image_epochs": 0,
+    "image_lr_scale": 1.0,
+    "backbone_lr_scale": 0.2,
+    "ema_decay": 0.999
+  }
+}

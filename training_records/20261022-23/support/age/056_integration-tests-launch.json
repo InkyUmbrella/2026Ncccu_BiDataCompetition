@@ -1,0 +1,9 @@
+{
+  "pid": 2253884,
+  "started_utc": "2026-10-22T13:42:26.137642+00:00",
+  "cwd": "/home/lichunyu/competition-fwq-pretrained",
+  "revision": "041315c7a12449e29152be798823eb95df1efde1",
+  "branch": "codex/fwq-pretrained-integration",
+  "log": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/integration-tests.log",
+  "exit_file": "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer/integration-tests.exit"
+}

@@ -1,0 +1,20 @@
+{
+  "roots_searched": [
+    "/home/lichunyu/competition-pretrained/outputs/pretrained",
+    "/home/lichunyu/competition-pretrained/outputs/pretrained-validation",
+    "/home/lichunyu/competition-fwq-pretrained/outputs/fwq-transfer",
+    "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve"
+  ],
+  "weights_total_bytes": 3019827221,
+  "timestamp_semantics": "Current observation of existing file mtime; no historical hash ledger was created retroactively",
+  "missing_materials": [
+    "Most epoch-specific checkpoint files were overwritten by the historical trainer",
+    "No contemporaneous per-epoch timestamp/SHA256 ledger",
+    "No original model_initial.pt snapshots (pretrained/init-from source files are retained)"
+  ],
+  "not_collected": [
+    "Raw dataset images",
+    "Competition test predictions",
+    "Unrelated projects or users"
+  ]
+}
