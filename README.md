@@ -3,6 +3,8 @@
 基线包括 B0（ConvNeXt-Tiny 整图分类）和 B1（相同骨干融合年龄），均为随机初始化。
 实验规格见 [基线设计](docs/BASELINE_DESIGN.md)，通信环境见 [六卡测试报告](docs/SIX_GPU_FEASIBILITY.md)。
 
+队友在 RTX 4090 上继续训练，请使用 [4090 训练交接](docs/TRAINING_4090.md)：包含固定依赖、B0→refine 启动、完整断点恢复和赛事核验材料保存方法。
+
 ## 目录
 
 ```text
@@ -64,7 +66,7 @@ CUDA_VISIBLE_DEVICES=0 python -m glaucoma train --config configs/baseline_b0.jso
 
 恢复从完整 epoch 的边界开始，创建新的运行目录，并恢复优化器、GradScaler、随机状态、历史记录和最佳权重。只允许修改数据路径和输出路径，CSV 内容必须一致；图片内容仍需由数据管理保证不变。相同环境与配置下可复现实验，不承诺跨硬件逐位一致。
 
-每次运行保存 `config.json`、`metadata.json`、`age_stats.json`、`history.json`、`metrics.json`、`valid_predictions.csv`、`best.pt` 和 `last.pt`。`best.pt` 是推理文件；`last.pt` 包含恢复训练所需状态，不属于部署文件。训练日志打印到终端。
+每次运行保存配置、环境、源码快照、实际初始化及哈希、每轮完整 `checkpoints/epoch_NNNN.pt` 和时间/哈希清单，以及 `history.json`、`metrics.json`、`valid_predictions.csv`、`best.pt`、`last.pt`。`best.pt` 是推理文件；`last.pt` 包含恢复训练所需状态。使用 `python scripts/train_audited.py --config CONFIG --data-root DATA_ROOT` 自动留存完整终端日志、命令和退出码；结束后用 `python -m glaucoma verify-run --run-dir RUN_DIRECTORY` 重算产物哈希。详细目录和恢复证据链见上述交接文档。
 
 ## 评估与生成提交
 
@@ -106,7 +108,7 @@ CUDA_VISIBLE_DEVICES=0 GLAUCOMA_CUDA_SMOKE=1 OMP_NUM_THREADS=2 PYTHONPATH=src \
 
 2026-10-16 已在 itgpu 的 glaucoma 环境通过 9 项 CPU 合成测试，以及 B0/B1 的 V100 FP16 测试。
 384×384、batch=16 时，两个变体的峰值已分配张量显存约 3,029 MiB（不含 CUDA 驱动及缓存保留开销）。
-这些检查验证工程流程，不代表正式数据上的模型效果或 T4 推理延迟；正式比赛数据训练尚未启动。
+这些检查验证工程流程，不代表正式数据上的模型效果或 T4 推理延迟。后续正式实验结果及本次交接验证范围见 [改进实验](docs/PRETRAINED_IMPROVEMENT.md) 和 [服务器验证记录](docs/SERVER_HANDOFF_VALIDATION.md)。
 
 Training I/O speedup: see [docs/TRAINING_SPEED.md](docs/TRAINING_SPEED.md).
 

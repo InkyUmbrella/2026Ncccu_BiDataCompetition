@@ -120,7 +120,10 @@ class PretrainedTests(unittest.TestCase):
             fixture(root / "data")
             config.data.root = str(root / "data")
             config.output_root = str(root / "outputs")
-            with patch.object(ConvNeXt_Tiny_Weights, "get_state_dict", return_value=state):
+            weights = root / "synthetic-pretrained.pth"
+            torch.save(state, weights)
+            with patch.object(ConvNeXt_Tiny_Weights, "get_state_dict", return_value=state), \
+                 patch("glaucoma.engine.audit.pretrained_source", return_value=weights):
                 partial = train(config, stop_after_epochs=1)
             with patch.object(ConvNeXt_Tiny_Weights, "get_state_dict", side_effect=AssertionError("network used")):
                 resumed = train(config, resume=partial / "last.pt")

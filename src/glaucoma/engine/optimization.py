@@ -10,6 +10,8 @@ def build_optimizer(model, config):
         if parameter.requires_grad:
             no_decay = parameter.ndim <= 1 or name.endswith(".bias")
             scale = config.image_lr_scale if name.startswith(("encoder.", "head.")) else 1.0
+            if name.startswith("encoder."):
+                scale *= config.backbone_lr_scale
             groups.setdefault(scale, {False: [], True: []})[no_decay].append(parameter)
     # Preserve legacy decay/no-decay group order, including weight_decay=0.
     return torch.optim.AdamW([{"params": params[no_decay],
@@ -26,7 +28,8 @@ def learning_rate(step, total_steps, warmup_steps, config):
     return config.min_learning_rate + (config.learning_rate - config.min_learning_rate) * (1 + math.cos(math.pi * progress)) / 2
 
 
-def train_one_epoch(model, loader, optimizer, scaler, device, config, global_step, total_steps, warmup_steps):
+def train_one_epoch(model, loader, optimizer, scaler, device, config, global_step, total_steps, warmup_steps,
+                    model_ema=None):
     """Normalize gradients by samples in each window, including a short final window."""
     model.train()
     optimizer.zero_grad(set_to_none=True)
@@ -61,6 +64,8 @@ def train_one_epoch(model, loader, optimizer, scaler, device, config, global_ste
             scaler.update()
             if scaler.get_scale() >= previous_scale:
                 global_step += 1
+                if model_ema is not None:
+                    model_ema.update_parameters(model)
             else:
                 skipped += 1
             optimizer.zero_grad(set_to_none=True)

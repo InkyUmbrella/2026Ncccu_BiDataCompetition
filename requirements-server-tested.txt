@@ -1,0 +1,8 @@
+# Direct dependency versions verified in the server glaucoma environment.
+# Install the CUDA wheels from https://download.pytorch.org/whl/cu121 first;
+# see docs/TRAINING_4090.md. This is not a lock of all transitive dependencies.
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+numpy==2.4.6
+scikit-learn==1.9.1
+Pillow==12.3.0

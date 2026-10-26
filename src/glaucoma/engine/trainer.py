@@ -3,6 +3,7 @@ from pathlib import Path
 import time
 
 import torch
+from torch.optim.swa_utils import AveragedModel, get_ema_avg_fn
 from torch.utils.data import DataLoader, WeightedRandomSampler
 
 from ..config import Config
@@ -15,6 +16,7 @@ from ..utils import (environment_metadata, new_run_directory, resolve_device,
                      save_json, seed_everything, seed_worker, sha256_file)
 from .checkpoint import (cpu_state, inference_payload, initialize_model, read_checkpoint, restore_rng,
                          rng_state, save_checkpoint)
+from .audit import finalize_run_audit, record_initialization, save_epoch_checkpoint, snapshot_sources
 from .evaluation import collect_predictions, write_predictions
 from .optimization import build_optimizer, train_one_epoch
 
@@ -86,6 +88,7 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
                     image_cache=str(Path(image_cache).resolve()) if image_cache else None,
                     device=str(device), gpu=torch.cuda.get_device_name(device) if device.type == "cuda" else None)
     save_json(run_dir / "metadata.json", metadata)
+    snapshot_sources(run_dir)
     caches = {}
     preprocessing = {"crop_black_border": config.data.crop_black_border,
                      "crop_threshold": config.data.crop_threshold, "crop_margin": config.data.crop_margin}
@@ -124,6 +127,18 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         history, global_step, best = saved["history"], saved["global_step"], saved["best"]
         restore_rng(saved["rng"], device)
         save_checkpoint(run_dir / "best.pt", best)
+    model_ema = None
+    if config.train.ema_decay is not None:
+        model_ema = AveragedModel(model, avg_fn=get_ema_avg_fn(config.train.ema_decay),
+                                  use_buffers=True).requires_grad_(False)
+        if saved:
+            if "ema" not in saved:
+                raise ValueError("EMA resume requires the saved EMA state")
+            model_ema.load_state_dict(saved["ema"], strict=True)
+    record_initialization(run_dir, model, config, age_stats, start_epoch,
+                          source_file=resume or init_from,
+                          mode="resume" if saved else "init_from" if initialization else "new",
+                          parent_run=saved.get("run_directory") if saved else None)
     end_epoch = config.train.epochs if stop_after_epochs is None else min(config.train.epochs, start_epoch + stop_after_epochs)
     for epoch in range(start_epoch, end_epoch):
         started = time.monotonic()
@@ -133,24 +148,39 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
                              config.seed + epoch, training=True, pin_memory=device.type == "cuda",
                              positive_fraction=config.train.positive_fraction)
         training, global_step = train_one_epoch(model, loader, optimizer, scaler, device, config.train,
-                                                global_step, total_steps, warmup_steps)
+                                                global_step, total_steps, warmup_steps, model_ema)
         _, validation = collect_predictions(model, valid_loader, device, config.train.pos_weight, config.train.amp)
+        selected_model, variant = model, "raw"
+        raw_validation = validation
+        ema_validation = None
+        if model_ema is not None:
+            _, ema_validation = collect_predictions(model_ema.module, valid_loader, device,
+                                                    config.train.pos_weight, config.train.amp)
+            if ((ema_validation["auroc"], ema_validation["auprc_trapz"])
+                    > (validation["auroc"], validation["auprc_trapz"])):
+                selected_model, variant, validation = model_ema.module, "ema", ema_validation
         row = {"epoch": epoch, "global_step": global_step, "train": training, "valid": validation,
                "image_frozen": bool(getattr(model, "image_frozen", False)),
                "seconds": round(time.monotonic() - started, 3)}
+        if model_ema is not None:
+            row.update(valid_raw=raw_validation, valid_ema=ema_validation, selected_weights=variant)
         history.append(row)
         score = (validation["auroc"], validation["auprc_trapz"])
         if best is None or score > (best["metrics"]["auroc"], best["metrics"]["auprc_trapz"]):
-            best = inference_payload(model, config, age_stats, epoch, validation)
+            best = inference_payload(selected_model, config, age_stats, epoch, validation)
+            if model_ema is not None:
+                best["weights_variant"] = variant
             save_checkpoint(run_dir / "best.pt", best)
         # A self-contained recovery file includes the best weights as well as the
         # current optimizer state; it is not part of the deployment artifact.
-        save_checkpoint(run_dir / "last.pt", {
+        save_epoch_checkpoint(run_dir, {
             "format_version": 1, "kind": "training", "config": config.to_dict(),
+            "run_directory": str(run_dir.resolve()),
             "age_stats": age_stats.to_dict(), "csv_hashes": csv_hashes,
             "epoch": epoch, "global_step": global_step, "model_state": cpu_state(model),
             "optimizer": optimizer.state_dict(), "scaler": scaler.state_dict(),
-            "rng": rng_state(device), "history": history, "best": best})
+            "rng": rng_state(device), "history": history, "best": best,
+            **({"ema": cpu_state(model_ema)} if model_ema is not None else {})})
         save_json(run_dir / "history.json", history)
         print(f"[epoch {epoch + 1}/{config.train.epochs}] train_loss={training['loss']:.6f} "
               f"valid_auc={validation['auroc']:.6f} valid_ap={validation['ap']:.6f}", flush=True)
@@ -158,5 +188,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     predictions, metrics = collect_predictions(model, valid_loader, device, config.train.pos_weight, config.train.amp)
     write_predictions(run_dir / "valid_predictions.csv", predictions)
     save_json(run_dir / "metrics.json", {"best_epoch": best["epoch"], "completed_epochs": end_epoch,
-                                         "training_complete": end_epoch == config.train.epochs, "valid": metrics})
+                                         "training_complete": end_epoch == config.train.epochs, "valid": metrics,
+                                         **({"best_weights_variant": best["weights_variant"]}
+                                            if model_ema is not None else {})})
+    finalize_run_audit(run_dir)
     return run_dir

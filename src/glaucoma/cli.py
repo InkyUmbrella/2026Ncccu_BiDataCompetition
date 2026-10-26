@@ -1,6 +1,7 @@
 """Entrypoints stay thin; model/data/engine code is reusable without the CLI."""
 
 import argparse
+import json
 from pathlib import Path
 
 from .config import Config
@@ -10,6 +11,8 @@ def build_parser():
     parser = argparse.ArgumentParser(description="Glaucoma baseline training and inference")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("models", help="List registered models")
+    verification = commands.add_parser("verify-run", help="Verify archived training artifact SHA256 hashes")
+    verification.add_argument("--run-dir", required=True)
     cache = commands.add_parser("cache-images", help="Build lossless train/valid preprocessing cache")
     cache.add_argument("--config", help="Use the experiment's size and preprocessing settings")
     cache.add_argument("--data-root")
@@ -55,6 +58,9 @@ def main(argv=None):
     if args.command == "models":
         from .models import available_models
         print("\n".join(available_models()))
+    elif args.command == "verify-run":
+        from .engine.audit import verify_run_audit
+        print(json.dumps(verify_run_audit(args.run_dir), ensure_ascii=False, indent=2))
     elif args.command == "cache-images":
         from .data.cache import prepare_cache
         config = Config.load(args.config) if args.config else Config()

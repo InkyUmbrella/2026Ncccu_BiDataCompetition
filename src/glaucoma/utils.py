@@ -3,9 +3,11 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import platform
 from pathlib import Path
 import random
 import subprocess
+import sys
 import tempfile
 import uuid
 
@@ -76,11 +78,16 @@ def sha256_file(path):
 
 
 def environment_metadata():
-    metadata = {"torch": str(torch.__version__), "cuda_runtime": torch.version.cuda,
+    metadata = {"python": sys.version, "python_executable": sys.executable,
+                "platform": platform.platform(), "torch": str(torch.__version__),
+                "cuda_runtime": torch.version.cuda, "cudnn_version": torch.backends.cudnn.version(),
                 "packages": {}, "cudnn_deterministic": torch.backends.cudnn.deterministic,
                 "cudnn_benchmark": torch.backends.cudnn.benchmark}
     for name in ("torchvision", "numpy", "scikit-learn", "Pillow"):
         metadata["packages"][name] = importlib.metadata.version(name)
+    metadata["installed_packages"] = {
+        item.metadata["Name"]: item.version for item in importlib.metadata.distributions()
+        if item.metadata["Name"]}
     try:
         metadata["git_revision"] = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL, timeout=5).strip()
