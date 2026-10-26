@@ -4,6 +4,8 @@
 
 已训练结果、原始日志与历史权重获取方法见 [正式结果报告](TRAINING_RESULTS.md) 和 [材料目录](../training_records/20261022-23/README.md)。可以下载已有B0固定best作为新refine的`--init-from`起点；已有refine best可供推理验证。旧实验尚存的材料与缺口分别保留，不要求为了材料整理而重训。
 
+新开发按 [规则核查](COMPLIANCE_REVIEW.md) 和 [后续计划](DEVELOPMENT_PLAN.md) 执行；最终T4 16GB上的100ms端到端约束与4090训练速度分别验证。下文仍是现有已实现配方的命令，计划中的512/DINO配置不能当作已可用命令。
+
 ## 取得代码与环境
 
 在队友自己的机器执行，以下命令兼容 Bash/PowerShell（每条为一行）：

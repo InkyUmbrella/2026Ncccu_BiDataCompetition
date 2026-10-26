@@ -7,6 +7,8 @@
 
 已完成的B0、年龄残差、refine和restart结果及历史材料，见 [训练结果汇总](docs/TRAINING_RESULTS.md) 和 [归档材料目录](training_records/20261022-23/README.md)。当前最高完整valid AUROC为refine的0.987328325；历史逐轮checkpoint缺口在报告中明确列出。
 
+后续开发以 [参赛规则合规核查](docs/COMPLIANCE_REVIEW.md) 为边界，按 [T4交付与AUROC开发计划](docs/DEVELOPMENT_PLAN.md) 推进。最终评测为单张T4 16GB，代码在服务器跑通、正式训练交队友4090执行；计划中的新配方尚未实现或训练。
+
 ## 目录
 
 ```text

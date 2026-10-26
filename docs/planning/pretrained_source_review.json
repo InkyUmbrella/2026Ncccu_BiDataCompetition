@@ -1,0 +1,52 @@
+{
+  "review_date_beijing": "2026-10-27",
+  "scope": "Planning evidence; not a runtime allowlist or a claim of completed candidate training",
+  "competition_rule_pdf_sha256": "ff6aa3adbfd3d000194253055a93dbce8a140031c8432f892046a49de8136fb6",
+  "current_convnext_tiny": {
+    "provider": "torchvision 0.20.1",
+    "weights_id": "ConvNeXt_Tiny_Weights.IMAGENET1K_V1",
+    "upstream_data": "ImageNet-1K",
+    "url": "https://download.pytorch.org/models/convnext_tiny-983f1562.pth",
+    "anonymous_head_status": 200,
+    "head_content_length": 114419221,
+    "historically_verified_file_sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+    "new_full_file_download_performed": false,
+    "code_license": "BSD-3-Clause",
+    "specific_weight_license_materials_complete": false,
+    "references": [
+      "https://docs.pytorch.org/vision/0.20/models/generated/torchvision.models.convnext_tiny.html",
+      "https://docs.pytorch.org/vision/0.20/models.html#general-information-on-pre-trained-weights",
+      "https://github.com/pytorch/vision/blob/v0.20.1/LICENSE"
+    ]
+  },
+  "candidate_dinov2_vits14": {
+    "status": "candidate_for_source_and_engineering_verification",
+    "scope": "Original general-purpose DINOv2 ViT-S/14; excludes medical variants and derived weights",
+    "upstream_data": "LVD-142M",
+    "declared_code_and_weights_license": "Apache-2.0",
+    "url": "https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth",
+    "anonymous_head_status": 200,
+    "head_content_length": 88283115,
+    "downloaded_file_sha256": null,
+    "pinned_upstream_code_revision": null,
+    "implemented_or_trained": false,
+    "references": [
+      "https://github.com/facebookresearch/dinov2/blob/main/MODEL_CARD.md",
+      "https://github.com/facebookresearch/dinov2#license",
+      "https://github.com/facebookresearch/dinov2/blob/main/LICENSE",
+      "https://arxiv.org/html/2304.07193v2#S3"
+    ]
+  },
+  "excluded_sources": [
+    {
+      "scope": "Official ConvNeXt V2 ImageNet pretrained and fine-tuned weights",
+      "reason": "Upstream states CC-BY-NC; competition excludes NC weights",
+      "reference": "https://github.com/facebookresearch/ConvNeXt-V2#license"
+    },
+    {
+      "scope": "XRay-DINO, Cell-DINO and medical-specific derivatives",
+      "reason": "Medical pretraining is excluded, regardless of general DINOv2 licensing",
+      "reference": "https://github.com/facebookresearch/dinov2"
+    }
+  ]
+}

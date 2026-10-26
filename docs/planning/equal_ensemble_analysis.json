@@ -1,0 +1,42 @@
+{
+  "count": 5849,
+  "positives": 191,
+  "prediction_paths": {
+    "b0": "/home/lichunyu/competition-pretrained/outputs/pretrained/b0_crop384_imagenet/seed42_20261022T142612Z_8827a159/valid_predictions.csv",
+    "refine": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/refine/b0_crop384_refine_ema/seed42_20261023T020256Z_64a81fc3/valid_predictions.csv",
+    "restart": "/home/lichunyu/competition-pretrained-improve/outputs/pretrained-improve/attempt_20261023T020113Z_aea57414/runs/restart/b0_crop384_imagenet_backbone_ema/seed42_20261023T020256Z_5f086a44/valid_predictions.csv"
+  },
+  "method": "Two predefined equal-probability means, without fitting blend weights",
+  "results": {
+    "b0": {
+      "auroc": 0.9865052309753692,
+      "ap": 0.8182377455893903,
+      "auprc_trapz": 0.8179048695223837
+    },
+    "refine": {
+      "auroc": 0.9873283253661128,
+      "ap": 0.8322199714767966,
+      "auprc_trapz": 0.8319153177288366
+    },
+    "restart": {
+      "auroc": 0.9831924958220672,
+      "ap": 0.802890428897128,
+      "auprc_trapz": 0.8024768468859881
+    },
+    "equal_b0_refine": {
+      "auroc": 0.987076631522063,
+      "ap": 0.8289719792561513,
+      "auprc_trapz": 0.8286064778834802
+    },
+    "equal_all_three": {
+      "auroc": 0.986927650974666,
+      "ap": 0.8238599582511438,
+      "auprc_trapz": 0.8234601620548859
+    }
+  },
+  "score_correlations": {
+    "b0_refine": 0.9508741327181182,
+    "refine_restart": 0.8866523649828858
+  },
+  "note": "Exploratory comparison on the already reused validation set; not an unbiased independent test."
+}
