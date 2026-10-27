@@ -35,7 +35,9 @@
       "https://github.com/facebookresearch/dinov2#license",
       "https://github.com/facebookresearch/dinov2/blob/main/LICENSE",
       "https://arxiv.org/html/2304.07193v2#S3"
-    ]
+    ],
+    "priority": "primary_new_pretraining_direction_before_convnext_512",
+    "training_method": "15 epochs supervised fine-tuning with official train labels; no medical self-supervised continuation"
   },
   "excluded_sources": [
     {
@@ -47,6 +49,40 @@
       "scope": "XRay-DINO, Cell-DINO and medical-specific derivatives",
       "reason": "Medical pretraining is excluded, regardless of general DINOv2 licensing",
       "reference": "https://github.com/facebookresearch/dinov2"
+    },
+    {
+      "scope": "facebook/dinov3-vits16-pretrain-lvd1689m official weights as reviewed 2026-10-27",
+      "reason": "Official model page requires login/access conditions and API reports manual gated; not excluded on a claim of NC licensing",
+      "reference": "https://huggingface.co/facebook/dinov3-vits16-pretrain-lvd1689m"
     }
-  ]
+  ],
+  "direction_review": {
+    "reviewed_at_utc": "2026-10-27T13:22:18.244422+00:00",
+    "dinov2_documentation_revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "documentation_files": [
+      {
+        "source_url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/README.md",
+        "file": "README.md",
+        "bytes": 32799,
+        "sha256": "d1bc2e9686522bbd66ed6123dc81eb36b3a98e8ea9a2ca97778f54a1c641c9e1"
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/MODEL_CARD.md",
+        "file": "MODEL_CARD.md",
+        "bytes": 9152,
+        "sha256": "70ca59606bee0a5fbb1baec80e7e29a93cd7cfbe26ca1910c52a852c4aab09d0"
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/LICENSE",
+        "file": "LICENSE",
+        "bytes": 11359,
+        "sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7"
+      }
+    ],
+    "implementation_revision_selected": false,
+    "dinov3_model_id": "facebook/dinov3-vits16-pretrain-lvd1689m",
+    "dinov3_gated": "manual",
+    "dinov3_api_url": "https://huggingface.co/api/models/facebook/dinov3-vits16-pretrain-lvd1689m",
+    "model_weights_downloaded": false
+  }
 }

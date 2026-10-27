@@ -4,6 +4,25 @@
 
 目标：在合规、单图端到端≤100ms、实际部署文件≤500MB的候选中提高完整valid AUROC，并能交给队友在4090复现。**当前仅制定计划；下面的模块、配置和实验均不能当作已经实现或运行。**
 
+## 本轮预训练方向决策
+
+**优先验证“原始通用DINOv2-S/14公开骨干 → 官方train标签监督微调”，保留当前refine为成绩基准；512分辨率微调为第二选择。** 这里的“最佳”是结合现有证据、许可清晰度、工程投入和T4约束的优先判断，不是已经证明AUROC更高。
+
+规则允许使用通用自然图像预训练权重再做赛方标签监督微调；禁止在医学图片上继续二次预训练/自监督。因而本批不自行收集外部数据、重跑上游大规模预训练，也不把赛方眼底图片送入DINO/MAE式自监督续训。旧B0→refine是赛方标签监督微调链，不因权重来自旧任务就自动等同于被禁的医学自监督预训练。
+
+| 路线 | 优先级与依据 |
+|---|---|
+| 原始DINOv2 `dinov2_vits14`，无register版本 | 主要新方向：上游通用LVD-142M自监督学习得到的特征，与当前ImageNet监督ConvNeXt有差异；原始代码/权重许可范围明确。能否迁移到本题仍须正式valid检验 |
+| 现有ConvNeXt-Tiny refine 384 | 0.9873283254的历史成绩基准，保留文件；作为最终交付仍须补齐具体权重许可和T4验收 |
+| 固定旧B0→ConvNeXt-Tiny 512监督微调 | 保守备选，沿用已成功的初始化链；这是分辨率实验，不是新的上游预训练来源 |
+| DINOv2-B/L、更多预训练家族 | 本批不增加，避免体积/延迟与接入成本扩大；S尺寸小也不等于已达标 |
+
+DINOv2-S约21M参数；392/14=28，即784个patch，注意力开销仍需T4实测。先只接入官方**backbone-only**权重，分类头由本项目随机初始化并归档，不混用外部医学头、分割器或附加权重。上游的通用自监督学习和本项目禁止的医学自监督续训要分别记录。依据：[官方原始DINOv2许可](https://github.com/facebookresearch/dinov2#license)、[model card](https://github.com/facebookresearch/dinov2/blob/main/MODEL_CARD.md)、[论文数据章节](https://arxiv.org/html/2304.07193v2#S3)。
+
+本次还核对了[DINOv3-S/16官方权重页](https://huggingface.co/facebook/dinov3-vits16-pretrain-lvd1689m)：需登录并同意访问条件，官方API标为manual gated，故本批排除；不将其误写成NC许可，也不通过第三方镜像绕过来源限制。[ConvNeXt V2官方权重](https://github.com/facebookresearch/ConvNeXt-V2#license)另因NC排除；医学专用预训练、任何医学二次预训练/自监督仍排除。具体核查记录见 [来源记录](planning/pretrained_source_review.json)。
+
+**只调整优先顺序，不同时重写训练配方。** P0后可先做无新训练的P1；有限4090训练预算优先给P2 DINOv2 15轮，随后才是P3 512十轮。保持已有低骨干LR、warmup、有效batch128和EMA双轨验证，不再叠加冻结/逐层解冻、CLS+patch pooling、新损失或采样网格。官方model card建议先利用冻结特征，但这不是本赛题的比较证据；本批不额外加入正式线性探针，若将来加入须替换预算中的一个实验。微调和推理使用的归一化/裁边/补边规格须固定并留痕。
+
 ## 现有证据决定的取舍
 
 | 已有结果 | 开发含义 |
@@ -18,7 +37,7 @@
 
 ## P0：先完成许可、统一推理和T4计时基础
 
-这是第一个开发批次，优先于新增完整训练。
+这是第一个开发批次，优先于新增完整训练。主方向DINOv2的权重来源核验与统一推理入口先落实；不因原ConvNeXt具体许可材料仍待补齐而停止独立核对DINOv2。
 
 **拟交付：**
 
@@ -47,7 +66,27 @@
 
 双视图按两个sigmoid概率等权平均，变换和权重事前固定；不做随机TTA或大量角度/裁剪组合搜索。指标不提高则保留原单图；T4总耗时超过100ms则不作为最终候选。规则允许不代表一定有收益。
 
-## P2：第一项正式新配方——512分辨率微调
+## P2：第一项正式新配方——通用DINOv2小骨干（主方向）
+
+限定**原始通用`dinov2_vits14`**，不使用同仓库XRay/Cell等医学变体。官方model card列出Apache-2.0、LVD-142M、21M参数及patch14，见 [官方model card](https://github.com/facebookresearch/dinov2/blob/main/MODEL_CARD.md)、[许可说明](https://github.com/facebookresearch/dinov2#license)及 [数据来源论文](https://arxiv.org/html/2304.07193v2#S3)。这是上游通用预训练；本项目只做赛方标签的监督微调，不进行医学自监督续训。
+
+官方通用[权重直链](https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth)本次无登录HEAD检查为200、88,283,115字节。尚未下载该文件核算SHA256，**不能将其记成已经接入/完整核验的初始化**。正式接入须固定上游代码commit、精确权重、许可文本及哈希。
+
+| 参数 | 预定值 |
+|---|---|
+| 输入 | 392×392（14的整数倍），原有确定性裁边/等比补边、ImageNet归一化 |
+| 分类头 | 骨干最终LayerNorm输出`x_norm_clstoken`（384维，不额外做L2归一化）→128维头→单logit，dropout0.2；不加入年龄、patch pooling或外部定位模型 |
+| 轮数/seed | 独立15轮，seed42 |
+| LR | 分类头最高1e-4、骨干1e-5；最低头LR1e-6、骨干相应倍率0.1；从第1轮起全模型监督微调，1轮warmup不等于冻结骨干 |
+| 其余 | 1轮warmup，AdamW/wd0.05/pos_weight5/EMA0.999，micro16×累积8=128，FP16 |
+
+这是一项新骨干/预训练配方比较，不宣称隔离了架构、数据和超参数的各自贡献。
+
+**工程范围：** 扩展模型注册与初始化来源校验，统一记录权重URL/许可/数据/哈希；审计模块目前按ConvNeXt枚举查预训练源，必须同步扩展。推理须离线构造架构，不在评测时通过未固定版本的Torch Hub下载代码/权重；不能依赖只在较新GPU上可用的自定义注意力算子。保留旧ConvNeXt配置和checkpoint行为，验证初始化、FP16、EMA、完整resume、普通best推理和T4运行。
+
+若原始通用权重的许可/来源不能闭环，或T4预算不合适，则停止这条路线。ConvNeXt V2官方NC权重不作为替补，依据 [官方许可说明](https://github.com/facebookresearch/ConvNeXt-V2#license)。
+
+## P3：第二项正式新配方——512分辨率微调（备选）
 
 提高细节保留量是待验证假设，不保证优于384。先做512形状的工程/显存/耗时检查，再交4090完整训练。
 
@@ -64,26 +103,6 @@
 与已完成384 refine使用同一固定初始化及主要配方比较；若microbatch改变，不宣称是严格单因素因果消融。512无损缓存必须另建，不能套用384缓存；允许直接读原图，缓存只是I/O选项。
 
 拟新增配置名`b0_crop512_refine_ema.json`。它目前不是已存在可运行的命令。若T4单次前向就无法满足预算，优先停止这条交付路线，而非再加多裁剪救分。
-
-## P3：第二项新配方——通用DINOv2小骨干
-
-限定**原始通用`dinov2_vits14`**，不使用同仓库XRay/Cell等医学变体。官方model card列出Apache-2.0、LVD-142M、21M参数及patch14，见 [官方model card](https://github.com/facebookresearch/dinov2/blob/main/MODEL_CARD.md)、[许可说明](https://github.com/facebookresearch/dinov2#license)及 [数据来源论文](https://arxiv.org/html/2304.07193v2#S3)。这是上游通用预训练；本项目只做赛方标签的监督微调，不进行医学自监督续训。
-
-官方通用[权重直链](https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth)本次无登录HEAD检查为200、88,283,115字节。尚未下载该文件核算SHA256，**不能将其记成已经接入/完整核验的初始化**。正式接入须固定上游代码commit、精确权重、许可文本及哈希。
-
-| 参数 | 预定值 |
-|---|---|
-| 输入 | 392×392（14的整数倍），原有确定性裁边/等比补边、ImageNet归一化 |
-| 分类头 | CLS特征→128维头→单logit，不加入年龄或外部定位模型 |
-| 轮数/seed | 独立15轮，seed42 |
-| LR | 分类头最高1e-4、骨干1e-5；最低头LR1e-6、骨干相应倍率0.1 |
-| 其余 | 1轮warmup，AdamW/wd0.05/pos_weight5/EMA0.999，micro16×累积8=128，FP16 |
-
-这是一项新骨干/预训练配方比较，不宣称隔离了架构、数据和超参数的各自贡献。
-
-**工程范围：** 扩展模型注册与初始化来源校验，统一记录权重URL/许可/数据/哈希；审计模块目前按ConvNeXt枚举查预训练源，必须同步扩展。推理须离线构造架构，不在评测时通过未固定版本的Torch Hub下载代码/权重；不能依赖只在较新GPU上可用的自定义注意力算子。保留旧ConvNeXt配置和checkpoint行为，验证初始化、FP16、EMA、完整resume、普通best推理和T4运行。
-
-若原始通用权重的许可/来源不能闭环，或T4预算不合适，则停止这条路线。ConvNeXt V2官方NC权重不作为替补，依据 [官方许可说明](https://github.com/facebookresearch/ConvNeXt-V2#license)。
 
 ## P4：一次确认与一次有条件的固定集成
 

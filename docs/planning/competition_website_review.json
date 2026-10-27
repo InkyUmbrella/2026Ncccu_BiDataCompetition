@@ -116,6 +116,6 @@
     "organizer_public_redistribution_permission_verified": false,
     "visibility_changed": false,
     "history_rewritten": false,
-    "decision": "Asked user whether to make repository private; pending answer. No new per-sample data published by this review."
+    "decision": "User will make repository private later. Agent has not changed visibility/history or verified completion; no new per-sample data to be published."
   }
 }
