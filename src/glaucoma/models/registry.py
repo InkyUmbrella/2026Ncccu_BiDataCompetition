@@ -16,7 +16,10 @@ def available_models():
     return sorted(_FACTORIES)
 
 
-def build_model(config):
+def build_model(config, *, load_pretrained=True):
     if config.name not in _FACTORIES:
         raise ValueError(f"Unknown model {config.name!r}; available: {available_models()}")
-    return _FACTORIES[config.name](**config.params)
+    params = dict(config.params)
+    if config.weights is not None and load_pretrained:
+        params["weights"] = config.weights
+    return _FACTORIES[config.name](**params)

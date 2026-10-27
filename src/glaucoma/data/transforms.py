@@ -64,11 +64,17 @@ def build_preprocess(size, crop_black_border=False, crop_threshold=10, crop_marg
 
 
 def build_transform(size, training=False, *, crop_black_border=False, crop_threshold=10,
-                    crop_margin=0.03, preprocessed=False):
+                    crop_margin=0.03, preprocessed=False, normalization="symmetric"):
     # Cached images already passed through cropping and Letterbox exactly once.
     operations = [] if preprocessed else [build_preprocess(size, crop_black_border, crop_threshold, crop_margin)]
     if training:
         operations += [T.RandomHorizontalFlip(0.5),
                        T.RandomRotation(10, interpolation=T.InterpolationMode.BILINEAR, fill=0),
                        T.ColorJitter(brightness=0.15, contrast=0.15, saturation=0.10, hue=0.02)]
-    return T.Compose(operations + [T.ToTensor(), T.Normalize((0.5,) * 3, (0.5,) * 3)])
+    if normalization == "imagenet":
+        mean, std = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
+    elif normalization == "symmetric":
+        mean, std = (0.5,) * 3, (0.5,) * 3
+    else:
+        raise ValueError("Unknown normalization")
+    return T.Compose(operations + [T.ToTensor(), T.Normalize(mean, std)])

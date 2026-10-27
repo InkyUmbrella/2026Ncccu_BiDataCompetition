@@ -1,0 +1,45 @@
+{
+  "experiment": "b0_crop512_full_recipe",
+  "seed": 42,
+  "device": "cuda:0",
+  "output_root": "/home/heyuhang/work/ncccu/outputs/runs/s512d_20261023T070559Z",
+  "data": {
+    "root": "/home/lichunyu/competition/dataset/glaucoma_first",
+    "image_size": 512,
+    "num_workers": 8,
+    "verify_images": false,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03,
+    "decode": "draft"
+  },
+  "model": {
+    "name": "convnext_tiny",
+    "params": {
+      "use_age": false,
+      "hidden_dim": 128,
+      "dropout": 0.2,
+      "stochastic_depth_prob": 0.1
+    }
+  },
+  "train": {
+    "epochs": 60,
+    "batch_size": 32,
+    "accumulation_steps": 4,
+    "learning_rate": 0.0003,
+    "min_learning_rate": 1e-06,
+    "warmup_epochs": 5,
+    "weight_decay": 0.05,
+    "pos_weight": 1.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "positive_fraction": 0.1428,
+    "freeze_image_epochs": 0,
+    "image_lr_scale": 1.0,
+    "ema_decay": 0.999,
+    "ema_warmup_steps": 0,
+    "mixup_alpha": 0.2,
+    "cutmix_alpha": null,
+    "label_smoothing": 0.05
+  }
+}

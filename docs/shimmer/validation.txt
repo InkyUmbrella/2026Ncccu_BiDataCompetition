@@ -1,0 +1,11 @@
+Validation on the original server, using an isolated source directory.
+Interpreter: /home/lichunyu/miniconda3/envs/glaucoma/bin/python
+PyTorch 2.5.1+cu121; CPU only, CUDA_VISIBLE_DEVICES empty, OMP_NUM_THREADS=2.
+Full regression suite: 88 tests run, 87 passed, 1 opt-in GPU test skipped.
+After adapting latency/decode scripts: 11 relevant tests passed.
+All supervised JSON configurations validated; Python compilation and git diff --check passed.
+Pretrained tests use a synthetic torchvision state dict to exercise the real loader offline.
+No full competition training, independent full-valid re-evaluation, or T4 timing performed.
+Original training source and outputs were not modified.
+The source server reports UTC time roughly 8 hours behind the local task clock;
+retain timestamps exactly as emitted in original records and test logs.

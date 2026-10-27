@@ -18,11 +18,13 @@ class DataConfig:
     # DCT scaling decode to just above the model input (training/inference parity
     # is carried by the checkpoint config).
     decode: str = "full"
+    normalization: str = "symmetric"
 
 
 @dataclass
 class ModelConfig:
     name: str = "convnext_tiny"
+    weights: str | None = None
     params: dict = field(default_factory=lambda: {"use_age": False, "hidden_dim": 128, "dropout": 0.2})
 
 
@@ -41,9 +43,11 @@ class TrainConfig:
     positive_fraction: float | None = None
     freeze_image_epochs: int = 0
     image_lr_scale: float = 1.0
+    backbone_lr_scale: float = 1.0
     # Default-off training upgrades; null/0 keeps the original numerics.
     ema_decay: float | None = None
     ema_warmup_steps: int = 0
+    evaluate_raw_with_ema: bool = False
     mixup_alpha: float | None = None
     cutmix_alpha: float | None = None
     label_smoothing: float = 0.0
@@ -79,6 +83,19 @@ class Config:
             raise ValueError("crop_margin must be in [0, 0.5]")
         if self.data.decode not in ("full", "draft"):
             raise ValueError('decode must be "full" or "draft"')
+        if self.data.normalization not in ("symmetric", "imagenet"):
+            raise ValueError("normalization must be symmetric or imagenet")
+        if self.model.weights not in (None, "IMAGENET1K_V1"):
+            raise ValueError("weights must be None or IMAGENET1K_V1")
+        if "weights" in self.model.params:
+            raise ValueError("Use model.weights, not model.params.weights")
+        if self.model.weights is not None:
+            if self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual"):
+                raise ValueError("ImageNet weights require a ConvNeXt model")
+            if self.data.normalization != "imagenet":
+                raise ValueError("ImageNet weights require imagenet normalization")
+        if not math.isfinite(self.train.backbone_lr_scale) or not 0 < self.train.backbone_lr_scale <= 1:
+            raise ValueError("backbone_lr_scale must be in (0, 1]")
         fraction = self.train.positive_fraction
         if fraction is not None and (not math.isfinite(fraction) or not 0 < fraction < 1):
             raise ValueError("positive_fraction must be in (0, 1)")
@@ -89,6 +106,8 @@ class Config:
         if self.train.ema_decay is not None and (
                 not math.isfinite(self.train.ema_decay) or not 0 < self.train.ema_decay < 1):
             raise ValueError("ema_decay must be in (0, 1) or null")
+        if type(self.train.evaluate_raw_with_ema) is not bool:
+            raise ValueError("evaluate_raw_with_ema must be boolean")
         if type(self.train.ema_warmup_steps) is not int or self.train.ema_warmup_steps < 0:
             raise ValueError("ema_warmup_steps must be a nonnegative integer")
         for name in ("mixup_alpha", "cutmix_alpha"):

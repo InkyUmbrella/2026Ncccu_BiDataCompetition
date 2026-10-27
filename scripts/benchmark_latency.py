@@ -48,7 +48,7 @@ def _select(rows, count, largest, rng):
     return list(chosen.values())
 
 
-def _pipeline(model, sample, device, dtype, decode, size, preprocess, age):
+def _pipeline(model, sample, device, dtype, decode, size, preprocess, age, normalization="symmetric"):
     times = {}
     started = time.perf_counter()
     with sample.path.open("rb") as handle:
@@ -67,7 +67,14 @@ def _pipeline(model, sample, device, dtype, decode, size, preprocess, age):
     _sync(device)
     started = time.perf_counter()
     tensor = torch.from_numpy(pixels.copy()).permute(2, 0, 1).unsqueeze(0)
-    tensor = tensor.to(device=device, dtype=dtype) / 127.5 - 1.0
+    tensor = tensor.to(device=device, dtype=torch.float32) / 255.0
+    if normalization == "imagenet":
+        mean = tensor.new_tensor([0.485, 0.456, 0.406])[None, :, None, None]
+        std = tensor.new_tensor([0.229, 0.224, 0.225])[None, :, None, None]
+        tensor = (tensor - mean) / std
+    else:
+        tensor = (tensor - 0.5) / 0.5
+    tensor = tensor.to(dtype=dtype)
     _sync(device)
     times["transfer"] = time.perf_counter() - started
 
@@ -128,7 +135,7 @@ def main(argv=None):
         if args.image_size:
             config.data.image_size = args.image_size
         config.validate()
-        model = build_model(config.model).to(device).eval()
+        model = build_model(config.model, load_pretrained=False).to(device).eval()
         age_stats = AgeStats(0.0, 0.0, 1.0)
         artifacts = {}
     size = args.image_size or config.data.image_size
@@ -153,17 +160,17 @@ def main(argv=None):
 
     # One timed cold run before warmup: CUDA context, cuDNN selection, first call.
     cold, _ = _pipeline(model, chosen[0], device, dtype, decode, size, preprocess,
-                        torch.tensor([age_stats.transform(chosen[0].age)], device=device, dtype=dtype))
+                        torch.tensor([age_stats.transform(chosen[0].age)], device=device, dtype=dtype), normalization=config.data.normalization)
     for index in range(args.warmup):
         sample = chosen[index % len(chosen)]
         _pipeline(model, sample, device, dtype, decode, size, preprocess,
-                  torch.tensor([age_stats.transform(sample.age)], device=device, dtype=dtype))
+                  torch.tensor([age_stats.transform(sample.age)], device=device, dtype=dtype), normalization=config.data.normalization)
 
     timings = {name: [] for name in STAGES + ("total",)}
     records = []
     for sample in chosen:
         age = torch.tensor([age_stats.transform(sample.age)], device=device, dtype=dtype)
-        record, row = _pipeline(model, sample, device, dtype, decode, size, preprocess, age)
+        record, row = _pipeline(model, sample, device, dtype, decode, size, preprocess, age, normalization=config.data.normalization)
         for name in timings:
             timings[name].append(record[name])
         records.append({"name": sample.name, "bytes": sample.path.stat().st_size,

@@ -1,0 +1,68 @@
+[
+  {
+    "experiment": "ft512_seed43",
+    "seed": 43,
+    "image_size": 512,
+    "best_epoch_zero_based": 9,
+    "best_epoch_one_based": 10,
+    "auroc": 0.9629783339718214,
+    "ap": 0.591886711293165,
+    "auprc_trapz": 0.5865522521698296,
+    "evidence": "docs/shimmer/evidence/outputs/runs/ft512_20261023T083150Z/ft512_seed43/seed43_20261023T083200Z_a02fa061/metrics.json"
+  },
+  {
+    "experiment": "b0_crop384_full_recipe_seed43",
+    "seed": 43,
+    "image_size": 384,
+    "best_epoch_zero_based": 32,
+    "best_epoch_one_based": 33,
+    "auroc": 0.966336411030853,
+    "ap": 0.6174985368078693,
+    "auprc_trapz": 0.61351430222069,
+    "evidence": "docs/shimmer/evidence/outputs/runs/s43d_20261022T225840Z/b0_crop384_full_recipe_seed43/seed43_20261022T225911Z_650836ff/metrics.json"
+  },
+  {
+    "experiment": "b0_crop384_full_recipe_seed44",
+    "seed": 44,
+    "image_size": 384,
+    "best_epoch_zero_based": 32,
+    "best_epoch_one_based": 33,
+    "auroc": 0.9619350074675341,
+    "ap": 0.5976973926496267,
+    "auprc_trapz": 0.5967637738729857,
+    "evidence": "docs/shimmer/evidence/outputs/runs/s44d_20261022T225840Z/b0_crop384_full_recipe_seed44/seed44_20261022T225911Z_5851b1ef/metrics.json"
+  },
+  {
+    "experiment": "b0_crop512_full_recipe_seed43",
+    "seed": 43,
+    "image_size": 512,
+    "best_epoch_zero_based": 37,
+    "best_epoch_one_based": 38,
+    "auroc": 0.9769838934446708,
+    "ap": 0.646033497015473,
+    "auprc_trapz": 0.643410118152711,
+    "evidence": "docs/shimmer/evidence/outputs/runs/s512c_20261023T211043Z/b0_crop512_full_recipe_seed43/seed43_20261023T211134Z_13f2b076/metrics.json"
+  },
+  {
+    "experiment": "b0_crop512_full_recipe",
+    "seed": 42,
+    "image_size": 512,
+    "best_epoch_zero_based": 32,
+    "best_epoch_one_based": 33,
+    "auroc": 0.9682796355621195,
+    "ap": 0.6025349978212617,
+    "auprc_trapz": 0.5989506168043375,
+    "evidence": "docs/shimmer/evidence/outputs/runs/s512d_20261023T070559Z/b0_crop512_full_recipe/seed42_20261023T070628Z_33616542/metrics.json"
+  },
+  {
+    "experiment": "b0_crop512_full_recipe_seed44",
+    "seed": 44,
+    "image_size": 512,
+    "best_epoch_zero_based": 31,
+    "best_epoch_one_based": 32,
+    "auroc": 0.9623342938414587,
+    "ap": 0.6191699189209753,
+    "auprc_trapz": 0.6180897034651021,
+    "evidence": "docs/shimmer/evidence/outputs/runs/s512e_20261024T003353Z/b0_crop512_full_recipe_seed44/seed44_20261024T003407Z_fc587dca/metrics.json"
+  }
+]

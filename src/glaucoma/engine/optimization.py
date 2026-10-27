@@ -10,6 +10,8 @@ def build_optimizer(model, config):
         if parameter.requires_grad:
             no_decay = parameter.ndim <= 1 or name.endswith(".bias")
             scale = config.image_lr_scale if name.startswith(("encoder.", "head.")) else 1.0
+            if name.startswith("encoder."):
+                scale *= config.backbone_lr_scale
             groups.setdefault(scale, {False: [], True: []})[no_decay].append(parameter)
     # Preserve legacy decay/no-decay group order, including weight_decay=0.
     return torch.optim.AdamW([{"params": params[no_decay],

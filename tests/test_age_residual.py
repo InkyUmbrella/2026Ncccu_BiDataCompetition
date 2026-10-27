@@ -249,7 +249,7 @@ class TransferTests(unittest.TestCase):
             initial = SmallResidual()
             checkpoint = root / "initial.pt"
             save_checkpoint(checkpoint, inference_payload(initial, config, AgeStats(50, 50, 10), 0, {}))
-            with patch("glaucoma.engine.trainer.build_model", side_effect=lambda _: SmallResidual()):
+            with patch("glaucoma.engine.trainer.build_model", side_effect=lambda _, **kwargs: SmallResidual()):
                 full = train(config, init_from=checkpoint)
                 partial = train(config, init_from=checkpoint, stop_after_epochs=1)
                 resumed = train(config, resume=partial / "last.pt")

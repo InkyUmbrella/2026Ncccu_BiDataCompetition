@@ -1,0 +1,27 @@
+{
+  "torch": "2.5.1+cu121",
+  "cuda_runtime": "12.1",
+  "packages": {
+    "torchvision": "0.20.1+cu121",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "Pillow": "12.3.0"
+  },
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false,
+  "git_revision": "b357cff3fca8bcb10d2db306cc486dcf01367362",
+  "git_status": "",
+  "source_sha256": "c8bb83122c068726115bf75ac7d07898e299bb9a69f2fffac5c374aed2e98670",
+  "csv_hashes": {
+    "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+    "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+  },
+  "resumed_from": "/home/heyuhang/work/ncccu/outputs/runs/s512b_20261023T180938Z/b0_crop512_full_recipe_seed43/seed43_20261023T181004Z_d10e938d/last.pt",
+  "initialized_from": null,
+  "initialized_from_encoder": null,
+  "initialized_from_encoder_sha256": null,
+  "image_cache": null,
+  "decode": "draft",
+  "device": "cuda:0",
+  "gpu": "Tesla V100-SXM2-16GB"
+}

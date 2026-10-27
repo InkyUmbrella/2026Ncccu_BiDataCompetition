@@ -1,3 +1,5 @@
+当前整合分支交接与运行命令见 [shimmer](docs/shimmer/README.md)。
+
 # 青光眼眼底图像分类
 
 基线包括 B0（ConvNeXt-Tiny 整图分类）和 B1（相同骨干融合年龄），均为随机初始化。

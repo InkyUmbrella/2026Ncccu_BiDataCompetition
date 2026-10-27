@@ -34,7 +34,7 @@ def read_checkpoint(path, kind):
 def load_model(path, device):
     payload = read_checkpoint(path, "inference")
     config = Config.from_dict(payload["config"])
-    model = build_model(config.model)
+    model = build_model(config.model, load_pretrained=False)
     model.load_state_dict(payload["model_state"], strict=True)
     model.to(device).eval()
     return model, config, AgeStats(**payload["age_stats"])
@@ -66,6 +66,8 @@ def initialize_from_encoder(model, payload):
 def initialize_model(model, config, payload):
     """Initialize a new experiment, without restoring optimizer/history/RNG."""
     source = Config.from_dict(payload["config"])
+    if source.data.normalization != config.data.normalization:
+        raise ValueError("Initialization requires matching normalization")
     if source.model == config.model:
         model.load_state_dict(payload["model_state"], strict=True)
     elif (source.model.name == "convnext_tiny"

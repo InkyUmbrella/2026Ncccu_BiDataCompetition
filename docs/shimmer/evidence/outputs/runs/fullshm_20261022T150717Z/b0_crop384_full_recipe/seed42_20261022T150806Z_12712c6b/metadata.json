@@ -1,0 +1,27 @@
+{
+  "torch": "2.5.1+cu121",
+  "cuda_runtime": "12.1",
+  "packages": {
+    "torchvision": "0.20.1+cu121",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "Pillow": "12.3.0"
+  },
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false,
+  "git_revision": "f9d590cda0125aa60590f56b5303474b2f1973bd",
+  "git_status": "",
+  "source_sha256": "95825950ee4beb686fbf278c6fff5a4e90073b774fda95f7e0ed9d753cae43bb",
+  "csv_hashes": {
+    "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+    "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+  },
+  "resumed_from": null,
+  "initialized_from": null,
+  "initialized_from_encoder": null,
+  "initialized_from_encoder_sha256": null,
+  "image_cache": "/dev/shm/ncccu-cache384",
+  "decode": "full",
+  "device": "cuda:0",
+  "gpu": "Tesla V100-SXM2-16GB"
+}

@@ -165,14 +165,14 @@ def prediction_parity(rows, payload, checkpoint, batch_size, seed, device, worke
     crop_args = {"crop_black_border": checkpoint_config.data.crop_black_border,
                  "crop_threshold": checkpoint_config.data.crop_threshold,
                  "crop_margin": checkpoint_config.data.crop_margin}
-    model = build_model(checkpoint_config.model)
+    model = build_model(checkpoint_config.model, load_pretrained=False)
     model.load_state_dict(payload["model_state"], strict=True)
     model.to(device).eval()
     age_stats = AgeStats(**payload["age_stats"])
     results = {}
     for decode in ("full", "draft"):
         dataset = FundusDataset(rows, age_stats,
-                                build_transform(size, preprocessed=False, **crop_args),
+                                build_transform(size, preprocessed=False, normalization=checkpoint_config.data.normalization, **crop_args),
                                 decode=decode, image_size=size)
         loader = make_loader(dataset, batch_size, workers, seed,
                              pin_memory=device.type == "cuda")

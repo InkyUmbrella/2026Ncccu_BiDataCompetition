@@ -1,13 +1,13 @@
 import torch
 from torch import nn
-from torchvision.models import convnext_tiny
+from torchvision.models import ConvNeXt_Tiny_Weights, convnext_tiny
 
 from .registry import register_model
 
 
 @register_model("convnext_tiny")
 class ConvNeXtClassifier(nn.Module):
-    def __init__(self, use_age=False, hidden_dim=128, dropout=0.2, stochastic_depth_prob=0.1):
+    def __init__(self, use_age=False, hidden_dim=128, dropout=0.2, stochastic_depth_prob=0.1, weights=None):
         super().__init__()
         if type(use_age) is not bool or type(hidden_dim) is not int or hidden_dim < 1 or not 0 <= dropout < 1:
             raise ValueError("Invalid use_age, hidden_dim or dropout")
@@ -18,7 +18,10 @@ class ConvNeXtClassifier(nn.Module):
         # 0.1 is torchvision's historical default; keeping it here means configs and
         # resumed checkpoints written before this key existed keep their original
         # stochastic-depth behaviour. Pass an explicit 0.0 to disable it.
-        backbone = convnext_tiny(weights=None, stochastic_depth_prob=float(stochastic_depth_prob))
+        if weights not in (None, "IMAGENET1K_V1"):
+            raise ValueError("weights must be None or IMAGENET1K_V1")
+        backbone = convnext_tiny(weights=ConvNeXt_Tiny_Weights[weights] if weights else None,
+                                 stochastic_depth_prob=float(stochastic_depth_prob))
         self.encoder = nn.Sequential(backbone.features, backbone.avgpool,
                                      backbone.classifier[0], nn.Flatten(1))
         self.use_age = use_age
@@ -38,9 +41,9 @@ class ConvNeXtClassifier(nn.Module):
 class ConvNeXtAgeResidual(ConvNeXtClassifier):
     """A B0 image classifier plus an initially zero age-only logit correction."""
 
-    def __init__(self, hidden_dim=128, dropout=0.2, stochastic_depth_prob=0.1):
+    def __init__(self, hidden_dim=128, dropout=0.2, stochastic_depth_prob=0.1, weights=None):
         super().__init__(use_age=False, hidden_dim=hidden_dim, dropout=dropout,
-                         stochastic_depth_prob=stochastic_depth_prob)
+                         stochastic_depth_prob=stochastic_depth_prob, weights=weights)
         self.age_residual = nn.Sequential(nn.Linear(3, 16), nn.GELU(), nn.Linear(16, 1))
         nn.init.zeros_(self.age_residual[-1].weight)
         nn.init.zeros_(self.age_residual[-1].bias)

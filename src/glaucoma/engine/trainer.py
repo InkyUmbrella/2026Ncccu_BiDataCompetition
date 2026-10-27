@@ -111,7 +111,7 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         if report["errors"]:
             raise ValueError(f"Image decoding failed; see {run_dir / 'data_audit.json'}")
     datasets = {split: FundusDataset(rows, age_stats, build_transform(config.data.image_size, split == "train",
-                                   preprocessed=split in caches, **transform_args),
+                                   preprocessed=split in caches, normalization=config.data.normalization, **transform_args),
                                    image_cache=caches.get(split), decode=config.data.decode,
                                    image_size=config.data.image_size)
                 for split, rows in samples.items()}
@@ -121,7 +121,7 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     updates = math.ceil(batches / config.train.accumulation_steps)
     total_steps = updates * config.train.epochs
     warmup_steps = updates * config.train.warmup_epochs
-    model = build_model(config.model).to(device)
+    model = build_model(config.model, load_pretrained=not (saved or initialization or ssl_initialization)).to(device)
     if initialization:
         initialize_model(model, config, initialization)
     if ssl_initialization:
@@ -152,17 +152,30 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
                              positive_fraction=config.train.positive_fraction)
         training, global_step = train_one_epoch(model, loader, optimizer, scaler, device, config.train,
                                                 global_step, total_steps, warmup_steps, ema=ema)
-        # Validation, best-checkpoint selection and best.pt use EMA weights when enabled.
+        raw_validation = None
+        if ema is not None and config.train.evaluate_raw_with_ema:
+            _, raw_validation = collect_predictions(model, valid_loader, device, config.train.pos_weight,
+                                                     config.train.amp)
+            score = (raw_validation["auroc"], raw_validation["auprc_trapz"])
+            if best is None or score > (best["metrics"]["auroc"], best["metrics"]["auprc_trapz"]):
+                best = inference_payload(model, config, age_stats, epoch, raw_validation)
+                best["selected_weights"] = "raw"
+                save_checkpoint(run_dir / "best.pt", best)
+        # The historical default selects EMA only; the new opt-in also checks raw.
         with apply_ema(ema, model):
             _, validation = collect_predictions(model, valid_loader, device, config.train.pos_weight,
                                                 config.train.amp)
             score = (validation["auroc"], validation["auprc_trapz"])
             if best is None or score > (best["metrics"]["auroc"], best["metrics"]["auprc_trapz"]):
                 best = inference_payload(model, config, age_stats, epoch, validation)
+                best["selected_weights"] = "ema" if ema is not None else "raw"
                 save_checkpoint(run_dir / "best.pt", best)
         row = {"epoch": epoch, "global_step": global_step, "train": training, "valid": validation,
                "image_frozen": bool(getattr(model, "image_frozen", False)),
                "seconds": round(time.monotonic() - started, 3)}
+        if raw_validation is not None:
+            row["valid_raw"] = raw_validation
+        row["best_weights"] = best.get("selected_weights", "legacy")
         history.append(row)
         # A self-contained recovery file includes the best weights as well as the
         # current optimizer state; it is not part of the deployment artifact.
@@ -181,5 +194,6 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     predictions, metrics = collect_predictions(model, valid_loader, device, config.train.pos_weight, config.train.amp)
     write_predictions(run_dir / "valid_predictions.csv", predictions)
     save_json(run_dir / "metrics.json", {"best_epoch": best["epoch"], "completed_epochs": end_epoch,
-                                         "training_complete": end_epoch == config.train.epochs, "valid": metrics})
+                                         "training_complete": end_epoch == config.train.epochs,
+                                         "selected_weights": best.get("selected_weights", "legacy"), "valid": metrics})
     return run_dir
