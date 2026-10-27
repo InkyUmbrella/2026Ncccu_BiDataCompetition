@@ -1,0 +1,88 @@
+{
+  "count": 5849,
+  "positives": 191,
+  "auroc": 0.9885271098329013,
+  "auprc_trapz": 0.827245311144115,
+  "ap": 0.8275141456662947,
+  "confusion_at_0.5": {
+    "tn": 5621,
+    "fp": 37,
+    "fn": 59,
+    "tp": 132
+  },
+  "sensitivity_at_0.5": 0.6910994764397905,
+  "specificity_at_0.5": 0.9934605867797809,
+  "sensitivity_at_specificity95": 0.9476439790575916,
+  "threshold_at_specificity95": 2.1112482500029728e-05,
+  "loss": 0.42498069297101637,
+  "age_groups": {
+    "under50": {
+      "count": 1486,
+      "positives": 15,
+      "auroc": 0.9939270337638795,
+      "auprc_trapz": 0.8093215208852738,
+      "ap": 0.8126326850640959,
+      "confusion_at_0.5": {
+        "tn": 1471,
+        "fp": 0,
+        "fn": 8,
+        "tp": 7
+      },
+      "sensitivity_at_0.5": 0.4666666666666667,
+      "specificity_at_0.5": 1.0,
+      "sensitivity_at_specificity95": 0.9333333333333333,
+      "threshold_at_specificity95": 2.1112482500029728e-05
+    },
+    "50to64": {
+      "count": 3148,
+      "positives": 98,
+      "auroc": 0.9884459685513549,
+      "auprc_trapz": 0.8440295979582114,
+      "ap": 0.844669122075816,
+      "confusion_at_0.5": {
+        "tn": 3028,
+        "fp": 22,
+        "fn": 23,
+        "tp": 75
+      },
+      "sensitivity_at_0.5": 0.7653061224489796,
+      "specificity_at_0.5": 0.9927868852459016,
+      "sensitivity_at_specificity95": 0.9489795918367347,
+      "threshold_at_specificity95": 2.4682904040673748e-05
+    },
+    "65plus": {
+      "count": 1213,
+      "positives": 78,
+      "auroc": 0.9799785383485824,
+      "auprc_trapz": 0.8110824449346032,
+      "ap": 0.811855103241868,
+      "confusion_at_0.5": {
+        "tn": 1120,
+        "fp": 15,
+        "fn": 28,
+        "tp": 50
+      },
+      "sensitivity_at_0.5": 0.6410256410256411,
+      "specificity_at_0.5": 0.986784140969163,
+      "sensitivity_at_specificity95": 0.8461538461538461,
+      "threshold_at_specificity95": 0.00026323829661123455
+    },
+    "missing_or_invalid": {
+      "count": 2,
+      "positives": 0,
+      "auroc": null,
+      "auprc_trapz": null,
+      "ap": null,
+      "confusion_at_0.5": {
+        "tn": 2,
+        "fp": 0,
+        "fn": 0,
+        "tp": 0
+      },
+      "sensitivity_at_0.5": null,
+      "specificity_at_0.5": 1.0,
+      "sensitivity_at_specificity95": null,
+      "threshold_at_specificity95": null
+    }
+  }
+}

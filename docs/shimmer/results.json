@@ -64,5 +64,16 @@
     "ap": 0.6191699189209753,
     "auprc_trapz": 0.6180897034651021,
     "evidence": "docs/shimmer/evidence/outputs/runs/s512e_20261024T003353Z/b0_crop512_full_recipe_seed44/seed44_20261024T003407Z_fc587dca/metrics.json"
+  },
+  {
+    "experiment": "shimmer_512_pretrained_reference",
+    "seed": 42,
+    "image_size": 512,
+    "best_epoch_zero_based": 22,
+    "best_epoch_one_based": 23,
+    "auroc": 0.9885271098329013,
+    "ap": 0.8275141456662947,
+    "auprc_trapz": 0.827245311144115,
+    "evidence": "docs/shimmer/evidence/outputs/runs/local_20261027T123315Z/shimmer_512_pretrained_reference/seed42_20261027T123315Z_a86fd5be/metrics.json"
   }
 ]
