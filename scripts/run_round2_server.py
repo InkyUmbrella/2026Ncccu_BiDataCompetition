@@ -80,10 +80,10 @@ def run(command, log, gpu='', name=None):
         raise RuntimeError(f'Command exited {code}; see {log}')
 
 
-def free_gpu(index):
+def free_gpu(index, timeout=120):
     if index not in (2, 3, 4):
         raise ValueError('This launch is restricted to physical GPUs 2, 3 and 4')
-    deadline = time.monotonic() + 120
+    deadline = time.monotonic() + timeout
     while True:
         output = subprocess.check_output(['nvidia-smi', '-i', str(index),
             '--query-compute-apps=pid', '--format=csv,noheader,nounits'], text=True)
@@ -92,7 +92,7 @@ def free_gpu(index):
         if time.monotonic() >= deadline:
             raise RuntimeError(f'GPU {index} is still occupied; refusing to start: {output.strip()}')
         print(f'[wait] GPU {index} has compute processes; waiting without interrupting them', flush=True)
-        time.sleep(5)
+        time.sleep(30)
 
 
 def prepare_cache(size):
@@ -146,7 +146,8 @@ def experiment(name, config_name, gpu, cache, init_from=None):
     command = [PYTHON, '-u', '-m', 'glaucoma', 'train', '--config', str(resolved), '--image-cache', cache]
     if init_from:
         command += ['--init-from', str(init_from)]
-    free_gpu(gpu)
+    job_state(name, status='waiting_gpu', gpu=gpu, waiting_since=stamp())
+    free_gpu(gpu, timeout=24*3600)
     job_state(name, status='training', started_at=stamp(), config=str(resolved), cache=cache)
     run(command, directory / 'train.log', gpu, name)
     runs = list((directory / 'training' / config['experiment']).glob('seed*'))
@@ -198,6 +199,15 @@ def experiment(name, config_name, gpu, cache, init_from=None):
 def branch(kind, gpu):
     name = kind
     try:
+        config_name = {'seed42':'shimmer_512_pretrained_reference.json',
+                       'seed43':'shimmer_512_pretrained_reference_seed43.json',
+                       'efficientnet':'shimmer_efficientnetv2s_384_reference_seed42.json'}[kind]
+        job_state(name, status='waiting_gpu', gpu=gpu, waiting_since=stamp())
+        free_gpu(gpu, timeout=24*3600)
+        job_state(name, status='smoke_test', gpu=gpu)
+        run([PYTHON, str(ROOT / 'scripts/smoke_round2.py'), '--config', str(CONFIGS / config_name),
+             '--data-root', DATA, '--output', str(WORK / f'cuda-smoke-{gpu}.json')],
+             WORK / f'cuda-smoke-{gpu}.log', gpu)
         if kind == 'seed42':
             checkpoint = experiment(name, 'shimmer_512_pretrained_reference.json', gpu, CACHE512)
             name = 'seed42_refine'
@@ -219,8 +229,6 @@ def main():
         raise RuntimeError('Need at least 95 GiB free before building both caches and training')
     if CACHE_STORAGE == 'png':
         budget_png_cache()
-    for gpu in (2,3,4):
-        free_gpu(gpu)
     checkpoint_dir = WORK / 'torch/hub/checkpoints'
     checkpoint_dir.mkdir(parents=True)
     source = Path('/home/lichunyu/.cache/torch/hub/checkpoints/convnext_tiny-983f1562.pth')
@@ -236,19 +244,12 @@ def main():
          'EfficientNet_V2_S_Weights.IMAGENET1K_V1.get_state_dict(progress=True,check_hash=True)'], WORK / 'weights.log')
     state(pretrained_files={p.name: {'sha256': sha(p), 'bytes': p.stat().st_size}
                            for p in checkpoint_dir.glob('*.pth')})
-    state(phase='smoke_tests')
-    for gpu, config in ((2, 'shimmer_512_pretrained_reference.json'),
-                        (4, 'shimmer_efficientnetv2s_384_reference_seed42.json')):
-        free_gpu(gpu)
-        run([PYTHON, str(ROOT / 'scripts/smoke_round2.py'), '--config', str(CONFIGS / config),
-             '--data-root', DATA, '--output', str(WORK / f'cuda-smoke-{gpu}.json')],
-             WORK / f'cuda-smoke-{gpu}.log', gpu)
     global CACHE512, CACHE384
     state(phase='caching')
     with ThreadPoolExecutor(max_workers=2) as pool:
         first=pool.submit(prepare_cache,512);second=pool.submit(prepare_cache,384)
         CACHE512,CACHE384=first.result(),second.result()
-    state(phase='training', caches={'512':CACHE512,'384':CACHE384})
+    state(phase='running', caches={'512':CACHE512,'384':CACHE384})
     with ThreadPoolExecutor(max_workers=3) as pool:
         list(pool.map(lambda pair: branch(*pair), [('seed42',2),('seed43',3),('efficientnet',4)]))
     results = [job['result'] for job in STATE['jobs'].values() if job.get('status') == 'complete']
