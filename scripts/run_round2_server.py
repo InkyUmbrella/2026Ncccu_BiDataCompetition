@@ -193,6 +193,11 @@ def main():
     if sha(source) != '983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d':
         raise RuntimeError('Existing official ConvNeXt weights failed SHA256 verification')
     shutil.copy2(source, checkpoint_dir / source.name)
+    if EFFICIENTNET_WEIGHTS:
+        supplied = Path(EFFICIENTNET_WEIGHTS)
+        if sha(supplied) != 'dd5fe13b1d60ec15317ccc8ca158186e134d3366c3dde9cb9a4e301f2dc66c74':
+            raise RuntimeError('Supplied official EfficientNet weights failed SHA256 verification')
+        shutil.copy2(supplied, checkpoint_dir / 'efficientnet_v2_s-dd5fe13b.pth')
     run([PYTHON, '-c', 'from torchvision.models import EfficientNet_V2_S_Weights; '
          'EfficientNet_V2_S_Weights.IMAGENET1K_V1.get_state_dict(progress=True,check_hash=True)'], WORK / 'weights.log')
     state(pretrained_files={p.name: {'sha256': sha(p), 'bytes': p.stat().st_size}
@@ -241,9 +246,11 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-root',required=True)
     parser.add_argument('--work-root',required=True,help='New private directory on local SSD (at least 95 GiB free)')
+    parser.add_argument('--efficientnet-weights',help='Optional verified official file, to avoid a slow server download')
     args=parser.parse_args()
     os.umask(0o077)
     DATA=str(Path(args.data_root).resolve())
+    EFFICIENTNET_WEIGHTS=args.efficientnet_weights
     WORK=Path(args.work_root).resolve()
     WORK.mkdir(parents=True,exist_ok=False)
     try:
