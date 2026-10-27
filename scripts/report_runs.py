@@ -103,6 +103,32 @@ def _row_for_run(run_dir):
         return None
     if predictions is not None and not block:
         block = ranking_metrics(predictions[0], predictions[1])
+    history = _read_json(run_dir / "history.json")
+    history = [row for row in history if isinstance(row, dict)] if isinstance(history, list) else []
+    candidates = []
+    for epoch in history:
+        if type(epoch.get("epoch")) is not int:
+            continue
+        for key in ("valid", "valid_raw"):
+            value = epoch.get(key, {})
+            if isinstance(value.get("auroc"), (int, float)) and isinstance(value.get("auprc_trapz"), (int, float)):
+                candidates.append((value["auroc"], value["auprc_trapz"], epoch["epoch"], key))
+    history_best = max(candidates, key=lambda item: item[:2]) if candidates else None
+    best_epoch = metrics.get("best_epoch")
+    if best_epoch is None and history_best is not None:
+        # An evaluate run writes flat metrics, without the training epoch. Infer
+        # it only when both selection metrics match the retained history.
+        if all(isinstance(block.get(key), (int, float)) and abs(block[key] - value) < 1e-8
+               for key, value in zip(("auroc", "auprc_trapz"), history_best[:2])):
+            best_epoch = history_best[2]
+    completed = metrics.get("completed_epochs")
+    epochs = [row["epoch"] for row in history if type(row.get("epoch")) is int]
+    if completed is None and epochs:
+        completed = max(epochs) + 1
+    planned = config.get("train", {}).get("epochs")
+    complete = metrics.get("training_complete")
+    if complete is None and completed is not None and planned is not None:
+        complete = completed >= planned
     experiment = config.get("experiment") or run_dir.parent.name or run_dir.name
     seed = config.get("seed")
     if seed is None:
@@ -110,7 +136,12 @@ def _row_for_run(run_dir):
     return {
         "experiment": str(experiment),
         "seed": seed,
-        "best_epoch": metrics.get("best_epoch"),
+        "best_epoch": best_epoch,
+        "best_epoch_one_based": None if best_epoch is None else best_epoch + 1,
+        "completed_epochs": completed,
+        "planned_epochs": planned,
+        "training_complete": complete,
+        "history_best_auroc": None if history_best is None else history_best[0],
         "auroc": block.get("auroc"),
         "auprc_trapz": block.get("auprc_trapz"),
         "ap": block.get("ap"),
@@ -164,7 +195,7 @@ def _format(row):
 
     wall = "—" if row["wall_time_s"] is None else f"{row['wall_time_s']:.0f}"
     return [row["experiment"], "—" if row["seed"] is None else str(row["seed"]),
-            "—" if row["best_epoch"] is None else str(row["best_epoch"]),
+            "—" if row["best_epoch_one_based"] is None else str(row["best_epoch_one_based"]),
             number(row["auroc"]), number(row["auprc_trapz"]), number(row["ap"]),
             number(row["sens_at_spec95"]), wall]
 
@@ -188,7 +219,7 @@ def main(argv=None):
         return 0
     widths = [max(len("experiment"), *(len(row["experiment"]) for row in rows))]
     widths += [len(column) for column in TABLE_COLUMNS[1:-1]]
-    header = ["experiment", "seed", "epoch", "auroc", "auprc_trapz", "ap", "sens@s95", "wall_s"]
+    header = ["experiment", "seed", "epoch(1b)", "auroc", "auprc_trapz", "ap", "sens@s95", "wall_s"]
     print("  ".join(title.ljust(width) for title, width in zip(header, widths)))
     for row in rows:
         cells = _format(row)

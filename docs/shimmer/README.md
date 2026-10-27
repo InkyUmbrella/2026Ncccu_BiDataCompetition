@@ -1,5 +1,7 @@
 # shimmer 训练交接
 
+最新0.988527结果的分析、下一轮优先级和运行命令见 [第二轮优化](round2/README.md)。
+
 源代码基于服务器 `heyuhang/w1mer-opt` 的 `21e9e09`，保留原来的科研代码、配置和历史。预训练接入参考 `InkyUmbrella/2026Ncccu_BiDataCompetition` 的 `codex/pretrained-auroc-improve`（`1afe954`），并保留原分支的 stochastic depth、draft 解码、采样、Mixup、标签平滑和 EMA 实现。用户已确认赛事允许外部预训练权重。
 
 ## 已有成绩与证据

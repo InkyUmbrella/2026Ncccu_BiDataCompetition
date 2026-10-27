@@ -48,6 +48,7 @@ class TrainConfig:
     ema_decay: float | None = None
     ema_warmup_steps: int = 0
     evaluate_raw_with_ema: bool = False
+    keep_initial_best: bool = False
     mixup_alpha: float | None = None
     cutmix_alpha: float | None = None
     label_smoothing: float = 0.0
@@ -87,11 +88,13 @@ class Config:
             raise ValueError("normalization must be symmetric or imagenet")
         if self.model.weights not in (None, "IMAGENET1K_V1"):
             raise ValueError("weights must be None or IMAGENET1K_V1")
+        if not isinstance(self.model.params, dict):
+            raise ValueError("model.params must be an object")
         if "weights" in self.model.params:
             raise ValueError("Use model.weights, not model.params.weights")
         if self.model.weights is not None:
-            if self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual"):
-                raise ValueError("ImageNet weights require a ConvNeXt model")
+            if self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual", "efficientnet_v2_s"):
+                raise ValueError("ImageNet weights require a supported model")
             if self.data.normalization != "imagenet":
                 raise ValueError("ImageNet weights require imagenet normalization")
         if not math.isfinite(self.train.backbone_lr_scale) or not 0 < self.train.backbone_lr_scale <= 1:
@@ -108,6 +111,8 @@ class Config:
             raise ValueError("ema_decay must be in (0, 1) or null")
         if type(self.train.evaluate_raw_with_ema) is not bool:
             raise ValueError("evaluate_raw_with_ema must be boolean")
+        if type(self.train.keep_initial_best) is not bool:
+            raise ValueError("keep_initial_best must be boolean")
         if type(self.train.ema_warmup_steps) is not int or self.train.ema_warmup_steps < 0:
             raise ValueError("ema_warmup_steps must be a nonnegative integer")
         for name in ("mixup_alpha", "cutmix_alpha"):

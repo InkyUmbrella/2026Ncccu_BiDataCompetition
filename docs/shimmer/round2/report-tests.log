@@ -1,0 +1,9 @@
+test_flat_evaluation_derives_epoch_and_partial_completion_from_history (test_models_v2.ReportTests.test_flat_evaluation_derives_epoch_and_partial_completion_from_history) ... ok
+test_scanner_ignores_unreadable_outputs (test_fusion.ReportRunsTests.test_scanner_ignores_unreadable_outputs) ... ok
+test_scanner_table_and_json (test_fusion.ReportRunsTests.test_scanner_table_and_json) ... ok
+test_scanner_uses_predictions_when_metrics_missing (test_fusion.ReportRunsTests.test_scanner_uses_predictions_when_metrics_missing) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.027s
+
+OK

@@ -1,0 +1,18 @@
+[
+  {
+    "experiment": "shimmer_512_pretrained_reference",
+    "seed": 42,
+    "best_epoch": 22,
+    "best_epoch_one_based": 23,
+    "completed_epochs": 28,
+    "planned_epochs": 30,
+    "training_complete": false,
+    "history_best_auroc": 0.9885271098329013,
+    "auroc": 0.9885271098329013,
+    "auprc_trapz": 0.827245311144115,
+    "ap": 0.8275141456662947,
+    "sens_at_spec95": 0.9476439790575916,
+    "wall_time_s": 11843.301999999998,
+    "path": "/home/heyuhang/work/shimmer-upgrade-review-20261027/docs/shimmer/evidence/outputs/runs/local_20261027T123315Z/shimmer_512_pretrained_reference/seed42_20261027T123315Z_a86fd5be"
+  }
+]

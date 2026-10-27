@@ -1,0 +1,24 @@
+{
+  "source_commit": "3505336b4f1004a09598e9a2fbe020ab40166ce6",
+  "evidence": "docs/shimmer/evidence/outputs/runs/local_20261027T123315Z/shimmer_512_pretrained_reference/seed42_20261027T123315Z_a86fd5be",
+  "sha256_files_verified": 57,
+  "csv_hashes_match_original_run": true,
+  "count": 5849,
+  "positives": 191,
+  "completed_epochs": 28,
+  "planned_epochs": 30,
+  "best_epoch_one_based": 23,
+  "best_auroc": 0.9885271098329013,
+  "best_ap": 0.8275141456662947,
+  "best_auprc_trapz": 0.827245311144115,
+  "epoch8_auroc": 0.9885104536226332,
+  "best_minus_epoch8_auroc": 1.6656210268028993e-05,
+  "first_train_loss": 0.35264185426327793,
+  "final_train_loss": 0.002387686239373825,
+  "final_auroc": 0.9871344655854937,
+  "artifacts_in_git": {
+    "best.pt": false,
+    "valid_predictions.csv": false
+  },
+  "limitation": "Metrics/history/config/metadata checked only; no weights or row-level predictions in this uploaded run, so no independent inference or paired confidence interval."
+}

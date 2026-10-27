@@ -56,6 +56,8 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     config.validate()
     if sum(value is not None for value in (resume, init_from, init_encoder)) > 1:
         raise ValueError("resume, init_from and init_encoder are mutually exclusive")
+    if config.train.keep_initial_best and not (init_from or resume):
+        raise ValueError("keep_initial_best requires init_from or resume")
     if init_encoder and resume:
         raise ValueError("resume and init_encoder are mutually exclusive")
     if config.train.freeze_image_epochs and not (resume or init_from or init_encoder):
@@ -89,6 +91,7 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     metadata = environment_metadata()
     metadata.update(csv_hashes=csv_hashes, resumed_from=str(Path(resume).resolve()) if resume else None,
                     initialized_from=str(Path(init_from).resolve()) if init_from else None,
+                    initialized_from_sha256=sha256_file(init_from) if init_from else None,
                     initialized_from_encoder=str(Path(init_encoder).resolve()) if init_encoder else None,
                     initialized_from_encoder_sha256=sha256_file(init_encoder) if init_encoder else None,
                     image_cache=str(Path(image_cache).resolve()) if image_cache else None,
@@ -142,6 +145,15 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
         history, global_step, best = saved["history"], saved["global_step"], saved["best"]
         restore_rng(saved["rng"], device)
         save_checkpoint(run_dir / "best.pt", best)
+    elif config.train.keep_initial_best:
+        # A refinement must compete with its starting model, not only its own epochs.
+        _, baseline = collect_predictions(model, valid_loader, device, config.train.pos_weight,
+                                           config.train.amp)
+        best = inference_payload(model, config, age_stats, -1, baseline)
+        best["selected_weights"] = "initial"
+        save_checkpoint(run_dir / "best.pt", best)
+        save_json(run_dir / "initial_validation.json", baseline)
+        print(f"[initial] valid_auc={baseline['auroc']:.6f} valid_ap={baseline['ap']:.6f}", flush=True)
     end_epoch = config.train.epochs if stop_after_epochs is None else min(config.train.epochs, start_epoch + stop_after_epochs)
     for epoch in range(start_epoch, end_epoch):
         started = time.monotonic()
