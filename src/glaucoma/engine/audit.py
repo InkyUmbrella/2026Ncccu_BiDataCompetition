@@ -19,10 +19,14 @@ def snapshot_sources(run_dir):
     repository = package.parents[1]
     paths = {f"src/glaucoma/{p.relative_to(package).as_posix()}": p
              for p in package.rglob("*.py")}
-    for name in ("pyproject.toml", "requirements-server-tested.txt", "scripts/train_audited.py"):
+    for name in ("pyproject.toml", "requirements-server-tested.txt", "scripts/train_audited.py",
+                 "predict.py", "cost.py", "scripts/freeze_inference.py", "scripts/prepare_dinov2.py"):
         path = repository / name
         if path.is_file():
             paths[name] = path
+    for path in (repository / "licenses").rglob("*"):
+        if path.is_file():
+            paths[path.relative_to(repository).as_posix()] = path
     files = {name: sha256_file(path) for name, path in sorted(paths.items())}
 
     def archive(handle):
@@ -40,6 +44,9 @@ def snapshot_sources(run_dir):
 def pretrained_source(config):
     if config.model.weights is None:
         return None
+    if config.model.name == "dinov2_vits14":
+        from ..models.pretrained import dinov2_source
+        return dinov2_source()[0]
     weights = ConvNeXt_Tiny_Weights[config.model.weights]
     path = Path(torch.hub.get_dir()) / "checkpoints" / Path(urlparse(weights.url).path).name
     if not path.is_file():
@@ -66,6 +73,13 @@ def record_initialization(run_dir, model, config, age_stats, start_epoch,
             raise ValueError("Initialization source changed while being archived")
         record["source"] = {"original_path": str(source),
                             "file": copied.relative_to(run_dir).as_posix(), "sha256": digest}
+    if mode == "new" and config.model.name == "dinov2_vits14" and config.model.weights:
+        from ..models.pretrained import DINOV2_DOCUMENTS, dinov2_source
+        _, manifest, documents = dinov2_source()
+        for path in [manifest, *[documents / name for name in sorted(DINOV2_DOCUMENTS)]]:
+            target = directory / path.name
+            atomic_write(target, lambda handle, p=path: _copy_into(p, handle))
+        record["pretrained_source_manifest"] = json.loads(manifest.read_text(encoding="utf-8"))
     save_json(run_dir / "initialization.json", record)
 
 

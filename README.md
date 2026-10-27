@@ -7,7 +7,7 @@
 
 已完成的B0、年龄残差、refine和restart结果及历史材料，见 [训练结果汇总](docs/TRAINING_RESULTS.md) 和 [归档材料目录](training_records/20261022-23/README.md)。当前最高完整valid AUROC为refine的0.987328325；历史逐轮checkpoint缺口在报告中明确列出。
 
-后续开发以 [参赛规则合规核查](docs/COMPLIANCE_REVIEW.md) 为边界，按 [T4交付与AUROC开发计划](docs/DEVELOPMENT_PLAN.md) 推进。[官网](https://www.ncccu.org.cn/index/Paper/case2.html?way=1)确认区域赛/省赛截止2026-11-06 23:59（北京时间），最终评测为单张T4 16GB、Python 3.12/PyTorch 2.10.0/CUDA 12.8。代码在服务器跑通、正式训练交队友4090执行；计划中的新配方尚未实现或训练。公开仓库所含官方验证逐样本记录的访问范围待处理，详见合规核查。
+后续开发以 [参赛规则合规核查](docs/COMPLIANCE_REVIEW.md) 为边界，按 [T4交付与AUROC开发计划](docs/DEVELOPMENT_PLAN.md) 推进。[官网](https://www.ncccu.org.cn/index/Paper/case2.html?way=1)确认区域赛/省赛截止2026-11-06 23:59（北京时间），最终评测为单张T4 16GB、Python 3.12/PyTorch 2.10.0/CUDA 12.8。**当前工作区已写入DINOv2、512配置及统一预测/计时入口，尚未运行验证；用户已授权将本批源码推送GitHub，服务器或4090运行位置仍等待用户指定。** 状态和待执行命令见 [本批实现说明](docs/DINOV2_IMPLEMENTATION.md)。公开数据记录的访问范围由用户稍后自行改私有，完成状态尚未核实。
 
 ## 目录
 

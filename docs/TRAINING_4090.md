@@ -1,10 +1,10 @@
 # RTX 4090 训练交接
 
-代码分支：`codex/pretrained-auroc-improve`。后续正式训练由队友在 4090 上执行；本次开发在服务器独立目录验证。实际服务器测试范围和日志见 [验证记录](SERVER_HANDOFF_VALIDATION.md)。服务器 GPU 验证使用 V100，4090 尚需队友实测，跨硬件不保证逐位一致。
+代码分支：`codex/pretrained-auroc-improve`。本文保留此前4090交接流程。**2026-10-27最新安排：用户已授权将新DINOv2/统一推理源码发布到GitHub，在哪台机器运行仍等待用户指示；本批尚无运行验证。** 此前版本的服务器测试范围和日志见 [验证记录](SERVER_HANDOFF_VALIDATION.md)，不能当作新改动已经通过。跨硬件不保证逐位一致。
 
 已训练结果、原始日志与历史权重获取方法见 [正式结果报告](TRAINING_RESULTS.md) 和 [材料目录](../training_records/20261022-23/README.md)。可以下载已有B0固定best作为新refine的`--init-from`起点；已有refine best可供推理验证。旧实验尚存的材料与缺口分别保留，不要求为了材料整理而重训。
 
-新开发按 [规则核查](COMPLIANCE_REVIEW.md) 和 [后续计划](DEVELOPMENT_PLAN.md) 执行；最终T4 16GB上的100ms端到端约束与4090训练速度分别验证。下文仍是现有已实现配方的命令，计划中的512/DINO配置不能当作已可用命令。
+新开发按 [规则核查](COMPLIANCE_REVIEW.md) 和 [后续计划](DEVELOPMENT_PLAN.md) 执行；最终T4 16GB上的100ms端到端约束与训练速度分别验证。新512/DINO配置已写入工作区但未运行，见 [本批实现和待执行命令](DINOV2_IMPLEMENTATION.md)；本批发布不代表这些入口已经通过运行验收。
 
 ## 取得代码与环境
 

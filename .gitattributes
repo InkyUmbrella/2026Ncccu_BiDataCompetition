@@ -1,2 +1,5 @@
 # Preserve the exact bytes of historical audit evidence and its SHA256 ledger.
 training_records/** -text -whitespace
+# Preserve upstream evidence bytes, including whitespace covered by its SHA256.
+licenses/dinov2/LICENSE -text -whitespace
+licenses/dinov2/MODEL_CARD.md -text -whitespace

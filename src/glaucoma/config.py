@@ -52,9 +52,15 @@ class Config:
     data: DataConfig = field(default_factory=DataConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     train: TrainConfig = field(default_factory=TrainConfig)
+    init_from_sha256: str | None = None
 
     def validate(self):
         import math
+        import re
+
+        if self.init_from_sha256 is not None and (not isinstance(self.init_from_sha256, str)
+                or re.fullmatch("[0-9a-f]{64}", self.init_from_sha256) is None):
+            raise ValueError("init_from_sha256 must be a full lowercase SHA256 or null")
 
         if not self.experiment or any(c in self.experiment for c in "/\\") or self.experiment in (".", ".."):
             raise ValueError("experiment must be a single directory name")
@@ -68,11 +74,14 @@ class Config:
         if self.data.normalization not in ("symmetric", "imagenet"):
             raise ValueError("normalization must be symmetric or imagenet")
         if self.model.weights is not None:
-            if (self.model.weights != "IMAGENET1K_V1"
-                    or self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual")):
-                raise ValueError("weights must be IMAGENET1K_V1 for a supported ConvNeXt model")
+            allowed = {"convnext_tiny": "IMAGENET1K_V1", "convnext_tiny_age_residual": "IMAGENET1K_V1",
+                       "dinov2_vits14": "LVD142M"}
+            if self.model.name not in allowed or self.model.weights != allowed[self.model.name]:
+                raise ValueError("weights must be IMAGENET1K_V1 for ConvNeXt or LVD142M for dinov2_vits14")
             if self.data.normalization != "imagenet":
-                raise ValueError("ImageNet weights require imagenet normalization")
+                raise ValueError("Pretrained weights require imagenet normalization")
+        if self.model.name == "dinov2_vits14" and self.data.image_size % 14:
+            raise ValueError("DINOv2 image_size must be a multiple of 14")
         if type(self.data.crop_black_border) is not bool:
             raise ValueError("crop_black_border must be a boolean")
         if type(self.data.crop_threshold) is not int or not 0 <= self.data.crop_threshold <= 255:

@@ -1,0 +1,36 @@
+{
+  "experiment": "b0_crop512_refine_ema",
+  "seed": 42,
+  "init_from_sha256": "c9a7c3c6cf7802b96d43bc7e89737579d43324ccd4b1afdfb76ec5fe2978bb18",
+  "device": "cuda",
+  "output_root": "outputs/audited",
+  "data": {
+    "root": "dataset/glaucoma_first",
+    "image_size": 512,
+    "num_workers": 8,
+    "verify_images": true,
+    "crop_black_border": true,
+    "crop_threshold": 10,
+    "crop_margin": 0.03,
+    "normalization": "imagenet"
+  },
+  "model": {
+    "name": "convnext_tiny",
+    "params": {"use_age": false, "hidden_dim": 128, "dropout": 0.2},
+    "weights": null
+  },
+  "train": {
+    "epochs": 10,
+    "batch_size": 32,
+    "accumulation_steps": 4,
+    "learning_rate": 0.00001,
+    "min_learning_rate": 0.0000001,
+    "warmup_epochs": 1,
+    "weight_decay": 0.05,
+    "pos_weight": 5.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "backbone_lr_scale": 1.0,
+    "ema_decay": 0.999
+  }
+}

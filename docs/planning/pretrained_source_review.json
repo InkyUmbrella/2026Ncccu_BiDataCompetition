@@ -28,8 +28,7 @@
     "anonymous_head_status": 200,
     "head_content_length": 88283115,
     "downloaded_file_sha256": null,
-    "pinned_upstream_code_revision": null,
-    "implemented_or_trained": false,
+    "pinned_upstream_code_revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
     "references": [
       "https://github.com/facebookresearch/dinov2/blob/main/MODEL_CARD.md",
       "https://github.com/facebookresearch/dinov2#license",
@@ -37,7 +36,12 @@
       "https://arxiv.org/html/2304.07193v2#S3"
     ],
     "priority": "primary_new_pretraining_direction_before_convnext_512",
-    "training_method": "15 epochs supervised fine-tuning with official train labels; no medical self-supervised continuation"
+    "training_method": "15 epochs supervised fine-tuning with official train labels; no medical self-supervised continuation",
+    "implementation_written_in_working_tree": true,
+    "runtime_validation_completed": false,
+    "trained": false,
+    "implementation": "Standalone native PyTorch ViT-S/14 adaptation; official parity pending",
+    "change_state": "User authorized GitHub publication; runtime validation pending; execution location awaits user"
   },
   "excluded_sources": [
     {
@@ -79,7 +83,7 @@
         "sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7"
       }
     ],
-    "implementation_revision_selected": false,
+    "implementation_revision_selected": true,
     "dinov3_model_id": "facebook/dinov3-vits16-pretrain-lvd1689m",
     "dinov3_gated": "manual",
     "dinov3_api_url": "https://huggingface.co/api/models/facebook/dinov3-vits16-pretrain-lvd1689m",

@@ -55,6 +55,9 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     config.validate()
     if resume and init_from:
         raise ValueError("resume and init_from are mutually exclusive")
+    if config.init_from_sha256 and not resume:
+        if not init_from or sha256_file(init_from) != config.init_from_sha256:
+            raise ValueError("This experiment requires init_from with the configured SHA256")
     if config.train.freeze_image_epochs and not (resume or init_from):
         raise ValueError("Freezing the image branch requires init_from or resume")
     if stop_after_epochs is not None and stop_after_epochs < 1:
@@ -77,6 +80,9 @@ def train(config, resume=None, stop_after_epochs=None, image_cache=None, init_fr
     if saved and saved["csv_hashes"] != csv_hashes:
         raise ValueError("Dataset CSV contents changed since checkpoint")
     source = saved or initialization
+    if source is None and config.model.name == "dinov2_vits14" and config.model.weights:
+        from ..models.pretrained import dinov2_source
+        dinov2_source()  # Fail before a potentially expensive image audit if preparation is missing.
     age_stats = AgeStats(**source["age_stats"]) if source else AgeStats.fit(row.age for row in samples["train"])
     run_dir = new_run_directory(config.output_root, config.experiment, config.seed)
     print(f"[run] {run_dir.resolve()}", flush=True)
