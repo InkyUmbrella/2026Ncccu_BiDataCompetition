@@ -14,6 +14,7 @@ import shutil
 import subprocess
 import sys
 import threading
+import time
 import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,10 +80,16 @@ def run(command, log, gpu='', name=None):
 def free_gpu(index):
     if index not in (2, 3, 4):
         raise ValueError('This launch is restricted to physical GPUs 2, 3 and 4')
-    output = subprocess.check_output(['nvidia-smi', '-i', str(index),
-        '--query-compute-apps=pid', '--format=csv,noheader,nounits'], text=True)
-    if output.strip():
-        raise RuntimeError(f'GPU {index} has active compute processes; refusing to start: {output.strip()}')
+    deadline = time.monotonic() + 120
+    while True:
+        output = subprocess.check_output(['nvidia-smi', '-i', str(index),
+            '--query-compute-apps=pid', '--format=csv,noheader,nounits'], text=True)
+        if not output.strip():
+            return
+        if time.monotonic() >= deadline:
+            raise RuntimeError(f'GPU {index} is still occupied; refusing to start: {output.strip()}')
+        print(f'[wait] GPU {index} has compute processes; waiting without interrupting them', flush=True)
+        time.sleep(5)
 
 
 def prepare_cache(size):

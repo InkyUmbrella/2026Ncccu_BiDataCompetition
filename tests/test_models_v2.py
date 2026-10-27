@@ -125,3 +125,19 @@ class ReportTests(unittest.TestCase):
             (root/'metrics.json').write_text(json.dumps({'auroc':.91,'auprc_trapz':.6}))
             row=load_script('report_runs').scan_runs(root)[0]
             self.assertIsNone(row['best_epoch'])
+
+
+class GPUGuardTests(unittest.TestCase):
+    def test_only_allocated_gpus_are_queried_and_busy_cards_are_not_used(self):
+        runner=load_script('run_round2_server')
+        with patch.object(runner.subprocess,'check_output') as query:
+            with self.assertRaisesRegex(ValueError,'restricted'):
+                runner.free_gpu(0)
+            query.assert_not_called()
+        with patch.object(runner.subprocess,'check_output',side_effect=['1234\n','']), \
+             patch.object(runner.time,'sleep'):
+            runner.free_gpu(2)
+        with patch.object(runner.subprocess,'check_output',return_value='1234\n'), \
+             patch.object(runner.time,'monotonic',side_effect=[0,121]):
+            with self.assertRaisesRegex(RuntimeError,'still occupied'):
+                runner.free_gpu(3)
