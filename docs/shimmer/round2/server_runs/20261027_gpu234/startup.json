@@ -1,0 +1,28 @@
+{
+  "phase": "caching",
+  "jobs": {},
+  "finished": false,
+  "started_at": "2026-10-27T15:19:50.761181+00:00",
+  "source_revision": "9d86ba4ef3c6d914a587e362fb3ea084d6a27d09",
+  "gpus": [
+    2,
+    3,
+    4
+  ],
+  "data_root": "/home/lichunyu/competition/dataset/glaucoma_first",
+  "csv_hashes": {
+    "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+    "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+  },
+  "updated_at": "2026-10-27T15:20:32.563116+00:00",
+  "pretrained_files": {
+    "convnext_tiny-983f1562.pth": {
+      "sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+      "bytes": 114419221
+    },
+    "efficientnet_v2_s-dd5fe13b.pth": {
+      "sha256": "dd5fe13b1d60ec15317ccc8ca158186e134d3366c3dde9cb9a4e301f2dc66c74",
+      "bytes": 86721253
+    }
+  }
+}

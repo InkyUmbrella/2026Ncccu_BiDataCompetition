@@ -1,0 +1,13 @@
+Core upgrade: 92 synthetic regression tests, 91 passed and 1 opt-in GPU test skipped.
+Final report changes: 4 relevant tests passed.
+Additional allocated-GPU guard: 1 test passed (reject GPU0, wait for transient busy GPU2, reject persistent busy GPU3).
+All supervised configs validated; Python compilation and git diff --check passed.
+
+Real-image CUDA checks on the authorized V100s, using official pretrained weights:
+GPU2 ConvNeXt-Tiny 512: 16 train / 16 valid; one optimizer update; encoder changed; peak allocated 5140.22 MiB.
+GPU4 EfficientNetV2-S 384: 16 train / 16 valid; one successful optimizer update after two scaler attempts; encoder changed; peak allocated 3651.90 MiB.
+These checks do not constitute formal AUROC experiments.
+
+Source snapshot for the server batch: 9d86ba4ef3c6d914a587e362fb3ea084d6a27d09.
+Training and evaluation remain under the detached server supervisor.
+Startup JSON is a snapshot, not a live status or a claim of completed training.

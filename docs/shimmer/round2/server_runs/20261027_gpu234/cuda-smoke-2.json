@@ -1,0 +1,16 @@
+{
+  "physical_gpu": 2,
+  "logical_device": "cuda:0",
+  "gpu_name": "Tesla V100-SXM2-16GB",
+  "model": "convnext_tiny",
+  "image_size": 512,
+  "weights": "IMAGENET1K_V1",
+  "train_rows": 16,
+  "valid_rows": 16,
+  "optimizer_updates": 1,
+  "attempts": 1,
+  "encoder_changed": true,
+  "train_loss": 1.3880611658096313,
+  "peak_allocated_MiB": 5140.2216796875,
+  "limitation": "Small smoke test only; metrics do not represent a formal validation run."
+}
