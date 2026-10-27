@@ -1,0 +1,237 @@
+test_crop_preserves_field_margin_and_handles_dark_images (test_age_residual.PreprocessingTests.test_crop_preserves_field_margin_and_handles_dark_images) ... ok
+test_cropped_cache_matches_original_once_and_rejects_wrong_recipe (test_age_residual.PreprocessingTests.test_cropped_cache_matches_original_once_and_rejects_wrong_recipe) ... [cache] 13/13
+[cache] complete: /tmp/tmprq7syred/cache
+ok
+test_legacy_cache_only_supports_original_preprocessing (test_age_residual.PreprocessingTests.test_legacy_cache_only_supports_original_preprocessing) ... [cache] 13/13
+[cache] complete: /tmp/tmplhfq7ig_/cache
+ok
+test_b0_transfer_zero_correction_freeze_and_unfreeze (test_age_residual.TransferTests.test_b0_transfer_zero_correction_freeze_and_unfreeze) ... ok
+test_config_and_initialization_guards (test_age_residual.TransferTests.test_config_and_initialization_guards) ... ok
+test_legacy_optimizer_groups_load_with_zero_weight_decay (test_age_residual.TransferTests.test_legacy_optimizer_groups_load_with_zero_weight_decay) ... ok
+test_new_experiment_resets_state_and_sampling_resume_is_exact (test_age_residual.TransferTests.test_new_experiment_resets_state_and_sampling_resume_is_exact) ... Wrote 4 predictions to /tmp/tmpjykuo8q7/evaluation
+Wrote 3 predictions to /tmp/tmpjykuo8q7/submission.csv
+[run] /tmp/tmp33zfv_hy/out/b0_image/seed42_20261027T184402Z_47bbd24a
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp33zfv_hy/out/b0_image/seed42_20261027T184408Z_e60b16a4
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp33zfv_hy/out/b0_image/seed42_20261027T184411Z_5479abb3
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp33zfv_hy/out/b0_image/seed42_20261027T184411Z_6bf285a6
+[epoch 1/4] train_loss=0.901637 valid_auc=0.000000 valid_ap=0.416667
+ok
+test_residual_resume_crosses_frozen_boundary_without_changing_weights (test_age_residual.TransferTests.test_residual_resume_crosses_frozen_boundary_without_changing_weights) ... [run] /tmp/tmp67elb1am/out/b0_image/seed42_20261027T184411Z_84b4dd46
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp67elb1am/out/b0_image/seed42_20261027T184412Z_a569658f
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp67elb1am/out/b0_image/seed42_20261027T184412Z_5c10c8c7
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+ok
+test_age_statistics_and_flags (test_baseline.DataTests.test_age_statistics_and_flags) ... ok
+test_audit_reports_bad_images_and_duplicates (test_baseline.DataTests.test_audit_reports_bad_images_and_duplicates) ... ok
+test_case_collision (test_baseline.DataTests.test_case_collision) ... ok
+test_case_mapping_csv_order_and_submission_transforms (test_baseline.DataTests.test_case_mapping_csv_order_and_submission_transforms) ... ok
+test_lossless_cache_preserves_augmentation_and_rejects_stale_sources (test_baseline.DataTests.test_lossless_cache_preserves_augmentation_and_rejects_stale_sources) ... [cache] 13/13
+[cache] complete: /tmp/tmpvuwaxkuk/cache
+ok
+test_real_convnext_both_variants_and_backward (test_baseline.ModelTests.test_real_convnext_both_variants_and_backward) ... ok
+test_accumulation_matches_full_batch_including_short_windows (test_baseline.NumericTests.test_accumulation_matches_full_batch_including_short_windows) ... ok
+test_config_and_metrics (test_baseline.NumericTests.test_config_and_metrics) ... ok
+test_schedule_endpoints (test_baseline.NumericTests.test_schedule_endpoints) ... ok
+test_train_resume_evaluate_predict_round_trip (test_baseline.WorkflowTests.test_train_resume_evaluate_predict_round_trip) ... [run] /tmp/tmpryovxauj/outputs/b0_image/seed42_20261027T184414Z_7a5a59d0
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpryovxauj/outputs/b0_image/seed42_20261027T184414Z_123ed9c6
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[cache] 13/13
+[cache] complete: /tmp/tmpryovxauj/cache
+[run] /tmp/tmpryovxauj/outputs/b0_image/seed42_20261027T184414Z_3043289e
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+ok
+test_descendants_does_not_include_unrelated_process (test_cache_switch.SwitchGuardTests.test_descendants_does_not_include_unrelated_process) ... ok
+test_identity_guard_and_pause_resume (test_cache_switch.SwitchGuardTests.test_identity_guard_and_pause_resume) ... ok
+test_both_variants_fp16_at_default_resolution_and_batch (test_cuda_smoke.CudaSmokeTests.test_both_variants_fp16_at_default_resolution_and_batch) ... skipped 'Opt-in CUDA test; requires GLAUCOMA_CUDA_SMOKE=1'
+test_cpu_does_not_touch_cuda (test_device.DeviceTests.test_cpu_does_not_touch_cuda) ... ok
+test_default_cuda_resolves_to_current_logical_index (test_device.DeviceTests.test_default_cuda_resolves_to_current_logical_index) ... ok
+test_explicit_cuda_index_is_preserved (test_device.DeviceTests.test_explicit_cuda_index_is_preserved) ... ok
+test_unavailable_cuda_has_a_clear_error (test_device.DeviceTests.test_unavailable_cuda_has_a_clear_error) ... ok
+test_official_order_override (test_fusion.AlignTests.test_official_order_override) ... ok
+test_reorder_and_errors (test_fusion.AlignTests.test_reorder_and_errors) ... ok
+test_auroc_wrapper_and_degenerate_input (test_fusion.BootstrapTests.test_auroc_wrapper_and_degenerate_input) ... ok
+test_determinism_ci_and_probabilities (test_fusion.BootstrapTests.test_determinism_ci_and_probabilities) ... ok
+test_group_same_age_pairs (test_fusion.BootstrapTests.test_group_same_age_pairs) ... ok
+test_null_is_centred_and_grouped_mode_runs (test_fusion.BootstrapTests.test_null_is_centred_and_grouped_mode_runs) ... ok
+test_ranking_metrics (test_fusion.BootstrapTests.test_ranking_metrics) ... ok
+test_verdict_and_grouped_mode (test_fusion.CompareScriptTests.test_verdict_and_grouped_mode) ... ok
+test_end_to_end_offline_fuse (test_fusion.FuseScriptTests.test_end_to_end_offline_fuse) ... ok
+test_missing_member_width_and_name_errors (test_fusion.FuseScriptTests.test_missing_member_width_and_name_errors) ... ok
+test_rank_and_prob_methods_write_valid_columns (test_fusion.FuseScriptTests.test_rank_and_prob_methods_write_valid_columns) ... ok
+test_test_mode_submission (test_fusion.FuseScriptTests.test_test_mode_submission) ... ok
+test_input_kind_probabilities (test_fusion.FuseTests.test_input_kind_probabilities) ... ok
+test_logit_equal_weights_and_reuse (test_fusion.FuseTests.test_logit_equal_weights_and_reuse) ... ok
+test_prob_and_rank_methods (test_fusion.FuseTests.test_prob_and_rank_methods) ... ok
+test_single_model_is_identity_for_logit (test_fusion.FuseTests.test_single_model_is_identity_for_logit) ... ok
+test_validation_errors (test_fusion.FuseTests.test_validation_errors) ... ok
+test_weights_are_normalised (test_fusion.FuseTests.test_weights_are_normalised) ... ok
+test_average_ranks_and_ties (test_fusion.RankTests.test_average_ranks_and_ties) ... ok
+test_rejects_empty_and_nonfinite (test_fusion.RankTests.test_rejects_empty_and_nonfinite) ... ok
+test_scanner_ignores_unreadable_outputs (test_fusion.ReportRunsTests.test_scanner_ignores_unreadable_outputs) ... ok
+test_scanner_table_and_json (test_fusion.ReportRunsTests.test_scanner_table_and_json) ... ok
+test_scanner_uses_predictions_when_metrics_missing (test_fusion.ReportRunsTests.test_scanner_uses_predictions_when_metrics_missing) ... ok
+test_constant_sample_and_bad_dict_raise (test_fusion.StandardizerTests.test_constant_sample_and_bad_dict_raise) ... ok
+test_round_trip_and_reuse (test_fusion.StandardizerTests.test_round_trip_and_reuse) ... ok
+test_draft_cache_records_and_requires_draft (test_latency_decode.CachePolicyTests.test_draft_cache_records_and_requires_draft) ... Wrote 4 predictions to /tmp/tmpryovxauj/eval
+Wrote 3 predictions to /tmp/tmpryovxauj/submission.csv
+Wrote 120 fused rows to /tmp/tmpgi61f07x/fused.csv; method=logit; AUROC=0.6176215277777777
+Wrote 120 fused rows to /tmp/tmpv0ddmumt/rank.csv; method=rank; AUROC=0.6256510416666667
+Wrote 120 fused rows to /tmp/tmpv0ddmumt/prob.csv; method=prob; AUROC=0.6176215277777778
+Wrote 20 submission rows to /tmp/tmpcwss02lh/submission.csv; method=logit
+[cache] 6/6
+[cache] complete: /tmp/tmpij0wdilt/cache
+ok
+test_manifest_v3_decode_gate_and_legacy_v2 (test_latency_decode.CachePolicyTests.test_manifest_v3_decode_gate_and_legacy_v2) ... [cache] 6/6
+[cache] complete: /tmp/tmpkhaxjg_n/cache
+ok
+test_dataset_threads_decode_policy (test_latency_decode.DecodeTests.test_dataset_threads_decode_policy) ... ok
+test_decode_policy_config_and_checkpoint_round_trip (test_latency_decode.DecodeTests.test_decode_policy_config_and_checkpoint_round_trip) ... ok
+test_draft_full_tensor_parity_on_smooth_images (test_latency_decode.DecodeTests.test_draft_full_tensor_parity_on_smooth_images) ... ok
+test_draft_never_upscales_and_only_affects_jpeg (test_latency_decode.DecodeTests.test_draft_never_upscales_and_only_affects_jpeg) ... ok
+test_benchmark_rejects_fp16_on_cpu (test_latency_decode.HarnessTests.test_benchmark_rejects_fp16_on_cpu) ... ok
+test_cpu_only_benchmark_on_tiny_model (test_latency_decode.HarnessTests.test_cpu_only_benchmark_on_tiny_model) ... ok
+test_percentile_matches_linear_interpolation (test_latency_decode.HarnessTests.test_percentile_matches_linear_interpolation) ... ok
+test_bbox_gate_is_reported_and_passes_without_crop (test_latency_decode.ParityHarnessTests.test_bbox_gate_is_reported_and_passes_without_crop) ... ok
+test_checkpoint_preprocessing_wins_and_conflicts_are_rejected (test_latency_decode.ParityHarnessTests.test_checkpoint_preprocessing_wins_and_conflicts_are_rejected) ... GPU: CPU, torch 2.5.1+cu121, torchvision 0.20.1+cu121, fp32
+model: /tmp/tmpv2janqh3/config.json, params 0.0 M, artifact 0.0 MB, input 32x32, decode full
+images: 3 (valid), largest included: 116 KiB, warmup 1
+cold start (first end-to-end image): 10.7 ms
+
+stage             p50      p95      p99      max  (ms)
+read             0.04     0.06     0.06     0.06
+decode           2.22     5.27     5.54     5.60
+preprocess       1.33     3.47     3.66     3.70
+transfer         0.14     0.15     0.15     0.15
+forward          0.11     0.13     0.13     0.13
+post             0.02     0.02     0.02     0.02
+total            3.88     9.07     9.54     9.65
+GATE latency p95 <= 100 ms: PASS (9.1 ms)
+GATE model artifact <= 500 MB: SKIP (no checkpoint)
+report: /tmp/tmpv2janqh3/latency.json
+[parity] tensor comparison on 3/3 valid images at 32px (preprocessing from defaults)
+  mean |delta| p50=0.00102 p95=0.00116 max=0.00784
+  bbox fraction max delta=None disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] report: /tmp/tmpxq6pmarm/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=n/a)
+[parity] tensor comparison on 3/3 valid images at 64px (preprocessing from checkpoint)
+  mean |delta| p50=0.00092 p95=0.00107 max=0.00784
+  bbox fraction max delta=0.0 disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] checkpoint pass on the complete valid split (3 images, cpu)
+ok
+test_official_normalization_transfer_and_offline_lifecycle (test_models_v2.EfficientNetTests.test_official_normalization_transfer_and_offline_lifecycle) ...   AUROC full=1.000000 draft=1.000000 |delta|=0.000000
+  probability |delta| p50=0.00001 p99=0.00009 max=0.00009 spearman=1.000000
+  GATE AUROC |delta| <= 0.001: PASS
+[parity] report: /tmp/tmp6ykpq9kl/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=PASS)
+[run] /tmp/tmpiym6k0ke/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261027T184428Z_49ffb8db
+[epoch 1/2] train_loss=1.940089 valid_auc=0.500000 valid_ap=0.500000
+[run] /tmp/tmpiym6k0ke/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261027T184431Z_f36aa146
+[epoch 2/2] train_loss=1.904376 valid_auc=0.000000 valid_ap=0.500000
+[run] /tmp/tmpiym6k0ke/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261027T184434Z_adb0da49
+[epoch 1/2] train_loss=1.943216 valid_auc=0.500000 valid_ap=0.500000
+ok
+test_only_allocated_gpus_are_queried_and_busy_cards_are_not_used (test_models_v2.GPUGuardTests.test_only_allocated_gpus_are_queried_and_busy_cards_are_not_used) ... Wrote 4 predictions to /tmp/tmpiym6k0ke/eval
+Wrote 3 predictions to /tmp/tmpiym6k0ke/predictions.csv
+[wait] GPU 2 has compute processes; waiting without interrupting them
+ok
+test_initial_weights_remain_best_after_worse_training_and_resume (test_models_v2.RefineTests.test_initial_weights_remain_best_after_worse_training_and_resume) ... [run] /tmp/tmpdyc9jmof/runs/b0_image/seed42_20261027T184439Z_6a851470
+[initial] valid_auc=0.990000 valid_ap=1.000000
+[epoch 1/2] train_loss=1.411619 valid_auc=0.500000 valid_ap=1.000000
+[run] /tmp/tmpdyc9jmof/runs/b0_image/seed42_20261027T184439Z_1c2e2b30
+[epoch 2/2] train_loss=1.579721 valid_auc=0.500000 valid_ap=1.000000
+ok
+test_refine_recipe_preserves_successful_model_and_preprocessing (test_models_v2.RefineTests.test_refine_recipe_preserves_successful_model_and_preprocessing) ... ok
+test_flat_evaluation_derives_epoch_and_partial_completion_from_history (test_models_v2.ReportTests.test_flat_evaluation_derives_epoch_and_partial_completion_from_history) ... ok
+test_invalid_png_entry_is_not_silently_accepted (test_png_cache.PNGCacheTests.test_invalid_png_entry_is_not_silently_accepted) ... [cache] 13/13
+[cache] complete: /tmp/tmpui_eymh0/png
+ok
+test_png_and_npy_cache_match_original_and_training_transforms (test_png_cache.PNGCacheTests.test_png_and_npy_cache_match_original_and_training_transforms) ... [cache] 13/13
+[cache] complete: /tmp/tmp3t4_l_5l/npy
+[cache] 13/13
+[cache] complete: /tmp/tmp3t4_l_5l/png
+ok
+test_imagenet_normalization_matches_official_values_and_lossless_cache (test_pretrained.PretrainedTests.test_imagenet_normalization_matches_official_values_and_lossless_cache) ... [cache] 13/13
+[cache] complete: /tmp/tmp2uunxlv2/cache
+ok
+test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions (test_pretrained.PretrainedTests.test_real_encoder_receives_weights_and_offline_workflow_preserves_predictions) ... [run] /tmp/tmpbm8d8s7u/outputs/shimmer_512_imagenet_seed43/seed43_20261027T184441Z_5a3c483a
+[epoch 1/2] train_loss=0.413122 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpbm8d8s7u/outputs/shimmer_512_imagenet_seed43/seed43_20261027T184444Z_3283794c
+[epoch 2/2] train_loss=0.164886 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpbm8d8s7u/outputs/shimmer_512_imagenet_seed43/seed43_20261027T184447Z_5c549de2
+[epoch 1/2] train_loss=0.353220 valid_auc=1.000000 valid_ap=1.000000
+ok
+test_backbone_lr_scale_leaves_head_at_full_rate (test_shimmer_selection.SelectionTests.test_backbone_lr_scale_leaves_head_at_full_rate) ... ok
+test_raw_and_ema_winners_export_the_evaluated_weights (test_shimmer_selection.SelectionTests.test_raw_and_ema_winners_export_the_evaluated_weights) ... Wrote 4 predictions to /tmp/tmpbm8d8s7u/eval
+Wrote 3 predictions to /tmp/tmpbm8d8s7u/predictions.csv
+[run] /tmp/tmpjn3azwzo/runs/b0_image/seed42_20261027T184452Z_b1394b9e
+[epoch 1/1] train_loss=1.988267 valid_auc=0.800000 valid_ap=0.416667
+[run] /tmp/tmpuu9en1z_/runs/b0_image/seed42_20261027T184452Z_fff386d6
+[epoch 1/1] train_loss=1.988267 valid_auc=0.900000 valid_ap=0.416667
+ok
+test_two_views_shape_range_determinism_and_collation (test_ssl.AugmentTests.test_two_views_shape_range_determinism_and_collation) ... ok
+test_encoder_payload_round_trip_and_strictness (test_ssl.CheckpointTests.test_encoder_payload_round_trip_and_strictness) ... ok
+test_recovery_round_trip (test_ssl.CheckpointTests.test_recovery_round_trip) ... ok
+test_shipped_configs_load (test_ssl.ConfigTests.test_shipped_configs_load) ... ok
+test_validate_and_json_round_trip (test_ssl.ConfigTests.test_validate_and_json_round_trip) ... ok
+test_train_init_encoder_records_hash_and_rejects_resume (test_ssl.InitEncoderTrainTests.test_train_init_encoder_records_hash_and_rejects_resume) ... [run] /tmp/tmp0ujjqkpa/outputs/b0_image/seed42_20261027T184455Z_dd753e80
+[epoch 1/1] train_loss=0.991033 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp0ujjqkpa/outputs/b0_image/seed42_20261027T184458Z_e5ee294d
+ok
+test_forward_shapes_and_finite_loss (test_ssl.ModelTests.test_forward_shapes_and_finite_loss) ... ok
+test_infonce_loss_decreases_on_separable_views (test_ssl.ModelTests.test_infonce_loss_decreases_on_separable_views) ... ok
+test_queue_fifo_wrap_and_momentum_semantics (test_ssl.ModelTests.test_queue_fifo_wrap_and_momentum_semantics) ... ok
+test_real_encoder_contract (test_ssl.ModelTests.test_real_encoder_contract) ... ok
+test_pretrain_checkpoint_resume_and_train_only_loader (test_ssl.PretrainTests.test_pretrain_checkpoint_resume_and_train_only_loader) ... [ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmp1esyzjqh/outputs/ssl_moco_v2/seed42_20261027T184500Z_952cf502  train_rows=9  world_size=1
+[ssl] epoch 1/2 loss=1.7758 lr=0.03750 queue=8 rank=1.14 std=0.0438
+[ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmp1esyzjqh/outputs/ssl_moco_v2/seed42_20261027T184504Z_830cbd60  train_rows=9  world_size=1
+[ssl] epoch 2/2 loss=2.3541 lr=0.00335 queue=8 rank=2.00 std=0.0049 probe_auc=None
+ok
+test_refuses_valid_rows (test_ssl.PretrainTests.test_refuses_valid_rows) ... ok
+test_separable_features_probe_and_collapse_monitors (test_ssl.ProbeTests.test_separable_features_probe_and_collapse_monitors) ... ok
+test_ema_skips_amp_skipped_steps (test_upgrades.EmaTests.test_ema_skips_amp_skipped_steps) ... ok
+test_ema_training_and_resume_round_trip (test_upgrades.EmaTests.test_ema_training_and_resume_round_trip) ... [run] /tmp/tmp1k13qapc/outputs/b0_image/seed42_20261027T184510Z_650049fb
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp1k13qapc/outputs/b0_image/seed42_20261027T184511Z_61d7d41e
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp1k13qapc/outputs/b0_image/seed42_20261027T184511Z_227a4623
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+ok
+test_ema_update_warmup_and_shadow_round_trip (test_upgrades.EmaTests.test_ema_update_warmup_and_shadow_round_trip) ... ok
+test_label_smoothing_helper_and_training_loss (test_upgrades.MixupTests.test_label_smoothing_helper_and_training_loss) ... ok
+test_mixup_and_cutmix_soft_targets_and_determinism (test_upgrades.MixupTests.test_mixup_and_cutmix_soft_targets_and_determinism) ... ok
+test_soft_target_pos_weight_semantics (test_upgrades.MixupTests.test_soft_target_pos_weight_semantics) ... ok
+test_config_defaults_and_legacy_config_compatibility (test_upgrades.ModelUpgradeTests.test_config_defaults_and_legacy_config_compatibility) ... ok
+test_defaults_preserve_original_math_and_rng (test_upgrades.ModelUpgradeTests.test_defaults_preserve_original_math_and_rng)
+Default-off config must follow the pre-upgrade loop and draw no extra RNG. ... ok
+test_old_config_without_stochastic_depth_key_loads_strict (test_upgrades.ModelUpgradeTests.test_old_config_without_stochastic_depth_key_loads_strict)
+A pre-upgrade checkpoint has no SD key and must still load strict=True. ... ok
+test_stochastic_depth_plumbing (test_upgrades.ModelUpgradeTests.test_stochastic_depth_plumbing) ... ok
+
+----------------------------------------------------------------------
+Ran 95 tests in 77.876s
+
+OK (skipped=1)

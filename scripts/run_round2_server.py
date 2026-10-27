@@ -7,8 +7,10 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import hashlib
+import io
 import json
 import os
+import random
 from pathlib import Path
 import shutil
 import subprocess
@@ -95,11 +97,40 @@ def free_gpu(index):
 def prepare_cache(size):
     config = ('shimmer_512_pretrained_reference.json' if size == 512
               else 'shimmer_efficientnetv2s_384_reference_seed42.json')
-    destination = WORK / f'cache{size}'
+    destination = CACHE_ROOT / f'cache{size}'
     run([PYTHON, '-m', 'glaucoma', 'cache-images', '--config', str(CONFIGS / config),
-         '--data-root', DATA, '--output', str(destination), '--workers', '4'],
+         '--data-root', DATA, '--output', str(destination), '--workers', '4', '--storage', CACHE_STORAGE],
          WORK / f'cache{size}.log')
     return str(destination)
+
+
+def budget_png_cache():
+    from glaucoma.data.dataset import read_samples, load_rgb
+    from glaucoma.data.transforms import build_preprocess
+    samples = [row for split in ('train','valid') for row in read_samples(DATA, split)]
+    selected = random.Random(42).sample(samples, min(64, len(samples)))
+    estimates = {}
+    for size in (512,384):
+        lengths = []
+        transform = build_preprocess(size, True, 10, .03)
+        for sample in selected:
+            image = transform(load_rgb(sample.path, 'draft', size))
+            buffer = io.BytesIO()
+            image.save(buffer, format='PNG', compress_level=1)
+            lengths.append(buffer.tell())
+        estimates[str(size)] = sum(lengths) / len(lengths) * len(samples)
+    required = sum(estimates.values()) * 1.25 + 512 * 1024**2
+    available = shutil.disk_usage(CACHE_ROOT).free
+    memory = {line.split(':')[0]: int(line.split()[1]) * 1024
+              for line in Path('/proc/meminfo').read_text().splitlines()}
+    # Only reserve RAM for tmpfs. A disk PNG cache can instead use reclaimable page cache.
+    in_memory = str(CACHE_ROOT).startswith(('/dev/shm/', '/tmp/'))
+    reserve = 12 * 1024**3
+    if required > available or (in_memory and required + reserve > memory['MemAvailable']):
+        raise RuntimeError('Compressed cache budget exceeds storage/RAM headroom; no cache or training started')
+    state(cache_budget={'estimated_bytes':estimates, 'required_with_headroom':required,
+                        'available_storage':available, 'available_memory':memory['MemAvailable'],
+                        'memory_reserve_bytes':reserve, 'in_memory':in_memory})
 
 
 def experiment(name, config_name, gpu, cache, init_from=None):
@@ -183,8 +214,10 @@ def main():
         ['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         gpus=[2,3,4], data_root=DATA,
         csv_hashes={split: sha(Path(DATA) / f'{split}.csv') for split in ('train','valid')})
-    if shutil.disk_usage(WORK).free < 95 * 1024 ** 3:
+    if CACHE_STORAGE == 'npy' and shutil.disk_usage(CACHE_ROOT).free < 95 * 1024 ** 3:
         raise RuntimeError('Need at least 95 GiB free before building both caches and training')
+    if CACHE_STORAGE == 'png':
+        budget_png_cache()
     for gpu in (2,3,4):
         free_gpu(gpu)
     checkpoint_dir = WORK / 'torch/hub/checkpoints'
@@ -247,12 +280,18 @@ if __name__ == '__main__':
     parser.add_argument('--data-root',required=True)
     parser.add_argument('--work-root',required=True,help='New private directory on local SSD (at least 95 GiB free)')
     parser.add_argument('--efficientnet-weights',help='Optional verified official file, to avoid a slow server download')
+    parser.add_argument('--cache-root',help='New separate cache directory, for example on a private memory disk')
+    parser.add_argument('--cache-storage',choices=('npy','png'),default='npy')
     args=parser.parse_args()
     os.umask(0o077)
     DATA=str(Path(args.data_root).resolve())
     EFFICIENTNET_WEIGHTS=args.efficientnet_weights
     WORK=Path(args.work_root).resolve()
     WORK.mkdir(parents=True,exist_ok=False)
+    CACHE_ROOT=Path(args.cache_root).resolve() if args.cache_root else WORK
+    CACHE_STORAGE=args.cache_storage
+    if CACHE_ROOT != WORK:
+        CACHE_ROOT.mkdir(parents=True,exist_ok=False)
     try:
         main()
     except Exception:

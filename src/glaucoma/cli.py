@@ -17,6 +17,7 @@ def build_parser():
     cache.add_argument("--output", required=True, help="New cache directory, preferably on local disk")
     cache.add_argument("--image-size", type=int)
     cache.add_argument("--workers", type=int, default=4)
+    cache.add_argument("--storage", choices=("npy", "png"), default="npy", help="Lossless RGB cache representation")
     cache.add_argument("--crop-black-border", action=argparse.BooleanOptionalAction, default=None)
     cache.add_argument("--crop-threshold", type=int)
     cache.add_argument("--crop-margin", type=float)
@@ -82,7 +83,7 @@ def main(argv=None):
         prepare_cache(args.data_root or config.data.root, args.output, config.data.image_size, args.workers,
                       crop_black_border=config.data.crop_black_border,
                       crop_threshold=config.data.crop_threshold, crop_margin=config.data.crop_margin,
-                      decode=config.data.decode)
+                      decode=config.data.decode, storage=args.storage)
     elif args.command == "train":
         from .engine.trainer import train
         config = Config.load(args.config)

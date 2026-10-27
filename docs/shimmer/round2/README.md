@@ -110,3 +110,13 @@ CUDA_VISIBLE_DEVICES=0 python scripts/benchmark_latency.py \
 本批工作目录为 `/var/tmp/heyuhang-shimmer-round2-20261027`，监控入口为其中的 `state.json`、`jobs/*/train.log`、`jobs/*/evaluate.log`；完成后看 `archive/summary.json`。精确启动状态以后续日志及仓库归档为准，不把本节计划当作已完成训练。
 
 实际启动与GPU检查记录见 [server_runs/20261027_gpu234](server_runs/20261027_gpu234/)。训练结束后，本机收集器会将服务器归档非强制推送到同一shimmer分支；只写入该批次结果目录，遇到并发提交先rebase，不覆盖他人代码。若本机离线，服务器训练仍独立继续，记录可稍后取回。
+
+## 02:33巡检与无损I/O修复
+
+首次三小时巡检发现：缓存已生成，但三路进程还在审计阶段，无history和last.pt，未开始首轮有效训练。62GiB内存环境中的未压缩两套缓存约67GiB，三路读图发生磁盘等待。8张抽样的.npy读取中位数约435ms，原图draft解码/预处理约101ms；不能继续把这个缓存当成提速。
+
+已加入**无损PNG**缓存后端（CLI `cache-images --storage png`）。它保存同一预处理后的RGB像素，不使用有损JPEG重压缩；训练/验证增强逐像素一致性测试通过，旧npy与checkpoint继续兼容。新manifest版本4记录存储格式，仍检查CSV、每张源文件签名、解码与裁边配方及缓存形状；没有绕过审计。同时将重复的源目录resolve先去重，减少NFS元数据请求。
+
+旧三路进程均在确认无训练checkpoint后受控停止，旧记录和缓存保留；新批次使用 `/var/tmp/heyuhang-shimmer-round2-20261028`，PNG缓存放在私有 `/dev/shm/heyuhang-shimmer-round2-20261028`。启动器先抽样64张预算两套压缩缓存，并预留至少12GiB可用内存，再允许构建缓存；若空间不足则拒绝开始，不挤占其他GPU。模型配置、数据划分、归一化及种子保持不变。
+
+回归95项（94通过，1项GPU测试跳过），检查细节见 [巡检记录](patrol_20261028_0233/)。新批次结果归档到 `server_runs/20261028_gpu234_png`，不把旧批次的受控停止记作模型训练失败或新成绩。

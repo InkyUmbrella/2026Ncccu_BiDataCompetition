@@ -1,0 +1,21 @@
+{
+  "inspection": "2026-10-28 02:33 Asia/Shanghai",
+  "formal_epochs_completed": 0,
+  "original_batch": "20261027_gpu234",
+  "reason": "Three processes were blocked by uncompressed cache reads, before first optimizer update; no history or last.pt existed. Only these owned processes were stopped with SIGTERM.",
+  "memory_total_GiB": 62,
+  "memory_available_GiB": 41,
+  "uncompressed_cache_approx_GiB": 67,
+  "sampled_images": 8,
+  "npy_read_median_ms": 434.78637759108096,
+  "source_preprocess_median_ms": 100.64605704974383,
+  "png_encode_median_ms": 22.14641810860485,
+  "png512_estimated_GiB": 12.684482337208465,
+  "sampled_pixels_equal": true,
+  "new_backend": "lossless PNG in private tmpfs; model/data split/normalization/training configs unchanged",
+  "cpu_regression": {
+    "run": 95,
+    "passed": 94,
+    "skipped_gpu": 1
+  }
+}

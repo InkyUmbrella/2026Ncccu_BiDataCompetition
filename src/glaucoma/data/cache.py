@@ -17,12 +17,15 @@ from ..utils import atomic_write, save_json, sha256_file
 
 
 def _cache_one(task):
-    source, target, size, crop, threshold, margin, decode = task
+    source, target, size, crop, threshold, margin, decode, storage = task
     source = Path(source)
     before = source.stat()
     pixels = np.asarray(build_preprocess(size, crop, threshold, margin)(
         load_rgb(source, decode, size)))
-    atomic_write(target, lambda handle: np.save(handle, pixels, allow_pickle=False))
+    if storage == "png":
+        atomic_write(target, lambda handle: Image.fromarray(pixels).save(handle, format="PNG", compress_level=1))
+    else:
+        atomic_write(target, lambda handle: np.save(handle, pixels, allow_pickle=False))
     after = source.stat()
     if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
         raise RuntimeError(f"Source changed while caching: {source}")
@@ -30,9 +33,11 @@ def _cache_one(task):
 
 
 def prepare_cache(data_root, output, image_size=384, workers=4, *, crop_black_border=False,
-                  crop_threshold=10, crop_margin=0.03, decode="full"):
+                  crop_threshold=10, crop_margin=0.03, decode="full", storage="npy"):
     if image_size < 32 or workers < 1:
         raise ValueError("image_size must be >=32 and workers must be positive")
+    if storage not in ("npy", "png"):
+        raise ValueError("storage must be npy or png")
     from ..config import Config
     Config.from_dict({"data": {"image_size": image_size, "crop_black_border": crop_black_border,
                               "crop_threshold": crop_threshold, "crop_margin": crop_margin,
@@ -41,11 +46,14 @@ def prepare_cache(data_root, output, image_size=384, workers=4, *, crop_black_bo
     rows = [row for split in ("train", "valid") for row in read_samples(root, split)]
     output.mkdir(parents=True, exist_ok=False)
     estimate = len(rows) * (image_size * image_size * 3 + 256)
-    if shutil.disk_usage(output).free < estimate * 1.1:
+    # PNG's exact size is data-dependent; enforce a conservative per-image
+    # minimum here. The launcher separately budgets sampled compressed sizes.
+    required = estimate * 1.1 if storage == "npy" else len(rows) * 4096
+    if shutil.disk_usage(output).free < required:
         raise ValueError(f"Cache requires approximately {estimate / 1024**3:.1f} GiB plus headroom")
     hashes = {split: sha256_file(root / f"{split}.csv") for split in ("train", "valid")}
-    tasks = [(str(row.path), str(output / row.path.parent.name / (row.path.name + ".npy")),
-              image_size, crop_black_border, crop_threshold, crop_margin, decode)
+    tasks = [(str(row.path), str(output / row.path.parent.name / (row.path.name + "." + storage)),
+              image_size, crop_black_border, crop_threshold, crop_margin, decode, storage)
              for row in rows]
     entries = {}
     with ProcessPoolExecutor(max_workers=workers) as pool:
@@ -56,7 +64,8 @@ def prepare_cache(data_root, output, image_size=384, workers=4, *, crop_black_bo
     for split, digest in hashes.items():
         if sha256_file(root / f"{split}.csv") != digest:
             raise RuntimeError(f"CSV changed while caching: {split}")
-    save_json(output / "manifest.json", {"version": 3, "source_root": str(root), "decode": decode,
+    save_json(output / "manifest.json", {"version": 4 if storage == "png" else 3,
+              "storage": storage, "source_root": str(root), "decode": decode,
               "preprocessing": preprocessing_spec(crop_black_border, crop_threshold, crop_margin, decode),
               "image_size": image_size, "csv_hashes": hashes, "entries": entries})
     print(f"[cache] complete: {output}", flush=True)
@@ -68,8 +77,11 @@ class ImageCache:
         self.directory = Path(directory)
         manifest = json.loads((self.directory / "manifest.json").read_text(encoding="utf-8"))
         version = manifest["version"]
-        if version not in (1, 2, 3) or manifest["image_size"] != image_size:
+        if version not in (1, 2, 3, 4) or manifest["image_size"] != image_size:
             raise ValueError("Image cache version or image size mismatch")
+        self.storage = manifest.get("storage", "npy")
+        if self.storage not in ("npy", "png") or (version < 4 and self.storage != "npy"):
+            raise ValueError("Unsupported image cache storage")
         # Version 1/2 manifests predate the decode policy and can only be full decodes.
         stored = {"name": "letterbox_v1"} if version == 1 else dict(manifest["preprocessing"])
         stored.setdefault("decode", "full")
@@ -80,7 +92,7 @@ class ImageCache:
         if stored != preprocessing_spec(crop_black_border, crop_threshold, crop_margin, decode):
             raise ValueError("Image cache preprocessing mismatch; rebuild from original images")
         self.image_size = image_size
-        roots = {row.path.parent.parent.resolve() for row in samples}
+        roots = {root.resolve() for root in {row.path.parent.parent for row in samples}}
         if roots != {Path(manifest["source_root"])}:
             raise ValueError("Image cache source root mismatch")
         for split in {row.path.parent.name for row in samples}:
@@ -94,6 +106,12 @@ class ImageCache:
                 raise ValueError(f"Image cache source changed: {row.path}")
 
     def load(self, path):
+        if self.storage == "png":
+            with Image.open(self.directory / path.parent.name / (path.name + ".png")) as image:
+                image.load()
+                if image.mode != "RGB" or image.size != (self.image_size, self.image_size):
+                    raise ValueError(f"Invalid image cache entry: {path}")
+                return image.copy()
         pixels = np.load(self.directory / path.parent.name / (path.name + ".npy"), allow_pickle=False)
         if pixels.dtype != np.uint8 or pixels.shape != (self.image_size, self.image_size, 3):
             raise ValueError(f"Invalid image cache entry: {path}")
