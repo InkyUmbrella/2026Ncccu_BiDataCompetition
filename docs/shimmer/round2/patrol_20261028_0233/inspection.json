@@ -17,5 +17,14 @@
     "run": 95,
     "passed": 94,
     "skipped_gpu": 1
-  }
+  },
+  "real_png_samples_checked": 16,
+  "real_png_pixels_equal": true,
+  "png_memory_read_median_ms": 8.949324488639832,
+  "foreign_gpu_process_owner": "lichunyu",
+  "foreign_gpu_scripts": [
+    "supervise2.py",
+    "train_audited.py"
+  ],
+  "gpu_policy": "Prepare caches, then wait independently for physical GPUs 2/3/4. Do not interrupt foreign processes or use other GPUs."
 }
