@@ -1,0 +1,39 @@
+..Prepared: /tmp/tmpcp2fgelf/result
+[run] /tmp/tmpa6zhce8n/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T025406Z_b37c738d
+[epoch 1/2] train_loss=1.913816 valid_auc=0.500000 valid_ap=0.500000
+[run] /tmp/tmpa6zhce8n/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T025409Z_d5da39a9
+[epoch 2/2] train_loss=1.836480 valid_auc=0.500000 valid_ap=0.500000
+[run] /tmp/tmpa6zhce8n/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T025412Z_aa48dd2b
+[epoch 1/2] train_loss=1.922404 valid_auc=0.500000 valid_ap=0.500000
+.Wrote 4 predictions to /tmp/tmpa6zhce8n/eval
+Wrote 3 predictions to /tmp/tmpa6zhce8n/predictions.csv
+[wait] GPU 2 has compute processes; waiting without interrupting them
+.[run] /tmp/tmp8epnd95d/runs/b0_image/seed42_20261028T025417Z_81a2c87b
+[initial] valid_auc=0.990000 valid_ap=1.000000
+[epoch 1/2] train_loss=1.411619 valid_auc=0.500000 valid_ap=1.000000
+[run] /tmp/tmp8epnd95d/runs/b0_image/seed42_20261028T025417Z_38bb3fef
+[epoch 2/2] train_loss=1.579721 valid_auc=0.500000 valid_ap=1.000000
+......./home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=509106) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmp_b1iyx2g/cache
+.....[run] /tmp/tmp76o98aeb/outputs/b0_image/seed42_20261028T025418Z_4d626189
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp76o98aeb/outputs/b0_image/seed42_20261028T025418Z_39af5c4e
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=509106) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmp76o98aeb/cache
+[run] /tmp/tmp76o98aeb/outputs/b0_image/seed42_20261028T025418Z_f7047b55
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+.
+----------------------------------------------------------------------
+Ran 17 tests in 13.633s
+
+OK
+Wrote 4 predictions to /tmp/tmp76o98aeb/eval
+Wrote 3 predictions to /tmp/tmp76o98aeb/submission.csv
