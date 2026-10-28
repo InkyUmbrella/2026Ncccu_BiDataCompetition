@@ -1,0 +1,150 @@
+.[cache] 13/13
+[cache] complete: /tmp/tmpun3vdxvc/cache
+.[cache] 13/13
+[cache] complete: /tmp/tmpcpvye3vp/cache
+....Wrote 4 predictions to /tmp/tmpm23c_p74/evaluation
+Wrote 3 predictions to /tmp/tmpm23c_p74/submission.csv
+[run] /tmp/tmp35nwghmh/out/b0_image/seed42_20261028T005416Z_31d662ff
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp35nwghmh/out/b0_image/seed42_20261028T005416Z_54f65d09
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp35nwghmh/out/b0_image/seed42_20261028T005416Z_37333b41
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp35nwghmh/out/b0_image/seed42_20261028T005416Z_d4379448
+[epoch 1/4] train_loss=0.901637 valid_auc=0.000000 valid_ap=0.416667
+.[run] /tmp/tmp_iems5tx/out/b0_image/seed42_20261028T005416Z_6160eb2a
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp_iems5tx/out/b0_image/seed42_20261028T005416Z_d348d1d7
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp_iems5tx/out/b0_image/seed42_20261028T005416Z_9e72bcd8
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+...../home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=478565) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmp41nhe957/cache
+.....[run] /tmp/tmpixrn8s6a/outputs/b0_image/seed42_20261028T005417Z_d5ee1ed1
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpixrn8s6a/outputs/b0_image/seed42_20261028T005417Z_98ae0149
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=478565) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmpixrn8s6a/cache
+[run] /tmp/tmpixrn8s6a/outputs/b0_image/seed42_20261028T005417Z_ea4d98f0
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+....s.............................Wrote 4 predictions to /tmp/tmpixrn8s6a/eval
+Wrote 3 predictions to /tmp/tmpixrn8s6a/submission.csv
+Wrote 120 fused rows to /tmp/tmpowjrgpaj/fused.csv; method=logit; AUROC=0.6176215277777777
+Wrote 120 fused rows to /tmp/tmpsttv_w7h/rank.csv; method=rank; AUROC=0.6256510416666667
+Wrote 120 fused rows to /tmp/tmpsttv_w7h/prob.csv; method=prob; AUROC=0.6176215277777778
+Wrote 20 submission rows to /tmp/tmpcecdwxlj/submission.csv; method=logit
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=478565) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 6/6
+[cache] complete: /tmp/tmpzm_ecvdj/cache
+.[cache] 6/6
+[cache] complete: /tmp/tmpmejvtwco/cache
+.........GPU: CPU, torch 2.5.1+cpu, torchvision 0.20.1+cpu, fp32
+model: /tmp/tmpmbm5ffqp/config.json, params 0.0 M, artifact 0.0 MB, input 32x32, decode full
+images: 3 (valid), largest included: 116 KiB, warmup 1
+cold start (first end-to-end image): 9.2 ms
+
+stage             p50      p95      p99      max  (ms)
+read             0.05     0.05     0.05     0.05
+decode           1.64     4.63     4.90     4.97
+preprocess       1.31     3.63     3.84     3.89
+transfer         0.09     0.14     0.14     0.14
+forward          0.09     0.12     0.13     0.13
+post             0.02     0.03     0.03     0.03
+total            3.20     8.60     9.08     9.20
+GATE latency p95 <= 100 ms: PASS (8.6 ms)
+GATE model artifact <= 500 MB: SKIP (no checkpoint)
+report: /tmp/tmpmbm5ffqp/latency.json
+[parity] tensor comparison on 3/3 valid images at 32px (preprocessing from defaults)
+  mean |delta| p50=0.00102 p95=0.00116 max=0.00784
+  bbox fraction max delta=None disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] report: /tmp/tmpo2boegik/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=n/a)
+[parity] tensor comparison on 3/3 valid images at 64px (preprocessing from checkpoint)
+  mean |delta| p50=0.00092 p95=0.00107 max=0.00784
+  bbox fraction max delta=0.0 disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] checkpoint pass on the complete valid split (3 images, cpu)
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=478565) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+.  AUROC full=1.000000 draft=1.000000 |delta|=0.000000
+  probability |delta| p50=0.00001 p99=0.00009 max=0.00009 spearman=1.000000
+  GATE AUROC |delta| <= 0.001: PASS
+[parity] report: /tmp/tmpmzhhnkf2/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=PASS)
+[run] /tmp/tmpdn9d9u89/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T005427Z_76a265b3
+[epoch 1/2] train_loss=1.940089 valid_auc=0.500000 valid_ap=0.500000
+[run] /tmp/tmpdn9d9u89/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T005429Z_dabae256
+[epoch 2/2] train_loss=1.904376 valid_auc=0.000000 valid_ap=0.500000
+[run] /tmp/tmpdn9d9u89/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T005431Z_ca5559d7
+[epoch 1/2] train_loss=1.943216 valid_auc=0.500000 valid_ap=0.500000
+.Wrote 4 predictions to /tmp/tmpdn9d9u89/eval
+Wrote 3 predictions to /tmp/tmpdn9d9u89/predictions.csv
+[wait] GPU 2 has compute processes; waiting without interrupting them
+.[run] /tmp/tmpzw6ou7dx/runs/b0_image/seed42_20261028T005435Z_ce413dd9
+[initial] valid_auc=0.990000 valid_ap=1.000000
+[epoch 1/2] train_loss=1.411619 valid_auc=0.500000 valid_ap=1.000000
+[run] /tmp/tmpzw6ou7dx/runs/b0_image/seed42_20261028T005435Z_20a8a88a
+[epoch 2/2] train_loss=1.579721 valid_auc=0.500000 valid_ap=1.000000
+.../home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=478565) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmpoyj33wdu/png
+.[cache] 13/13
+[cache] complete: /tmp/tmpo1dn_pze/npy
+[cache] 13/13
+[cache] complete: /tmp/tmpo1dn_pze/png
+.[cache] 13/13
+[cache] complete: /tmp/tmpshc0ezjt/cache
+.[run] /tmp/tmpyqg3kzlb/outputs/shimmer_512_imagenet_seed43/seed43_20261028T005436Z_0a3de433
+[epoch 1/2] train_loss=0.413122 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpyqg3kzlb/outputs/shimmer_512_imagenet_seed43/seed43_20261028T005438Z_3bca3b9f
+[epoch 2/2] train_loss=0.164886 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpyqg3kzlb/outputs/shimmer_512_imagenet_seed43/seed43_20261028T005441Z_fceb197c
+[epoch 1/2] train_loss=0.353220 valid_auc=1.000000 valid_ap=1.000000
+..Wrote 4 predictions to /tmp/tmpyqg3kzlb/eval
+Wrote 3 predictions to /tmp/tmpyqg3kzlb/predictions.csv
+[run] /tmp/tmpi0necd8u/runs/b0_image/seed42_20261028T005446Z_19a5a311
+[epoch 1/1] train_loss=1.988267 valid_auc=0.800000 valid_ap=0.416667
+[run] /tmp/tmpisoauome/runs/b0_image/seed42_20261028T005446Z_bf7efb54
+[epoch 1/1] train_loss=1.988267 valid_auc=0.900000 valid_ap=0.416667
+.......[run] /tmp/tmpnlia151m/outputs/b0_image/seed42_20261028T005449Z_ae90c24c
+[epoch 1/1] train_loss=0.991033 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpnlia151m/outputs/b0_image/seed42_20261028T005451Z_7db7aff9
+.....[ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmpz_e4htz2/outputs/ssl_moco_v2/seed42_20261028T005452Z_af68f9ec  train_rows=9  world_size=1
+[ssl] epoch 1/2 loss=1.7758 lr=0.03750 queue=8 rank=1.14 std=0.0438
+[ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmpz_e4htz2/outputs/ssl_moco_v2/seed42_20261028T005455Z_6e58ca27  train_rows=9  world_size=1
+[ssl] epoch 2/2 loss=2.3541 lr=0.00335 queue=8 rank=2.00 std=0.0049 probe_auc=None
+....[run] /tmp/tmplxllrmzu/outputs/b0_image/seed42_20261028T005459Z_75cb5418
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmplxllrmzu/outputs/b0_image/seed42_20261028T005459Z_37a00ca4
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmplxllrmzu/outputs/b0_image/seed42_20261028T005459Z_4a9ecba0
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+.........
+----------------------------------------------------------------------
+Ran 97 tests in 47.672s
+
+OK (skipped=1)

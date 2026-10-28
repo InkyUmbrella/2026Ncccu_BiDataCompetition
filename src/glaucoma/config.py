@@ -93,7 +93,7 @@ class Config:
         if "weights" in self.model.params:
             raise ValueError("Use model.weights, not model.params.weights")
         if self.model.weights is not None:
-            if self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual", "efficientnet_v2_s"):
+            if self.model.name not in ("convnext_tiny", "convnext_tiny_age_residual", "convnext_tiny_spatial_residual", "efficientnet_v2_s"):
                 raise ValueError("ImageNet weights require a supported model")
             if self.data.normalization != "imagenet":
                 raise ValueError("ImageNet weights require imagenet normalization")

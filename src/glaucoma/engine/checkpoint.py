@@ -72,13 +72,14 @@ def initialize_model(model, config, payload):
         model.load_state_dict(payload["model_state"], strict=True)
     elif (source.model.name == "convnext_tiny"
           and not source.model.params.get("use_age", False)
-          and config.model.name == "convnext_tiny_age_residual"):
+          and config.model.name in ("convnext_tiny_age_residual", "convnext_tiny_spatial_residual")):
         result = model.load_state_dict(payload["model_state"], strict=False)
-        expected = {key for key in model.state_dict() if key.startswith("age_residual.")}
+        prefix = "age_residual." if config.model.name == "convnext_tiny_age_residual" else "spatial_residual."
+        expected = {key for key in model.state_dict() if key.startswith(prefix)}
         if result.unexpected_keys or set(result.missing_keys) != expected:
             raise ValueError("B0 checkpoint does not match the residual image branch")
     else:
-        raise ValueError("Initialization requires matching models or a B0 image checkpoint for age residual")
+        raise ValueError("Initialization requires matching models or a B0 image checkpoint for a residual model")
 
 
 def rng_state(device):
