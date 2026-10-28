@@ -1,0 +1,94 @@
+{
+  "best_epoch": 13,
+  "completed_epochs": 30,
+  "training_complete": true,
+  "selected_weights": "raw",
+  "valid": {
+    "count": 5849,
+    "positives": 191,
+    "auroc": 0.9902695344959368,
+    "auprc_trapz": 0.8458705185232597,
+    "ap": 0.8460843706219399,
+    "confusion_at_0.5": {
+      "tn": 5610,
+      "fp": 48,
+      "fn": 53,
+      "tp": 138
+    },
+    "sensitivity_at_0.5": 0.7225130890052356,
+    "specificity_at_0.5": 0.9915164369034994,
+    "sensitivity_at_specificity95": 0.9528795811518325,
+    "threshold_at_specificity95": 0.00023050670279189944,
+    "loss": 0.27062625282752845,
+    "age_groups": {
+      "under50": {
+        "count": 1486,
+        "positives": 15,
+        "auroc": 0.9943122592340812,
+        "auprc_trapz": 0.8023971640990393,
+        "ap": 0.807429624152506,
+        "confusion_at_0.5": {
+          "tn": 1469,
+          "fp": 2,
+          "fn": 8,
+          "tp": 7
+        },
+        "sensitivity_at_0.5": 0.4666666666666667,
+        "specificity_at_0.5": 0.9986403806934059,
+        "sensitivity_at_specificity95": 0.9333333333333333,
+        "threshold_at_specificity95": 0.0059110685251653194
+      },
+      "50to64": {
+        "count": 3148,
+        "positives": 98,
+        "auroc": 0.99019906323185,
+        "auprc_trapz": 0.862514772362906,
+        "ap": 0.8629341138127344,
+        "confusion_at_0.5": {
+          "tn": 3025,
+          "fp": 25,
+          "fn": 20,
+          "tp": 78
+        },
+        "sensitivity_at_0.5": 0.7959183673469388,
+        "specificity_at_0.5": 0.9918032786885246,
+        "sensitivity_at_specificity95": 0.9591836734693877,
+        "threshold_at_specificity95": 0.00023050670279189944
+      },
+      "65plus": {
+        "count": 1213,
+        "positives": 78,
+        "auroc": 0.9833220377273241,
+        "auprc_trapz": 0.8328680164859908,
+        "ap": 0.83356119754167,
+        "confusion_at_0.5": {
+          "tn": 1114,
+          "fp": 21,
+          "fn": 25,
+          "tp": 53
+        },
+        "sensitivity_at_0.5": 0.6794871794871795,
+        "specificity_at_0.5": 0.9814977973568282,
+        "sensitivity_at_specificity95": 0.9358974358974359,
+        "threshold_at_specificity95": 0.002296159043908119
+      },
+      "missing_or_invalid": {
+        "count": 2,
+        "positives": 0,
+        "auroc": null,
+        "auprc_trapz": null,
+        "ap": null,
+        "confusion_at_0.5": {
+          "tn": 2,
+          "fp": 0,
+          "fn": 0,
+          "tp": 0
+        },
+        "sensitivity_at_0.5": null,
+        "specificity_at_0.5": 1.0,
+        "sensitivity_at_specificity95": null,
+        "threshold_at_specificity95": null
+      }
+    }
+  }
+}

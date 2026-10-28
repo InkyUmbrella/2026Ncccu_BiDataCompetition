@@ -1,0 +1,28 @@
+{
+  "torch": "2.5.1+cu121",
+  "cuda_runtime": "12.1",
+  "packages": {
+    "torchvision": "0.20.1+cu121",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "Pillow": "12.3.0"
+  },
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false,
+  "git_revision": "40e81e933128a48c80c9278c99efb3774d24e49c",
+  "git_status": "",
+  "source_sha256": "e2eafad2cb4b81bd086e5746ec6e5d3ab5df41e0a0528a2e81c523f3bc844dfc",
+  "csv_hashes": {
+    "train": "ec81a23ba7758eccdd09dba027ce1a50998d81c18ed30ab6d2d608b3397f67d7",
+    "valid": "edda257a801a1036ea2b1a9ffe983a1f9fea73c3f89fd6ac0f6ab6a4da355f2a"
+  },
+  "resumed_from": null,
+  "initialized_from": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42/training/shimmer_512_pretrained_reference/seed42_20261027T191640Z_bd3a1b70/best.pt",
+  "initialized_from_sha256": "b546ffa77040c879ea6ec0b25dc27cd62e402e9c07e7efeaca3bd494de3f119e",
+  "initialized_from_encoder": null,
+  "initialized_from_encoder_sha256": null,
+  "image_cache": "/dev/shm/heyuhang-shimmer-round2-20261028/cache512",
+  "decode": "draft",
+  "device": "cuda:0",
+  "gpu": "Tesla V100-SXM2-16GB"
+}

@@ -1,0 +1,6 @@
+{
+  "path": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/efficientnet/training/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261027T191640Z_d915435a/best.pt",
+  "sha256": "63d1a68a606faafede23f14f7e08b9d7023268dc9784e27061d49ca300278a43",
+  "bytes": 82224978,
+  "validation_predictions_sha256": "30a84ca1c139e4b06b5c4a9501c01b0459983ea9c347f6bfeae72633fe595a5d"
+}

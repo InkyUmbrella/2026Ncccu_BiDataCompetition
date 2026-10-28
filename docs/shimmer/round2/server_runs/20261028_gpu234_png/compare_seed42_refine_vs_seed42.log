@@ -1,0 +1,6 @@
+Paired bootstrap: image-level, stratified; reps=1000 seed=42 rows=5849 pos=191 neg=5658
+metric             delta   95% CI low  95% CI high  P(delta<=0)
+ΔAUROC           0.00000      0.00000      0.00000       1.0000
+ΔAP              0.00000      0.00000      0.00000       1.0000
+ΔAUPRC-trapz     0.00000      0.00000      0.00000       1.0000
+Verdict: NO-EVIDENCE (requires ΔAUROC >= 0.003 and CI low > 0)

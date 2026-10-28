@@ -1,0 +1,6 @@
+{
+  "path": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed43/training/shimmer_512_pretrained_reference_seed43/seed43_20261027T191640Z_fa2113e9/best.pt",
+  "sha256": "0d2adfa7c5488f412de5b5b65b759fb5c609fe1b46c8f0d4a3b31b00a6051fb2",
+  "bytes": 111732674,
+  "validation_predictions_sha256": "183aefcf3f9366d1d577c6838a3020d60163994ec1f7ac87e9dcd7b005e85451"
+}
