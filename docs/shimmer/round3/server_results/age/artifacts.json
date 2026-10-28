@@ -1,0 +1,6 @@
+{
+  "path": "/var/tmp/heyuhang-shimmer-round3-spatial-20261028/jobs/age/training/shimmer_512_age_refine_seed42/seed42_20261028T012048Z_aab88fe9/best.pt",
+  "sha256": "cf5ee5d5b89c46d1560a6b7453529e8fb8663d47100fe2ca8709f23a38c20f8b",
+  "bytes": 111734202,
+  "validation_predictions_sha256": "130e8fc3c43bd35c4c1ef74a6b36981f13401ae053f3a410161ae6b22dd93d45"
+}

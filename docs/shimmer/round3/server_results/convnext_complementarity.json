@@ -1,0 +1,94 @@
+{
+  "count": 5849,
+  "positives": 191,
+  "spearman": 0.510301397524472,
+  "first": {
+    "count": 5849,
+    "positives": 191,
+    "auroc": 0.9902695344959368,
+    "ap": 0.8460843706219399,
+    "auprc_trapz": 0.8458705185232597
+  },
+  "second": {
+    "count": 5849,
+    "positives": 191,
+    "auroc": 0.9882134178728539,
+    "ap": 0.8475268406804212,
+    "auprc_trapz": 0.847379398951772
+  },
+  "positive_inversions": {
+    "first_total": 10515.5,
+    "second_total": 12737.5,
+    "second_better_count": 67,
+    "first_better_count": 69
+  },
+  "blends": {
+    "equal_raw_logits": {
+      "metrics": {
+        "count": 5849,
+        "positives": 191,
+        "auroc": 0.9911860887331841,
+        "ap": 0.8624331461665593,
+        "auprc_trapz": 0.8621979651137381
+      },
+      "paired_vs_first": {
+        "n": 2000,
+        "rows": 5849,
+        "n_pos": 191,
+        "n_neg": 5658,
+        "seed": 42,
+        "grouped": false,
+        "metrics": {
+          "auroc": {
+            "delta_mean": 0.000911248077595731,
+            "ci_low": -0.0001412423497099885,
+            "ci_high": 0.0020762544439693873,
+            "p_win": 0.955,
+            "p_le_zero": 0.045
+          },
+          "ap": {
+            "delta_mean": 0.01612035123607905,
+            "ci_low": 0.0033134008323456613,
+            "ci_high": 0.029824910205840383,
+            "p_win": 0.993,
+            "p_le_zero": 0.007
+          }
+        }
+      }
+    },
+    "equal_probabilities": {
+      "metrics": {
+        "count": 5849,
+        "positives": 191,
+        "auroc": 0.9906947305302781,
+        "ap": 0.8573563293559272,
+        "auprc_trapz": 0.8570741810087715
+      },
+      "paired_vs_first": {
+        "n": 2000,
+        "rows": 5849,
+        "n_pos": 191,
+        "n_neg": 5658,
+        "seed": 42,
+        "grouped": false,
+        "metrics": {
+          "auroc": {
+            "delta_mean": 0.000422154193941213,
+            "ci_low": -0.0005197200276122749,
+            "ci_high": 0.001542700508384658,
+            "p_win": 0.796,
+            "p_le_zero": 0.204
+          },
+          "ap": {
+            "delta_mean": 0.01109022196903532,
+            "ci_low": -0.0002312048029845498,
+            "ci_high": 0.02371216629362333,
+            "p_win": 0.969,
+            "p_le_zero": 0.031
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "Fixed equal weights; no validation weight search. Same validation used for checkpoint selection; bootstrap does not measure training-seed variability."
+}

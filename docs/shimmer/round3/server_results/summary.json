@@ -1,0 +1,443 @@
+{
+  "results": [
+    {
+      "name": "age",
+      "gpu": 4,
+      "metrics": {
+        "count": 5849,
+        "positives": 191,
+        "auroc": 0.9902695344959368,
+        "auprc_trapz": 0.8458705185232597,
+        "ap": 0.8460843706219399,
+        "confusion_at_0.5": {
+          "tn": 5610,
+          "fp": 48,
+          "fn": 53,
+          "tp": 138
+        },
+        "sensitivity_at_0.5": 0.7225130890052356,
+        "specificity_at_0.5": 0.9915164369034994,
+        "sensitivity_at_specificity95": 0.9528795811518325,
+        "threshold_at_specificity95": 0.00023050670279189944,
+        "loss": 0.27062625282752845,
+        "age_groups": {
+          "under50": {
+            "count": 1486,
+            "positives": 15,
+            "auroc": 0.9943122592340812,
+            "auprc_trapz": 0.8023971640990393,
+            "ap": 0.807429624152506,
+            "confusion_at_0.5": {
+              "tn": 1469,
+              "fp": 2,
+              "fn": 8,
+              "tp": 7
+            },
+            "sensitivity_at_0.5": 0.4666666666666667,
+            "specificity_at_0.5": 0.9986403806934059,
+            "sensitivity_at_specificity95": 0.9333333333333333,
+            "threshold_at_specificity95": 0.0059110685251653194
+          },
+          "50to64": {
+            "count": 3148,
+            "positives": 98,
+            "auroc": 0.99019906323185,
+            "auprc_trapz": 0.862514772362906,
+            "ap": 0.8629341138127344,
+            "confusion_at_0.5": {
+              "tn": 3025,
+              "fp": 25,
+              "fn": 20,
+              "tp": 78
+            },
+            "sensitivity_at_0.5": 0.7959183673469388,
+            "specificity_at_0.5": 0.9918032786885246,
+            "sensitivity_at_specificity95": 0.9591836734693877,
+            "threshold_at_specificity95": 0.00023050670279189944
+          },
+          "65plus": {
+            "count": 1213,
+            "positives": 78,
+            "auroc": 0.9833220377273241,
+            "auprc_trapz": 0.8328680164859908,
+            "ap": 0.83356119754167,
+            "confusion_at_0.5": {
+              "tn": 1114,
+              "fp": 21,
+              "fn": 25,
+              "tp": 53
+            },
+            "sensitivity_at_0.5": 0.6794871794871795,
+            "specificity_at_0.5": 0.9814977973568282,
+            "sensitivity_at_specificity95": 0.9358974358974359,
+            "threshold_at_specificity95": 0.002296159043908119
+          },
+          "missing_or_invalid": {
+            "count": 2,
+            "positives": 0,
+            "auroc": null,
+            "auprc_trapz": null,
+            "ap": null,
+            "confusion_at_0.5": {
+              "tn": 2,
+              "fp": 0,
+              "fn": 0,
+              "tp": 0
+            },
+            "sensitivity_at_0.5": null,
+            "specificity_at_0.5": 1.0,
+            "sensitivity_at_specificity95": null,
+            "threshold_at_specificity95": null
+          }
+        }
+      },
+      "run_dir": "/var/tmp/heyuhang-shimmer-round3-spatial-20261028/jobs/age/training/shimmer_512_age_refine_seed42/seed42_20261028T012048Z_aab88fe9",
+      "artifact": {
+        "path": "/var/tmp/heyuhang-shimmer-round3-spatial-20261028/jobs/age/training/shimmer_512_age_refine_seed42/seed42_20261028T012048Z_aab88fe9/best.pt",
+        "sha256": "cf5ee5d5b89c46d1560a6b7453529e8fb8663d47100fe2ca8709f23a38c20f8b",
+        "bytes": 111734202,
+        "validation_predictions_sha256": "130e8fc3c43bd35c4c1ef74a6b36981f13401ae053f3a410161ae6b22dd93d45"
+      },
+      "best_epoch": -1,
+      "selected_weights": "initial",
+      "ended_at": "2026-10-28T02:46:33.982573+00:00"
+    },
+    {
+      "name": "spatial",
+      "gpu": 3,
+      "metrics": {
+        "count": 5849,
+        "positives": 191,
+        "auroc": 0.9902695344959368,
+        "auprc_trapz": 0.8458705185232597,
+        "ap": 0.8460843706219399,
+        "confusion_at_0.5": {
+          "tn": 5610,
+          "fp": 48,
+          "fn": 53,
+          "tp": 138
+        },
+        "sensitivity_at_0.5": 0.7225130890052356,
+        "specificity_at_0.5": 0.9915164369034994,
+        "sensitivity_at_specificity95": 0.9528795811518325,
+        "threshold_at_specificity95": 0.00023050670279189944,
+        "loss": 0.27062625282752845,
+        "age_groups": {
+          "under50": {
+            "count": 1486,
+            "positives": 15,
+            "auroc": 0.9943122592340812,
+            "auprc_trapz": 0.8023971640990393,
+            "ap": 0.807429624152506,
+            "confusion_at_0.5": {
+              "tn": 1469,
+              "fp": 2,
+              "fn": 8,
+              "tp": 7
+            },
+            "sensitivity_at_0.5": 0.4666666666666667,
+            "specificity_at_0.5": 0.9986403806934059,
+            "sensitivity_at_specificity95": 0.9333333333333333,
+            "threshold_at_specificity95": 0.0059110685251653194
+          },
+          "50to64": {
+            "count": 3148,
+            "positives": 98,
+            "auroc": 0.99019906323185,
+            "auprc_trapz": 0.862514772362906,
+            "ap": 0.8629341138127344,
+            "confusion_at_0.5": {
+              "tn": 3025,
+              "fp": 25,
+              "fn": 20,
+              "tp": 78
+            },
+            "sensitivity_at_0.5": 0.7959183673469388,
+            "specificity_at_0.5": 0.9918032786885246,
+            "sensitivity_at_specificity95": 0.9591836734693877,
+            "threshold_at_specificity95": 0.00023050670279189944
+          },
+          "65plus": {
+            "count": 1213,
+            "positives": 78,
+            "auroc": 0.9833220377273241,
+            "auprc_trapz": 0.8328680164859908,
+            "ap": 0.83356119754167,
+            "confusion_at_0.5": {
+              "tn": 1114,
+              "fp": 21,
+              "fn": 25,
+              "tp": 53
+            },
+            "sensitivity_at_0.5": 0.6794871794871795,
+            "specificity_at_0.5": 0.9814977973568282,
+            "sensitivity_at_specificity95": 0.9358974358974359,
+            "threshold_at_specificity95": 0.002296159043908119
+          },
+          "missing_or_invalid": {
+            "count": 2,
+            "positives": 0,
+            "auroc": null,
+            "auprc_trapz": null,
+            "ap": null,
+            "confusion_at_0.5": {
+              "tn": 2,
+              "fp": 0,
+              "fn": 0,
+              "tp": 0
+            },
+            "sensitivity_at_0.5": null,
+            "specificity_at_0.5": 1.0,
+            "sensitivity_at_specificity95": null,
+            "threshold_at_specificity95": null
+          }
+        }
+      },
+      "run_dir": "/var/tmp/heyuhang-shimmer-round3-spatial-20261028/jobs/spatial/training/shimmer_512_spatial_refine_seed42/seed42_20261028T012048Z_8abfd91b",
+      "artifact": {
+        "path": "/var/tmp/heyuhang-shimmer-round3-spatial-20261028/jobs/spatial/training/shimmer_512_spatial_refine_seed42/seed42_20261028T012048Z_8abfd91b/best.pt",
+        "sha256": "f9630bb4da8ca4f0c9fdec682461f0ef61d69717c32569bac579936ec109258a",
+        "bytes": 112079150,
+        "validation_predictions_sha256": "130e8fc3c43bd35c4c1ef74a6b36981f13401ae053f3a410161ae6b22dd93d45"
+      },
+      "best_epoch": -1,
+      "selected_weights": "initial",
+      "ended_at": "2026-10-28T02:47:08.324608+00:00"
+    }
+  ],
+  "reference": {
+    "name": "seed42",
+    "gpu": 2,
+    "metrics": {
+      "count": 5849,
+      "positives": 191,
+      "auroc": 0.9902695344959368,
+      "auprc_trapz": 0.8458705185232597,
+      "ap": 0.8460843706219399,
+      "confusion_at_0.5": {
+        "tn": 5610,
+        "fp": 48,
+        "fn": 53,
+        "tp": 138
+      },
+      "sensitivity_at_0.5": 0.7225130890052356,
+      "specificity_at_0.5": 0.9915164369034994,
+      "sensitivity_at_specificity95": 0.9528795811518325,
+      "threshold_at_specificity95": 0.00023050670279189944,
+      "loss": 0.27062625282752845,
+      "age_groups": {
+        "under50": {
+          "count": 1486,
+          "positives": 15,
+          "auroc": 0.9943122592340812,
+          "auprc_trapz": 0.8023971640990393,
+          "ap": 0.807429624152506,
+          "confusion_at_0.5": {
+            "tn": 1469,
+            "fp": 2,
+            "fn": 8,
+            "tp": 7
+          },
+          "sensitivity_at_0.5": 0.4666666666666667,
+          "specificity_at_0.5": 0.9986403806934059,
+          "sensitivity_at_specificity95": 0.9333333333333333,
+          "threshold_at_specificity95": 0.0059110685251653194
+        },
+        "50to64": {
+          "count": 3148,
+          "positives": 98,
+          "auroc": 0.99019906323185,
+          "auprc_trapz": 0.862514772362906,
+          "ap": 0.8629341138127344,
+          "confusion_at_0.5": {
+            "tn": 3025,
+            "fp": 25,
+            "fn": 20,
+            "tp": 78
+          },
+          "sensitivity_at_0.5": 0.7959183673469388,
+          "specificity_at_0.5": 0.9918032786885246,
+          "sensitivity_at_specificity95": 0.9591836734693877,
+          "threshold_at_specificity95": 0.00023050670279189944
+        },
+        "65plus": {
+          "count": 1213,
+          "positives": 78,
+          "auroc": 0.9833220377273241,
+          "auprc_trapz": 0.8328680164859908,
+          "ap": 0.83356119754167,
+          "confusion_at_0.5": {
+            "tn": 1114,
+            "fp": 21,
+            "fn": 25,
+            "tp": 53
+          },
+          "sensitivity_at_0.5": 0.6794871794871795,
+          "specificity_at_0.5": 0.9814977973568282,
+          "sensitivity_at_specificity95": 0.9358974358974359,
+          "threshold_at_specificity95": 0.002296159043908119
+        },
+        "missing_or_invalid": {
+          "count": 2,
+          "positives": 0,
+          "auroc": null,
+          "auprc_trapz": null,
+          "ap": null,
+          "confusion_at_0.5": {
+            "tn": 2,
+            "fp": 0,
+            "fn": 0,
+            "tp": 0
+          },
+          "sensitivity_at_0.5": null,
+          "specificity_at_0.5": 1.0,
+          "sensitivity_at_specificity95": null,
+          "threshold_at_specificity95": null
+        }
+      }
+    },
+    "run_dir": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42/training/shimmer_512_pretrained_reference/seed42_20261027T191640Z_bd3a1b70",
+    "artifact": {
+      "path": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42/training/shimmer_512_pretrained_reference/seed42_20261027T191640Z_bd3a1b70/best.pt",
+      "sha256": "b546ffa77040c879ea6ec0b25dc27cd62e402e9c07e7efeaca3bd494de3f119e",
+      "bytes": 111732674,
+      "validation_predictions_sha256": "130e8fc3c43bd35c4c1ef74a6b36981f13401ae053f3a410161ae6b22dd93d45"
+    },
+    "best_epoch": 13,
+    "selected_weights": "raw",
+    "ended_at": "2026-10-27T23:04:50.729898+00:00"
+  },
+  "control": {
+    "status": "complete",
+    "gpu": 2,
+    "waiting_since": "2026-10-27T23:04:50.750066+00:00",
+    "started_at": "2026-10-27T23:04:50.776508+00:00",
+    "config": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/resolved_config.json",
+    "cache": "/dev/shm/heyuhang-shimmer-round2-20261028/cache512",
+    "pid": 3653202,
+    "command": [
+      "/home/lichunyu/miniconda3/envs/glaucoma/bin/python",
+      "-u",
+      "-m",
+      "glaucoma",
+      "evaluate",
+      "--checkpoint",
+      "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/training/shimmer_512_reference_refine_seed42/seed42_20261027T230504Z_e75357a8/best.pt",
+      "--data-root",
+      "/home/lichunyu/competition/dataset/glaucoma_first",
+      "--device",
+      "cuda:0",
+      "--batch-size",
+      "16",
+      "--num-workers",
+      "4",
+      "--output-dir",
+      "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/evaluation"
+    ],
+    "log": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/evaluate.log",
+    "run_dir": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/training/shimmer_512_reference_refine_seed42/seed42_20261027T230504Z_e75357a8",
+    "result": {
+      "name": "seed42_refine",
+      "gpu": 2,
+      "metrics": {
+        "count": 5849,
+        "positives": 191,
+        "auroc": 0.9902695344959368,
+        "auprc_trapz": 0.8458705185232597,
+        "ap": 0.8460843706219399,
+        "confusion_at_0.5": {
+          "tn": 5610,
+          "fp": 48,
+          "fn": 53,
+          "tp": 138
+        },
+        "sensitivity_at_0.5": 0.7225130890052356,
+        "specificity_at_0.5": 0.9915164369034994,
+        "sensitivity_at_specificity95": 0.9528795811518325,
+        "threshold_at_specificity95": 0.00023050670279189944,
+        "loss": 0.27062625282752845,
+        "age_groups": {
+          "under50": {
+            "count": 1486,
+            "positives": 15,
+            "auroc": 0.9943122592340812,
+            "auprc_trapz": 0.8023971640990393,
+            "ap": 0.807429624152506,
+            "confusion_at_0.5": {
+              "tn": 1469,
+              "fp": 2,
+              "fn": 8,
+              "tp": 7
+            },
+            "sensitivity_at_0.5": 0.4666666666666667,
+            "specificity_at_0.5": 0.9986403806934059,
+            "sensitivity_at_specificity95": 0.9333333333333333,
+            "threshold_at_specificity95": 0.0059110685251653194
+          },
+          "50to64": {
+            "count": 3148,
+            "positives": 98,
+            "auroc": 0.99019906323185,
+            "auprc_trapz": 0.862514772362906,
+            "ap": 0.8629341138127344,
+            "confusion_at_0.5": {
+              "tn": 3025,
+              "fp": 25,
+              "fn": 20,
+              "tp": 78
+            },
+            "sensitivity_at_0.5": 0.7959183673469388,
+            "specificity_at_0.5": 0.9918032786885246,
+            "sensitivity_at_specificity95": 0.9591836734693877,
+            "threshold_at_specificity95": 0.00023050670279189944
+          },
+          "65plus": {
+            "count": 1213,
+            "positives": 78,
+            "auroc": 0.9833220377273241,
+            "auprc_trapz": 0.8328680164859908,
+            "ap": 0.83356119754167,
+            "confusion_at_0.5": {
+              "tn": 1114,
+              "fp": 21,
+              "fn": 25,
+              "tp": 53
+            },
+            "sensitivity_at_0.5": 0.6794871794871795,
+            "specificity_at_0.5": 0.9814977973568282,
+            "sensitivity_at_specificity95": 0.9358974358974359,
+            "threshold_at_specificity95": 0.002296159043908119
+          },
+          "missing_or_invalid": {
+            "count": 2,
+            "positives": 0,
+            "auroc": null,
+            "auprc_trapz": null,
+            "ap": null,
+            "confusion_at_0.5": {
+              "tn": 2,
+              "fp": 0,
+              "fn": 0,
+              "tp": 0
+            },
+            "sensitivity_at_0.5": null,
+            "specificity_at_0.5": 1.0,
+            "sensitivity_at_specificity95": null,
+            "threshold_at_specificity95": null
+          }
+        }
+      },
+      "run_dir": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/training/shimmer_512_reference_refine_seed42/seed42_20261027T230504Z_e75357a8",
+      "artifact": {
+        "path": "/var/tmp/heyuhang-shimmer-round2-20261028/jobs/seed42_refine/training/shimmer_512_reference_refine_seed42/seed42_20261027T230504Z_e75357a8/best.pt",
+        "sha256": "8c03d45880695dc4555bfaadbdc3383f83a5d053596577ef3ccaaa02d6a66a3a",
+        "bytes": 111732674,
+        "validation_predictions_sha256": "130e8fc3c43bd35c4c1ef74a6b36981f13401ae053f3a410161ae6b22dd93d45"
+      },
+      "best_epoch": -1,
+      "selected_weights": "initial",
+      "ended_at": "2026-10-28T00:29:54.717913+00:00"
+    }
+  },
+  "failed_jobs": {}
+}
