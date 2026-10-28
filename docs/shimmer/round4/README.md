@@ -71,3 +71,30 @@ tail -f /path/to/outputs/resolution_seed42/512/train.log
 中断后可用现有CLI的 `train --config <该组config.json> --resume <该组last.pt>` 继续。不要同时传 --init-from；resume保持原有数值配置。此方式完成后需另用CLI evaluate独立重评，启动脚本不会自动接管手动恢复的任务。
 
 回传两组 manifest.json、config/metadata/history/metrics/initial_validation/独立重评metrics 即可；比赛图片、逐样本预测和模型权重不要提交Git。
+
+## 4. 本轮实测结果（Windows 单卡，seed42）
+
+两组均从同一 best.pt 初始化、10 epochs 跑完，权重与预测未提交 Git。数值均为**同一台机器、同一 evaluate 协议**下产出，可横向比较。
+
+| 方案 | best AUROC | best AP | 相对初始权重 |
+|---|---|---|---|
+| 初始 512 权重（本机复核 baseline512） | 0.988501 | 0.827547 | — |
+| 本轮 512 微调（best epoch 4） | 0.988612 | 0.829911 | +0.0001 |
+| 本轮 640 微调（独立重评） | 0.982846 | 0.811048 | −0.0057 |
+
+- 512 微调全程 0.9885–0.9886，与初始权重等价；640 从 0.9812 爬到 0.9828 后封顶，两者差距稳定在 0.006 附近，曲线不交叉。
+- 结论：在本轮“head 1e-5 / backbone 1e-6、10 epochs”的受控设置下，**640 没有收益且明显更差**，应继续沿用初始 512 权重。可能原因是 640 输入与 ImageNet 预训练尺度偏离更大，而骨干学习率过低、epoch 太少，模型没有余量适配新尺度。若要再试，需提高 backbone LR（5e-6 ~ 1e-5）单独成轮，并补 T4 延迟测试。
+
+**口径提醒**：本文开头记录的 0.99027 来自旧机器评估协议，本机对同一 best.pt 复核只得 0.988501。跨机器数字不可混用，否则会把 512 微调误判为退步。后续结论一律以同机同协议的三行数字为准。
+
+### Windows 上的 dataloader 死锁（已定位）
+
+本轮出现 4 次训练卡死，全部发生在 **epoch 边界重建 dataloader 时**：`num_workers>0` 的 spawn 子进程在 `import torch` 阶段崩溃（`640_train.log.err` 中可见 `SystemError: error return without exception set`），父进程无限等待该 worker，表现为 GPU 占用显存但利用率为 0、所有进程 CPU 零增长。
+
+规避手段（按效果排序）：
+
+1. `persistent_workers=True`：worker 全程只 spawn 一次，从根上避开每 epoch 重建（推荐，尚未改入 `trainer.make_loader`）。
+2. `data.num_workers=0`：完全不用子进程，最稳，但 GPU 利用率只有约 25%，单 epoch 从 14 分钟涨到 37 分钟。
+3. `num_workers=2` 配合“日志静默超过 10 分钟即杀进程、从最新 last.pt 续跑”的看护脚本：实测 8 个 epoch 崩一次，自动恢复后只损失当时正在跑的批次，是最快且可接受的组合（本轮 640 即用此法）。
+
+注意 `train --resume` 的兼容性检查逐字段比对配置，**num_workers、verify_images 等字段改动都会直接报错**，因此只能在实验开始前定好这些值；`--init-from` 新建实验则不受此限制。
