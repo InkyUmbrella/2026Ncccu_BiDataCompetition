@@ -1,0 +1,13 @@
+..[run] /tmp/tmpoa1cdzzj/out/b0_image/seed42_20261028T152843Z_0c937078
+[epoch 1/2] train_loss=0.884753 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/2] train_loss=2.217318 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpoa1cdzzj/out/b0_image/seed42_20261028T152843Z_a1701323
+[epoch 1/2] train_loss=0.884753 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpoa1cdzzj/out/b0_image/seed42_20261028T152843Z_528630f1
+[epoch 2/2] train_loss=2.217318 valid_auc=0.000000 valid_ap=0.416667
+.
+----------------------------------------------------------------------
+Ran 3 tests in 0.208s
+
+OK
+Wrote 4 predictions to /tmp/tmpoa1cdzzj/eval

@@ -35,6 +35,22 @@ def smooth_labels(labels, amount):
     return labels * (1 - amount) + 0.5 * amount
 
 
+def pairwise_rank_loss(logits, labels):
+    """Mean logistic ranking loss over positive/negative pairs in a microbatch.
+
+    No cross-batch queue or validation labels. Empty pair sets return a
+    differentiable zero. Ranking is invariant to a common logit offset.
+    """
+    if logits.ndim != 1 or labels.shape != logits.shape:
+        raise ValueError("Expected matching one-dimensional logits and labels")
+    if not torch.all((labels == 0) | (labels == 1)):
+        raise ValueError("Pairwise ranking requires hard binary labels")
+    positive, negative = logits[labels == 1], logits[labels == 0]
+    if not positive.numel() or not negative.numel():
+        return logits.sum() * 0
+    return F.softplus(negative[None, :] - positive[:, None]).mean()
+
+
 def mix_batch(images, targets, mixup_alpha=None, cutmix_alpha=None):
     """Apply one of the enabled Mixup/CutMix transforms to a batch.
 
@@ -85,19 +101,27 @@ def train_one_epoch(model, loader, optimizer, scaler, device, config, global_ste
     amp = config.amp and device.type == "cuda"
     pos_weight = torch.tensor(config.pos_weight, device=device)
     loss_total, seen, skipped = 0.0, 0, 0
+    rank_total, pair_batches = 0.0, 0
     for index, batch in enumerate(loader):
         if index % config.accumulation_steps == 0:
             remaining = len(loader.dataset) - seen
             window_samples = min(config.accumulation_steps * loader.batch_size, remaining)
         images = batch["image"].to(device, non_blocking=True)
         ages = batch["age"].to(device, non_blocking=True)
-        labels = smooth_labels(batch["label"].to(device, non_blocking=True), config.label_smoothing)
+        hard_labels = batch["label"].to(device, non_blocking=True)
+        labels = smooth_labels(hard_labels, config.label_smoothing)
         images, labels, _ = mix_batch(images, labels, config.mixup_alpha, config.cutmix_alpha)
         with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp):
             logits = model(images, ages)
             if logits.shape != labels.shape:
                 raise ValueError(f"Model must return [N] logits, got {tuple(logits.shape)}")
             loss_sum = F.binary_cross_entropy_with_logits(logits.float(), labels, pos_weight=pos_weight, reduction="sum")
+            if config.pairwise_rank_weight:
+                rank_loss = pairwise_rank_loss(logits.float(), hard_labels)
+                loss_sum = loss_sum + config.pairwise_rank_weight * len(labels) * rank_loss
+                rank_total += rank_loss.detach().item() * len(labels)
+                positive_count = int((batch['label'] == 1).sum())
+                pair_batches += int(0 < positive_count < len(labels))
         if not torch.isfinite(loss_sum):
             raise FloatingPointError("Non-finite training loss")
         scaler.scale(loss_sum / window_samples).backward()
@@ -121,5 +145,8 @@ def train_one_epoch(model, loader, optimizer, scaler, device, config, global_ste
             optimizer.zero_grad(set_to_none=True)
         if (index + 1) % 100 == 0:
             print(f"[train] batch={index + 1}/{len(loader)} loss={loss_total / seen:.6f}", flush=True)
-    return {"loss": loss_total / seen, "lr": optimizer.param_groups[0]["lr"],
-            "skipped_optimizer_steps": skipped}, global_step
+    metrics = {"loss": loss_total / seen, "lr": optimizer.param_groups[0]["lr"],
+               "skipped_optimizer_steps": skipped}
+    if config.pairwise_rank_weight:
+        metrics.update(rank_loss=rank_total / seen, rank_batches_with_pairs=pair_batches)
+    return metrics, global_step

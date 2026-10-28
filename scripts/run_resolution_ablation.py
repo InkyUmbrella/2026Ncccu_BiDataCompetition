@@ -15,12 +15,14 @@ from glaucoma.engine.checkpoint import read_checkpoint
 from glaucoma.utils import save_json, sha256_file
 
 
-def resolve_configs(source, data_root, output, sizes, batch_size=8, workers=4, device='cuda'):
+def resolve_configs(source, data_root, output, sizes, batch_size=8, workers=4, device='cuda', recipe_family='resolution'):
     if batch_size < 1 or 128 % batch_size:
         raise ValueError('batch-size must be a positive divisor of 128')
     configs={}
     for size in sizes:
-        c=Config.load(ROOT/f'configs/experiments/shimmer_resolution_{size}_seed42.json')
+        if recipe_family not in ('resolution','ranking'):
+            raise ValueError('Unknown experiment family')
+        c=Config.load(ROOT/f'configs/experiments/shimmer_{recipe_family}_{size}_seed42.json')
         if source.model != c.model or source.data.image_size != 512:
             raise ValueError('Need the matching 512 ConvNeXt inference checkpoint (best.pt)')
         for field in ('crop_black_border','crop_threshold','crop_margin','decode','normalization'):
@@ -57,8 +59,9 @@ def main(args):
     payload=read_checkpoint(checkpoint,'inference')
     source=Config.from_dict(payload['config'])
     output=Path(args.output_root).resolve()
-    sizes=(512,640) if args.sizes=='both' else (int(args.sizes),)
-    configs=resolve_configs(source,args.data_root,output,sizes,args.batch_size,args.workers,args.device)
+    family=getattr(args,'recipe_family','resolution')
+    sizes=getattr(args,'recipe_names',None) or ((512,640) if args.sizes=='both' else (int(args.sizes),))
+    configs=resolve_configs(source,args.data_root,output,sizes,args.batch_size,args.workers,args.device,family)
     del payload
     with (Path(args.data_root)/'valid.csv').open(encoding='utf-8-sig',newline='') as handle:
         expected=[(r['Image_name'],int(r['True_Label'])) for r in csv.DictReader(handle)]
@@ -66,7 +69,7 @@ def main(args):
     # A new directory per invocation prevents accidentally overwriting experiments.
     output.mkdir(parents=True,exist_ok=False)
     manifest={'checkpoint':str(checkpoint),'checkpoint_sha256':sha256_file(checkpoint),
-              'csv_hashes':hashes,'sizes':list(sizes),'effective_batch':128,
+              'csv_hashes':hashes,'experiment_family':family,'sizes':list(sizes),'effective_batch':128,
               'status':'prepared','results':[]}
     save_json(output/'manifest.json',manifest)
     for size,c in configs.items():
@@ -87,10 +90,12 @@ def main(args):
         for size,c in configs.items():
             directory=output/str(size)
             command=cli+['train','--config',directory/'config.json','--init-from',checkpoint]
-            if args.cache:
+            if getattr(args,'image_cache',None):
+                command+=['--image-cache',args.image_cache]
+            elif args.cache:
                 cache=directory/'cache'
                 run(cli+['cache-images','--config',directory/'config.json','--data-root',args.data_root,
-                         '--output',cache,'--workers',args.workers,'--storage','png'],directory/'cache.log')
+                         '--output',cache,'--workers',max(1,args.workers),'--storage','png'],directory/'cache.log')
                 command+=['--image-cache',cache]
             run(command,directory/'train.log')
             runs=list((directory/'training'/c.experiment).glob('seed*'))
@@ -103,7 +108,7 @@ def main(args):
             for key in ('auroc','ap','auprc_trapz'):
                 if abs(metrics[key]-saved['valid'][key])>1e-8:
                     raise ValueError(f'Independent re-evaluation mismatch: {key}')
-            manifest['results'].append({'size':size,'metrics':metrics,
+            manifest['results'].append({'recipe':str(size),'size':c.data.image_size,'metrics':metrics,
                 'initial_metrics':json.loads((training/'initial_validation.json').read_text()),
                 'checkpoint':str(training/'best.pt'),'checkpoint_sha256':sha256_file(training/'best.pt'),
                 'selected_weights':saved.get('selected_weights'),

@@ -58,6 +58,8 @@ def build_parser():
         command.add_argument("--batch-size", type=int, default=16)
         command.add_argument("--num-workers", type=int, default=4)
         if name == "evaluate":
+            command.add_argument("--precision", choices=("checkpoint", "fp32", "amp"), default="checkpoint")
+            command.add_argument("--hash-images", action="store_true", help="Hash evaluation source bytes for cross-machine verification")
             command.add_argument("--split", choices=("train", "valid"), default="valid")
             command.add_argument("--output-dir", required=True, help="New directory")
         else:
@@ -129,12 +131,13 @@ def main(argv=None):
 
 
 def _inference(args):
+    import torch
     from .data.dataset import FundusDataset, read_samples
     from .data.transforms import build_transform
     from .engine.checkpoint import load_model
     from .engine.evaluation import collect_predictions, write_predictions
     from .engine.trainer import make_loader
-    from .utils import resolve_device, save_json
+    from .utils import resolve_device, save_json, environment_metadata, sha256_file
     if args.batch_size < 1 or args.num_workers < 0:
         raise ValueError("batch-size must be positive and num-workers nonnegative")
     predicting = args.command == "predict"
@@ -150,11 +153,28 @@ def _inference(args):
                            normalization=config.data.normalization),
                            decode=config.data.decode, image_size=config.data.image_size)
     loader = make_loader(dataset, args.batch_size, args.num_workers, config.seed, pin_memory=device.type == "cuda")
-    predictions, metrics = collect_predictions(model, loader, device, config.train.pos_weight, config.train.amp)
+    precision = getattr(args, "precision", "checkpoint")
+    amp = config.train.amp if precision == "checkpoint" else precision == "amp"
+    predictions, metrics = collect_predictions(model, loader, device, config.train.pos_weight, amp)
     if predicting:
         write_predictions(destination, predictions, submission=True)
     else:
         destination.mkdir(parents=True, exist_ok=False)
         write_predictions(destination / "predictions.csv", predictions)
         save_json(destination / "metrics.json", metrics)
+        provenance = environment_metadata()
+        provenance.update(checkpoint_sha256=sha256_file(args.checkpoint), config=config.to_dict(),
+                          csv_sha256=sha256_file(Path(args.data_root) / f"{args.split}.csv"),
+                          device=str(device), batch_size=args.batch_size, num_workers=args.num_workers,
+                          amp_effective=amp and device.type == "cuda",
+                          matmul_allow_tf32=torch.backends.cuda.matmul.allow_tf32,
+                          cudnn_allow_tf32=torch.backends.cudnn.allow_tf32)
+        if args.hash_images:
+            import hashlib
+            digest = hashlib.sha256()
+            for row in rows:
+                digest.update(row.name.encode("utf-8") + b"\0")
+                digest.update(bytes.fromhex(sha256_file(row.path)))
+            provenance["ordered_source_images_sha256"] = digest.hexdigest()
+        save_json(destination / "provenance.json", provenance)
     print(f"Wrote {len(rows)} predictions to {destination.resolve()}")

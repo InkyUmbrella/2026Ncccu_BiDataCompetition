@@ -49,6 +49,7 @@ class TrainConfig:
     ema_warmup_steps: int = 0
     evaluate_raw_with_ema: bool = False
     keep_initial_best: bool = False
+    pairwise_rank_weight: float = 0.0
     mixup_alpha: float | None = None
     cutmix_alpha: float | None = None
     label_smoothing: float = 0.0
@@ -113,12 +114,19 @@ class Config:
             raise ValueError("evaluate_raw_with_ema must be boolean")
         if type(self.train.keep_initial_best) is not bool:
             raise ValueError("keep_initial_best must be boolean")
+        if (type(self.train.pairwise_rank_weight) is bool
+                or not math.isfinite(self.train.pairwise_rank_weight)
+                or self.train.pairwise_rank_weight < 0):
+            raise ValueError("pairwise_rank_weight must be finite and nonnegative")
         if type(self.train.ema_warmup_steps) is not int or self.train.ema_warmup_steps < 0:
             raise ValueError("ema_warmup_steps must be a nonnegative integer")
         for name in ("mixup_alpha", "cutmix_alpha"):
             value = getattr(self.train, name)
             if value is not None and (not math.isfinite(value) or value <= 0):
                 raise ValueError(f"{name} must be finite and positive or null")
+        if self.train.pairwise_rank_weight and (self.train.mixup_alpha or self.train.cutmix_alpha
+                                                or self.train.label_smoothing):
+            raise ValueError("Pairwise ranking requires unmixed hard labels (no Mixup/CutMix/smoothing)")
         if not math.isfinite(self.train.label_smoothing) or not 0 <= self.train.label_smoothing <= 0.5:
             raise ValueError("label_smoothing must be in [0, 0.5]")
         if self.train.freeze_image_epochs and self.model.name != "convnext_tiny_age_residual":

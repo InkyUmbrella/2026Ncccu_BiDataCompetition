@@ -1,0 +1,159 @@
+.[cache] 13/13
+[cache] complete: /tmp/tmpsiz0w5uk/cache
+.[cache] 13/13
+[cache] complete: /tmp/tmp9brq034s/cache
+....Wrote 4 predictions to /tmp/tmpr4ughmtt/evaluation
+Wrote 3 predictions to /tmp/tmpr4ughmtt/submission.csv
+[run] /tmp/tmp2b_2r3mt/out/b0_image/seed42_20261028T152743Z_1144cbec
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp2b_2r3mt/out/b0_image/seed42_20261028T152743Z_5ef69594
+[epoch 1/3] train_loss=0.902751 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp2b_2r3mt/out/b0_image/seed42_20261028T152743Z_69c966de
+[epoch 2/3] train_loss=0.887838 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=0.889578 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmp2b_2r3mt/out/b0_image/seed42_20261028T152743Z_353cbc42
+[epoch 1/4] train_loss=0.901637 valid_auc=0.000000 valid_ap=0.416667
+.[run] /tmp/tmp4dw84bb5/out/b0_image/seed42_20261028T152743Z_a28f4656
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp4dw84bb5/out/b0_image/seed42_20261028T152743Z_2719ac53
+[epoch 1/4] train_loss=2.017467 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmp4dw84bb5/out/b0_image/seed42_20261028T152743Z_c963b13f
+[epoch 2/4] train_loss=1.998495 valid_auc=1.000000 valid_ap=1.000000
+[epoch 3/4] train_loss=1.945719 valid_auc=1.000000 valid_ap=1.000000
+[epoch 4/4] train_loss=1.969757 valid_auc=1.000000 valid_ap=1.000000
+...../home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=10300) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmp38iwwd8r/cache
+.....[run] /tmp/tmpwyt832ni/outputs/b0_image/seed42_20261028T152744Z_bb63c0ea
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpwyt832ni/outputs/b0_image/seed42_20261028T152745Z_48f1dd35
+[epoch 1/3] train_loss=1.895297 valid_auc=0.000000 valid_ap=0.416667
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=10300) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmpwyt832ni/cache
+[run] /tmp/tmpwyt832ni/outputs/b0_image/seed42_20261028T152745Z_068c4e7a
+[epoch 2/3] train_loss=1.845349 valid_auc=0.000000 valid_ap=0.416667
+[epoch 3/3] train_loss=1.788141 valid_auc=0.000000 valid_ap=0.416667
+....s.............................Wrote 4 predictions to /tmp/tmpwyt832ni/eval
+Wrote 3 predictions to /tmp/tmpwyt832ni/submission.csv
+Wrote 120 fused rows to /tmp/tmp97_x7yg2/fused.csv; method=logit; AUROC=0.6176215277777777
+Wrote 120 fused rows to /tmp/tmp3jke7r3h/rank.csv; method=rank; AUROC=0.6256510416666667
+Wrote 120 fused rows to /tmp/tmp3jke7r3h/prob.csv; method=prob; AUROC=0.6176215277777778
+Wrote 20 submission rows to /tmp/tmpmilgskkg/submission.csv; method=logit
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=10300) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 6/6
+[cache] complete: /tmp/tmpjsd4057c/cache
+.[cache] 6/6
+[cache] complete: /tmp/tmphckuti7c/cache
+.........GPU: CPU, torch 2.5.1+cpu, torchvision 0.20.1+cpu, fp32
+model: /tmp/tmptjdua74y/config.json, params 0.0 M, artifact 0.0 MB, input 32x32, decode full
+images: 3 (valid), largest included: 116 KiB, warmup 1
+cold start (first end-to-end image): 8.7 ms
+
+stage             p50      p95      p99      max  (ms)
+read             0.04     0.05     0.05     0.05
+decode           1.60     4.13     4.35     4.41
+preprocess       1.26     3.47     3.66     3.71
+transfer         0.07     0.12     0.12     0.12
+forward          0.08     0.12     0.13     0.13
+post             0.02     0.02     0.02     0.02
+total            3.07     7.91     8.34     8.45
+GATE latency p95 <= 100 ms: PASS (7.9 ms)
+GATE model artifact <= 500 MB: SKIP (no checkpoint)
+report: /tmp/tmptjdua74y/latency.json
+[parity] tensor comparison on 3/3 valid images at 32px (preprocessing from defaults)
+  mean |delta| p50=0.00102 p95=0.00116 max=0.00784
+  bbox fraction max delta=None disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] report: /tmp/tmp5uwwodae/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=n/a)
+[parity] tensor comparison on 3/3 valid images at 64px (preprocessing from checkpoint)
+  mean |delta| p50=0.00092 p95=0.00107 max=0.00784
+  bbox fraction max delta=0.0 disagreements=0 both-unavailable=0
+  GATE tensor mean |delta| p95 <= 0.01: PASS
+  GATE bbox max drift <= 0.01 and zero None/crop disagreements: PASS
+[parity] checkpoint pass on the complete valid split (3 images, cpu)
+/home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=10300) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+.  AUROC full=1.000000 draft=1.000000 |delta|=0.000000
+  probability |delta| p50=0.00001 p99=0.00009 max=0.00009 spearman=1.000000
+  GATE AUROC |delta| <= 0.001: PASS
+[parity] report: /tmp/tmp0s26e6pr/parity.json
+[parity] PASS (tensor=PASS, bbox=PASS, auroc=PASS)
+[run] /tmp/tmpaqqgypoz/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T152754Z_b75420d8
+[epoch 1/2] train_loss=1.940089 valid_auc=0.500000 valid_ap=0.500000
+[run] /tmp/tmpaqqgypoz/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T152756Z_eeb33242
+[epoch 2/2] train_loss=1.904376 valid_auc=0.000000 valid_ap=0.500000
+[run] /tmp/tmpaqqgypoz/runs/shimmer_efficientnetv2s_384_reference_seed42/seed42_20261028T152758Z_d7bb04b1
+[epoch 1/2] train_loss=1.943216 valid_auc=0.500000 valid_ap=0.500000
+.Wrote 4 predictions to /tmp/tmpaqqgypoz/eval
+Wrote 3 predictions to /tmp/tmpaqqgypoz/predictions.csv
+[wait] GPU 2 has compute processes; waiting without interrupting them
+.[run] /tmp/tmpac9o0s6i/runs/b0_image/seed42_20261028T152802Z_eb3a3387
+[initial] valid_auc=0.990000 valid_ap=1.000000
+[epoch 1/2] train_loss=1.411619 valid_auc=0.500000 valid_ap=1.000000
+[run] /tmp/tmpac9o0s6i/runs/b0_image/seed42_20261028T152802Z_5a122116
+[epoch 2/2] train_loss=1.579721 valid_auc=0.500000 valid_ap=1.000000
+.../home/niko/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=10300) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[cache] 13/13
+[cache] complete: /tmp/tmpajgf_5n4/png
+.[cache] 13/13
+[cache] complete: /tmp/tmpdhxanre3/npy
+[cache] 13/13
+[cache] complete: /tmp/tmpdhxanre3/png
+.[cache] 13/13
+[cache] complete: /tmp/tmpgxwy7ll0/cache
+.[run] /tmp/tmpxw95zyad/outputs/shimmer_512_imagenet_seed43/seed43_20261028T152803Z_a43cf180
+[epoch 1/2] train_loss=0.413122 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpxw95zyad/outputs/shimmer_512_imagenet_seed43/seed43_20261028T152805Z_dd307680
+[epoch 2/2] train_loss=0.164886 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmpxw95zyad/outputs/shimmer_512_imagenet_seed43/seed43_20261028T152806Z_73404f0e
+[epoch 1/2] train_loss=0.353220 valid_auc=1.000000 valid_ap=1.000000
+...Wrote 4 predictions to /tmp/tmpxw95zyad/eval
+Wrote 3 predictions to /tmp/tmpxw95zyad/predictions.csv
+[run] /tmp/tmpviuhv9c5/out/b0_image/seed42_20261028T152810Z_c6bfcf81
+[epoch 1/2] train_loss=0.884753 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/2] train_loss=2.217318 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpviuhv9c5/out/b0_image/seed42_20261028T152810Z_d41ba9d9
+[epoch 1/2] train_loss=0.884753 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpviuhv9c5/out/b0_image/seed42_20261028T152810Z_e457ac89
+[epoch 2/2] train_loss=2.217318 valid_auc=0.000000 valid_ap=0.416667
+....Wrote 4 predictions to /tmp/tmpviuhv9c5/eval
+Prepared: /tmp/tmpc71bzj1b/result
+[run] /tmp/tmp_q6huzwh/runs/b0_image/seed42_20261028T152811Z_f349d881
+[epoch 1/1] train_loss=1.988267 valid_auc=0.800000 valid_ap=0.416667
+[run] /tmp/tmpgm_skli5/runs/b0_image/seed42_20261028T152811Z_34c4de42
+[epoch 1/1] train_loss=1.988267 valid_auc=0.900000 valid_ap=0.416667
+.......[run] /tmp/tmptw3nsz62/outputs/b0_image/seed42_20261028T152814Z_9d050f28
+[epoch 1/1] train_loss=0.991033 valid_auc=1.000000 valid_ap=1.000000
+[run] /tmp/tmptw3nsz62/outputs/b0_image/seed42_20261028T152816Z_4775ceb8
+.....[ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmp5xxv3zdh/outputs/ssl_moco_v2/seed42_20261028T152817Z_ca2cadb6  train_rows=9  world_size=1
+[ssl] epoch 1/2 loss=1.7758 lr=0.03750 queue=8 rank=1.14 std=0.0438
+[ssl] warning: no image cache; decoding NFS JPEGs will be slow
+[ssl] /tmp/tmp5xxv3zdh/outputs/ssl_moco_v2/seed42_20261028T152820Z_6ada19ea  train_rows=9  world_size=1
+[ssl] epoch 2/2 loss=2.3541 lr=0.00335 queue=8 rank=2.00 std=0.0049 probe_auc=None
+....[run] /tmp/tmpdnxbcr1m/outputs/b0_image/seed42_20261028T152825Z_1561b8ff
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpdnxbcr1m/outputs/b0_image/seed42_20261028T152825Z_45477626
+[epoch 1/2] train_loss=1.887471 valid_auc=0.000000 valid_ap=0.416667
+[run] /tmp/tmpdnxbcr1m/outputs/b0_image/seed42_20261028T152825Z_0367fe1e
+[epoch 2/2] train_loss=1.887233 valid_auc=0.000000 valid_ap=0.416667
+.........
+----------------------------------------------------------------------
+Ran 102 tests in 46.688s
+
+OK (skipped=1)
